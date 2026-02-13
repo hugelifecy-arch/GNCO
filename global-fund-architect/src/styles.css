@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Subtle scrollbars */
+* { scrollbar-width: thin; scrollbar-color: rgba(148,163,184,.35) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: rgba(148,163,184,.25); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+
+/* React Flow tweaks */
+.react-flow__background { background-color: #020617; }
+.react-flow__attribution { display: none; }
