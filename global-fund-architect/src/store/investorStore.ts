@@ -9,6 +9,7 @@ type InvestorState = {
   weights: Weights;
   constraints: Constraints;
   setWeight: (k: FactorKey, v: number) => void;
+  setWeights: (w: Partial<Weights>) => void;
   toggleConstraint: (k: ConstraintKey) => void;
   reset: () => void;
 };
@@ -32,6 +33,7 @@ export const useInvestorStore = create<InvestorState>()(
       weights: defaultWeights,
       constraints: defaultConstraints,
       setWeight: (k, v) => set((s) => ({ weights: { ...s.weights, [k]: v } })),
+      setWeights: (w) => set((s) => ({ weights: { ...s.weights, ...w } })),
       toggleConstraint: (k) => set((s) => ({ constraints: { ...s.constraints, [k]: !s.constraints[k] } })),
       reset: () => set(() => ({ weights: defaultWeights, constraints: defaultConstraints }))
     }),

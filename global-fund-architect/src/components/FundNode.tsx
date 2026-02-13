@@ -2,6 +2,7 @@ import React, { memo, useMemo } from "react";
 import type { NodeProps } from "reactflow";
 import { ChevronRight, ChevronDown, Scale, Ban, Star } from "lucide-react";
 import { useGraphStore } from "../store/graphStore";
+import { useInvestorStore } from "../store/investorStore";
 import { computeNodeFit } from "../utils/scoring";
 
 type RFData = { fundNodeId: string; };
@@ -20,12 +21,14 @@ export const FundNodeComponent = memo((props: NodeProps<RFData>) => {
     selectNode: s.selectNode
   }));
 
+  const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
+
   const node = nodesById[fundNodeId];
   const isSelected = selectedNodeId === fundNodeId;
   const isExpanded = !!expanded[fundNodeId];
   const hasChildren = (node?.children?.length ?? 0) > 0;
 
-  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node]);
+  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node, weights, constraints]);
   const score = fit ? Math.round(fit.fitScore) : 0;
 
   const onCaretClick = async (e: React.MouseEvent) => {
@@ -91,7 +94,10 @@ export const FundNodeComponent = memo((props: NodeProps<RFData>) => {
 
             <div className="flex items-center gap-1">
               {disabled ? (
-                <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full border border-rose-600/40 text-rose-200">
+                <span
+                  title={fit?.missingTags?.length ? `Missing: ${fit.missingTags.join(", ")}` : "Filtered by constraints"}
+                  className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full border border-rose-600/40 text-rose-200"
+                >
                   <Ban size={12} /> Filtered
                 </span>
               ) : isSelected ? (

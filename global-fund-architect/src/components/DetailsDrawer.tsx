@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { X, Link as LinkIcon, ThumbsUp, ThumbsDown, Info } from "lucide-react";
 import { useGraphStore } from "../store/graphStore";
+import { useInvestorStore } from "../store/investorStore";
 import { SOURCE_FALLBACK } from "../data/mockDataManager";
 import { computeNodeFit } from "../utils/scoring";
 
@@ -17,8 +18,10 @@ export function DetailsDrawer() {
     clearSelection: s.clearSelection
   }));
 
+  const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
+
   const node = selectedNodeId ? nodesById[selectedNodeId] : null;
-  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node]);
+  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node, weights, constraints]);
   const [tab, setTab] = useState<TabKey>("overview");
 
   if (!node) return null;

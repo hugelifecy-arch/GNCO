@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import ReactFlow, { Background, Controls, MiniMap, type Node, type Edge } from "reactflow";
 import { Loader2 } from "lucide-react";
 import { useGraphStore } from "./store/graphStore";
+import { useInvestorStore } from "./store/investorStore";
 import { ControlPanel } from "./components/ControlPanel";
 import { DetailsDrawer } from "./components/DetailsDrawer";
 import { FundNodeComponent } from "./components/FundNode";
@@ -15,15 +16,20 @@ function cn(...xs: Array<string | false | undefined | null>) {
 const nodeTypes = { fundNode: FundNodeComponent };
 
 export default function App() {
-  const { init, isLoading, nodes, edges, selectedNodeId, parentByChild, nodesById } = useGraphStore((s) => ({
+  const { init, isLoading, nodes, edges, selectedNodeId, parentByChild, nodesById, selectNode } = useGraphStore((s) => ({
     init: s.init,
     isLoading: s.isLoading,
     nodes: s.nodes,
     edges: s.edges,
     selectedNodeId: s.selectedNodeId,
     parentByChild: s.parentByChild,
-    nodesById: s.nodesById
-  }));
+    nodesById: s.nodesById,
+    selectNode: s.selectNode
+  });
+
+  const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
+
+
 
   useEffect(() => { void init(); }, [init]);
 
@@ -45,7 +51,7 @@ export default function App() {
     const parentMap = parentByChild;
     const nodesByIdRecord = nodesMap;
     return computeTopPaths({ leafIds, parentByChild: parentMap, nodesById: nodesByIdRecord });
-  }, [leafIds, parentByChild, nodesById]);
+  }, [leafIds, parentByChild, nodesById, weights, constraints]);
 
   const topEdgeIds = useMemo(() => {
     const ids = new Set<string>();
@@ -169,9 +175,13 @@ export default function App() {
             <ol className="mt-2 space-y-1 text-xs text-slate-300">
               {topPaths.length ? topPaths.map((p, i) => (
                 <li key={p.leafId} className="flex items-center justify-between gap-3">
-                  <span className="truncate">
+                  <button
+                    onClick={() => selectNode(p.leafId)}
+                    className="truncate text-left hover:text-slate-100"
+                    title="Open details"
+                  >
                     {i + 1}. {nodesById[p.leafId]?.label ?? p.leafId}
-                  </span>
+                  </button>
                   <span className={cn(
                     "shrink-0 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-0.5",
                     p.score >= 75 ? "text-emerald-300" : p.score >= 55 ? "text-amber-300" : "text-rose-300"

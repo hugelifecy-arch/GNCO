@@ -22,7 +22,7 @@ export function computeNodeFit(node: FundNode): FitResult {
 
   const raw =
     (node.data.factorScores.speed * weights.speed +
-      node.data.factorScores.cost * weights.cost +
+      (100 - node.data.factorScores.cost) * weights.cost +
       node.data.factorScores.governance * weights.governance +
       node.data.factorScores.digital * weights.digital) / wNorm;
 
