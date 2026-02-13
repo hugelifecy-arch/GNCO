@@ -21,7 +21,7 @@ export function DetailsDrawer() {
   const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
 
   const node = selectedNodeId ? nodesById[selectedNodeId] : null;
-  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node, weights, constraints]);
+  const fit = useMemo(() => (node ? computeNodeFit(node, weights, constraints) : null), [node, weights, constraints]);
   const [tab, setTab] = useState<TabKey>("overview");
 
   if (!node) return null;
@@ -46,6 +46,12 @@ export function DetailsDrawer() {
             <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
               <span className="rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1">
                 Fit Score: <span className="font-semibold text-slate-100">{Math.round(fit.fitScore)}</span>
+              </span>
+              <span className="rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1">
+                Raw: <span className="font-semibold text-slate-100">{Math.round(fit.rawScore)}</span>
+              </span>
+              <span className="rounded-full border border-slate-800 bg-slate-900/60 px-2 py-1 text-slate-300">
+                Breakdown S/C/G/D: {Math.round(fit.breakdown.speed)}/{Math.round(fit.breakdown.cost)}/{Math.round(fit.breakdown.governance)}/{Math.round(fit.breakdown.digital)}
               </span>
               {fit.isDisabled ? (
                 <span className="rounded-full border border-rose-700/50 bg-rose-950/30 px-2 py-1 text-rose-200">
