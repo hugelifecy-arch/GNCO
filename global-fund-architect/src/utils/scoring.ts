@@ -1,17 +1,20 @@
 import type { FundNode, FactorKey, ConstraintKey } from "../types";
-import { useInvestorStore } from "../store/investorStore";
+
+type Weights = Record<FactorKey, number>;
+type Constraints = Record<ConstraintKey, boolean>;
 
 export type FitResult = {
   fitScore: number; // 0-100
   penalty: number;  // negative
   isDisabled: boolean;
   missingTags: ConstraintKey[];
+  rawScore: number;
+  breakdown: Record<FactorKey, number>;
 };
 
 const clamp = (n: number, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, n));
 
-export function computeNodeFit(node: FundNode): FitResult {
-  const { weights, constraints } = useInvestorStore.getState();
+export function computeNodeFit(node: FundNode, weights: Weights, constraints: Constraints): FitResult {
 
   const required = (Object.keys(constraints) as ConstraintKey[]).filter(k => constraints[k]);
   const missing = required.filter(t => !node.data.tags.includes(t));
@@ -22,6 +25,7 @@ export function computeNodeFit(node: FundNode): FitResult {
 
   const raw =
     (node.data.factorScores.speed * weights.speed +
+      // Cost is inverted because a lower cost score should rank better.
       (100 - node.data.factorScores.cost) * weights.cost +
       node.data.factorScores.governance * weights.governance +
       node.data.factorScores.digital * weights.digital) / wNorm;
@@ -32,7 +36,14 @@ export function computeNodeFit(node: FundNode): FitResult {
   const fitScore = clamp(raw + penalty, 0, 100);
   const isDisabled = missing.length > 0;
 
-  return { fitScore, penalty, isDisabled, missingTags: missing };
+  const breakdown = {
+    speed: node.data.factorScores.speed,
+    cost: 100 - node.data.factorScores.cost,
+    governance: node.data.factorScores.governance,
+    digital: node.data.factorScores.digital
+  } satisfies Record<FactorKey, number>;
+
+  return { fitScore, penalty, isDisabled, missingTags: missing, rawScore: raw, breakdown };
 }
 
 export type PathScore = {
@@ -45,8 +56,10 @@ export function computeTopPaths(params: {
   leafIds: string[];
   parentByChild: Record<string, string | undefined>;
   nodesById: Record<string, FundNode>;
+  weights: Weights;
+  constraints: Constraints;
 }): PathScore[] {
-  const { leafIds, parentByChild, nodesById } = params;
+  const { leafIds, parentByChild, nodesById, weights, constraints } = params;
 
   const results: PathScore[] = [];
   for (const leafId of leafIds) {
@@ -58,7 +71,7 @@ export function computeTopPaths(params: {
     }
     path.reverse();
 
-    const fits = path.map(id => nodesById[id]).filter(Boolean).map(n => computeNodeFit(n));
+    const fits = path.map(id => nodesById[id]).filter(Boolean).map((n) => computeNodeFit(n, weights, constraints));
     if (!fits.length) continue;
 
     // If any node along path is disabled, deprioritize strongly.

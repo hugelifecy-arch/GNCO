@@ -25,7 +25,7 @@ export default function App() {
     parentByChild: s.parentByChild,
     nodesById: s.nodesById,
     selectNode: s.selectNode
-  });
+  }));
 
   const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
 
@@ -50,7 +50,7 @@ export default function App() {
     const nodesMap = nodesById;
     const parentMap = parentByChild;
     const nodesByIdRecord = nodesMap;
-    return computeTopPaths({ leafIds, parentByChild: parentMap, nodesById: nodesByIdRecord });
+    return computeTopPaths({ leafIds, parentByChild: parentMap, nodesById: nodesByIdRecord, weights, constraints });
   }, [leafIds, parentByChild, nodesById, weights, constraints]);
 
   const topEdgeIds = useMemo(() => {

@@ -28,10 +28,11 @@ export const FundNodeComponent = memo((props: NodeProps<RFData>) => {
   const isExpanded = !!expanded[fundNodeId];
   const hasChildren = (node?.children?.length ?? 0) > 0;
 
-  const fit = useMemo(() => (node ? computeNodeFit(node) : null), [node, weights, constraints]);
+  const fit = useMemo(() => (node ? computeNodeFit(node, weights, constraints) : null), [node, weights, constraints]);
   const score = fit ? Math.round(fit.fitScore) : 0;
 
   const onCaretClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation(); // NON-NEGOTIABLE: avoid opening drawer
     if (!hasChildren) return;
     await toggleExpand(fundNodeId);

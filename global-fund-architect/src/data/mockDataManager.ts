@@ -55,7 +55,7 @@ const JURISDICTIONS: Jurisdiction[] = [
   { key: "HKG", label: "Hong Kong", region: "Asia", tags: ["TOKENIZATION"], primaryRegime: "OFC" },
   { key: "DIFC", label: "UAE – DIFC", region: "MENA", tags: ["CRYPTO_FINANCING"], primaryRegime: "DIFC_FUND" },
   { key: "ADGM", label: "UAE – ADGM", region: "MENA", tags: ["TOKENIZATION", "CRYPTO_FINANCING"], primaryRegime: "ADGM_FUND" },
-  { key: "CYP", label: "Cyprus", region: "EU", tags: ["EU_PASSPORT", "TOKENIZATION", "CRYPTO_FINANCING"], primaryRegime: "AIFMD_STYLE" },
+  { key: "CYP", label: "Cyprus", region: "EU", tags: ["EU_PASSPORT"], primaryRegime: "PRO_FUND" },
   { key: "CYM", label: "Cayman Islands", region: "Offshore", tags: ["CRYPTO_FINANCING"], primaryRegime: "PRIVATE_FUND" }
 ];
 
