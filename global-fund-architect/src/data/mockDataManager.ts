@@ -7,7 +7,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 // Deterministic PRNG based on string id (stable across sessions)
 function mulberry32(seed: number) {
   return function () {
-    let t = (seed += 0x6D2B79F5);
+    let t = (seed += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -29,12 +29,24 @@ const round = (n: number) => Math.round(n);
 // Source anchors (fixed per spec)
 const SRC_ALFI_RAIF = "https://www.alfi.lu/...";
 const SRC_IE_QIAIF = "https://www.pinsentmasons.com/...";
-const SRC_WEF_TOKENIZATION = "https://reports.weforum.org/docs/WEF_Asset_Tokenization_in_Financial_Markets_2025.pdf";
+const SRC_WEF_TOKENIZATION =
+  "https://reports.weforum.org/docs/WEF_Asset_Tokenization_in_Financial_Markets_2025.pdf";
 const SRC_COINBASE_BORROW = "https://www.coinbase.com/borrow";
 const SRC_AAVE_HORIZON = "https://aave.com/blog/horizon-launch";
 
-// LAYER 1
-const JURISDICTIONS = [
+// =====================
+// LAYER 1: Jurisdictions
+// =====================
+type JurisdictionRegion = "EU" | "Asia" | "MENA" | "Offshore";
+type Jurisdiction = {
+  key: string;
+  label: string;
+  region: JurisdictionRegion;
+  tags: string[];
+  primaryRegime: string;
+};
+
+const JURISDICTIONS: Jurisdiction[] = [
   { key: "LUX", label: "Luxembourg", region: "EU", tags: ["EU_PASSPORT", "TOKENIZATION"], primaryRegime: "RAIF" },
   { key: "IRL", label: "Ireland", region: "EU", tags: ["EU_PASSPORT"], primaryRegime: "QIAIF" },
   { key: "UK", label: "United Kingdom", region: "EU", tags: [], primaryRegime: "LTAF" },
@@ -44,9 +56,12 @@ const JURISDICTIONS = [
   { key: "DIFC", label: "UAE – DIFC", region: "MENA", tags: ["CRYPTO_FINANCING"], primaryRegime: "DIFC_FUND" },
   { key: "ADGM", label: "UAE – ADGM", region: "MENA", tags: ["TOKENIZATION", "CRYPTO_FINANCING"], primaryRegime: "ADGM_FUND" },
   { key: "CYM", label: "Cayman Islands", region: "Offshore", tags: ["CRYPTO_FINANCING"], primaryRegime: "PRIVATE_FUND" }
-] as const;
+];
 
-const layer2Catalog = {
+// =====================
+// LAYER 2: Regulatory regimes
+// =====================
+const layer2Catalog: Record<string, { label: string; sources: string[] }> = {
   RAIF: { label: "RAIF (Reserved Alternative Investment Fund)", sources: [SRC_ALFI_RAIF] },
   QIAIF: { label: "QIAIF (Qualifying Investor AIF)", sources: [SRC_IE_QIAIF] },
   LTAF: { label: "LTAF (Long-Term Asset Fund)", sources: [] },
@@ -58,8 +73,11 @@ const layer2Catalog = {
   AIFMD_STYLE: { label: "AIFMD-style Manager + Fund", sources: [] },
   PRO_FUND: { label: "Professional / Qualified Investor Fund", sources: [] },
   RETAIL_LIMITED: { label: "Limited Retail Access Regime", sources: [] }
-} as const;
+};
 
+// =====================
+// LAYER 3+: Fixed catalogs
+// =====================
 const layer3Vehicles = [
   { key: "SCSP", label: "Limited Partnership (SCSp / LP)" },
   { key: "ICAV", label: "ICAV / Corporate Fund Vehicle" },
@@ -115,14 +133,16 @@ const layer7Financing = [
 ] as const;
 
 // Layer 8 must include Crypto Financing + Tokenization branches, but keep dense (5-10)
-const layer8Digital = [
+type DigitalOption = { key: string; label: string; tags: string[]; sources: string[] };
+
+const layer8Digital: DigitalOption[] = [
   { key: "CRYPTO_FIN", label: "Crypto Financing (Borrow/Lend)", tags: ["CRYPTO_FINANCING"], sources: [SRC_COINBASE_BORROW, SRC_AAVE_HORIZON] },
   { key: "TOKEN", label: "Tokenization (Real Asset Tokens)", tags: ["TOKENIZATION"], sources: [SRC_WEF_TOKENIZATION] },
-  { key: "CUSTODY", label: "Digital Asset Custody & Controls", tags: [] as string[], sources: [] as string[] },
-  { key: "TREASURY", label: "Stablecoin Treasury & Payments", tags: [] as string[], sources: [] as string[] },
-  { key: "ONCHAIN", label: "On-chain Reporting / Proof-of-Reserves", tags: [] as string[], sources: [] as string[] },
-  { key: "NONE", label: "No Digital Assets Exposure", tags: [] as string[], sources: [] as string[] }
-] as const;
+  { key: "CUSTODY", label: "Digital Asset Custody & Controls", tags: [], sources: [] },
+  { key: "TREASURY", label: "Stablecoin Treasury & Payments", tags: [], sources: [] },
+  { key: "ONCHAIN", label: "On-chain Reporting / Proof-of-Reserves", tags: [], sources: [] },
+  { key: "NONE", label: "No Digital Assets Exposure", tags: [], sources: [] }
+];
 
 const layer9Governance = [
   "AIFM / Management Company",
@@ -220,32 +240,33 @@ function buildChildrenIds(parentId: NodeId): NodeId[] {
   const rng = mulberry32(hashString(parentId));
 
   const jurKey = getJurKeyFromId(parentId);
-  const jur = jurKey ? JURISDICTIONS.find(j => j.key === jurKey) : undefined;
+  const jur = jurKey ? JURISDICTIONS.find((j) => j.key === jurKey) : undefined;
 
   if (layer === 1 && jur) {
     // Regulatory regimes: ensure primary + enough density
-    const allRegKeys = Object.keys(layer2Catalog) as Array<keyof typeof layer2Catalog>;
+    const allRegKeys = Object.keys(layer2Catalog);
     const picks = pickN(rng, allRegKeys, 5, 8);
-    if (!picks.includes(jur.primaryRegime as any)) picks[0] = jur.primaryRegime as any;
-    // Keep RAIF and QIAIF and LTAF and VCC sprinkled where possible
+
+    if (!picks.includes(jur.primaryRegime)) {
+      picks[0] = jur.primaryRegime;
+    }
+
     return picks.map((rk) => `L2::JUR::${jur.key}::REG::${rk}`);
   }
 
   if (layer === 2) {
-    const regKey = parentId.split("::REG::")[1] as string | undefined;
-    const pool = layer3Vehicles.map(v => v.key);
+    const pool = layer3Vehicles.map((v) => v.key);
     const picks = pickN(rng, pool, 5, 8);
     return picks.map((vk) => `${parentId}::VEH::${vk}`);
   }
 
   if (layer === 3) {
-    const picks = pickN(rng, layer4Strategies, 5, 9);
     // Requirement: start with Real Estate then generic
-    const realEstate = layer4Strategies.filter(s => s.startsWith("Real Estate"));
-    const others = layer4Strategies.filter(s => !s.startsWith("Real Estate"));
+    const realEstate = layer4Strategies.filter((s) => s.startsWith("Real Estate"));
+    const others = layer4Strategies.filter((s) => !s.startsWith("Real Estate"));
     const ordered = [...realEstate, ...others];
     const dense = pickN(rng, ordered, 5, 9);
-    return dense.map((s, idx) => `${parentId}::STR::${idx}`);
+    return dense.map((_, idx) => `${parentId}::STR::${idx}`);
   }
 
   if (layer === 4) {
@@ -265,17 +286,24 @@ function buildChildrenIds(parentId: NodeId): NodeId[] {
 
   if (layer === 7) {
     // Digital assets layer (keep fixed catalog but can shuffle for density)
-    const picks = pickN(rng, layer8Digital, 5, 6);
-    // Make sure both CRYPTO_FIN and TOKEN are included
-    const required = ["CRYPTO_FIN", "TOKEN"];
-    for (const r of required) {
-      if (!picks.some(p => (p as any).key === r)) {
-        picks[0] = layer8Digital.find(x => (x as any).key === r)! as any;
+    let picks = pickN(rng, layer8Digital, 5, 6);
+
+    // Ensure both CRYPTO_FIN and TOKEN are included
+    const requiredKeys = ["CRYPTO_FIN", "TOKEN"];
+    for (const rk of requiredKeys) {
+      if (!picks.some((p) => p.key === rk)) {
+        const required = layer8Digital.find((x) => x.key === rk);
+        if (required) picks = [...picks, required];
       }
     }
-    // De-dup if needed
-    const uniq = Array.from(new Map(picks.map(p => [(p as any).key, p])).values());
-    return uniq.map((d) => `${parentId}::DIG::${(d as any).key}`);
+
+    // De-dup by key
+    const uniq = Array.from(new Map(picks.map((p) => [p.key, p])).values());
+
+    // Keep 5–6 children (per your previous logic)
+    const final = uniq.slice(0, 6);
+
+    return final.map((d) => `${parentId}::DIG::${d.key}`);
   }
 
   if (layer === 8) {
@@ -293,7 +321,7 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 1) {
     const jurKey = id.split("JUR::")[1] as string;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
     const children = buildChildrenIds(id);
 
     const baseScores = scoreTemplate(rng, {
@@ -312,12 +340,16 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
       jurisdiction: jur.label,
       summary: `${jur.label} as a domicile option. Use this branch to evaluate regulatory regimes, vehicle choices, and downstream structuring decisions.`,
       advantages: [
-        jur.region === "EU" ? "Access to EU/EEA distribution frameworks (where applicable)." : "Flexible structuring playbooks for professional investors.",
+        jur.region === "EU"
+          ? "Access to EU/EEA distribution frameworks (where applicable)."
+          : "Flexible structuring playbooks for professional investors.",
         "Established service provider ecosystem (admin, audit, legal).",
         "Predictable fund documentation patterns for institutional LPs."
       ],
       disadvantages: [
-        jur.region === "EU" ? "Higher regulatory overhead and ongoing compliance cadence." : "Perceived investor preference may vary by allocator base.",
+        jur.region === "EU"
+          ? "Higher regulatory overhead and ongoing compliance cadence."
+          : "Perceived investor preference may vary by allocator base.",
         "Timeline/cost can expand depending on governance and provider setup.",
         "Always confirm marketing and investor eligibility boundaries."
       ],
@@ -330,11 +362,12 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 2) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
-    const regKey = id.split("::REG::")[1] as keyof typeof layer2Catalog;
-    const reg = layer2Catalog[regKey] ?? { label: regKey, sources: [] as string[] };
-    const children = buildChildrenIds(id);
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
 
+    const regKey = (id.split("::REG::")[1] as string | undefined) ?? "UNKNOWN";
+    const reg = layer2Catalog[regKey] ?? { label: regKey, sources: [] as string[] };
+
+    const children = buildChildrenIds(id);
     const sources = reg.sources.length ? reg.sources : [];
     const summary = `Regulatory regime: ${reg.label}. This node frames eligibility, authorization vs. notification, and operational perimeter for the fund and manager.`;
 
@@ -368,9 +401,10 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 3) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const vehKey = id.split("::VEH::")[1];
-    const veh = layer3Vehicles.find(v => v.key === vehKey);
+    const veh = layer3Vehicles.find((v) => v.key === vehKey);
     const children = buildChildrenIds(id);
 
     return makeNode({
@@ -403,8 +437,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 4) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
-    // strategy index is last token after STR::
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const idx = Number(id.split("::STR::")[1]);
     const label = layer4Strategies[idx] ?? `Strategy ${idx}`;
     const children = buildChildrenIds(id);
@@ -439,7 +473,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 5) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const idx = Number(id.split("::LIQ::")[1]);
     const label = layer5Liquidity[idx] ?? `Liquidity ${idx}`;
     const children = buildChildrenIds(id);
@@ -473,7 +508,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 6) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const idx = Number(id.split("::ECO::")[1]);
     const label = layer6Economics[idx] ?? `Economics ${idx}`;
     const children = buildChildrenIds(id);
@@ -508,7 +544,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 7) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const idx = Number(id.split("::FIN::")[1]);
     const label = layer7Financing[idx] ?? `Financing ${idx}`;
     const children = buildChildrenIds(id);
@@ -543,9 +580,10 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   if (layer === 8) {
     const jurKey = getJurKeyFromId(id)!;
-    const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+    const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
     const digKey = id.split("::DIG::")[1];
-    const entry = layer8Digital.find(d => d.key === digKey);
+    const entry = layer8Digital.find((d) => d.key === digKey);
 
     const children = buildChildrenIds(id);
 
@@ -554,9 +592,11 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
     let summary = `Digital assets decision point: ${entry?.label ?? digKey}.`;
     if (digKey === "CRYPTO_FIN") {
-      summary = "Crypto financing rail for the fund (e.g., centralized borrowing, DeFi borrowing). Include policy gating, counterparty risk limits, and custody controls.";
+      summary =
+        "Crypto financing rail for the fund (e.g., centralized borrowing, DeFi borrowing). Include policy gating, counterparty risk limits, and custody controls.";
     } else if (digKey === "TOKEN") {
-      summary = "Tokenization rail (e.g., real asset tokens, digital bonds, tokenized fund units). Include issuance/custody model and investor onboarding controls.";
+      summary =
+        "Tokenization rail (e.g., real asset tokens, digital bonds, tokenized fund units). Include issuance/custody model and investor onboarding controls.";
     }
 
     return makeNode({
@@ -566,7 +606,9 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
       jurisdiction: jur.label,
       summary,
       advantages: [
-        digKey === "TOKEN" ? "Potentially improved transferability and operational automation." : "Broader financing/treasury optionality in digital-native stacks.",
+        digKey === "TOKEN"
+          ? "Potentially improved transferability and operational automation."
+          : "Broader financing/treasury optionality in digital-native stacks.",
         "Can attract allocators with digital mandate or innovation thesis.",
         "Enables future-proofing for reporting and settlement rails."
       ],
@@ -589,7 +631,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
   // layer 9 (terminal)
   const jurKey = getJurKeyFromId(id)!;
-  const jur = JURISDICTIONS.find(j => j.key === jurKey)!;
+  const jur = JURISDICTIONS.find((j) => j.key === jurKey)!;
+
   const idx = Number(id.split("::GOV::")[1]);
   const label = layer9Governance[idx] ?? `Governance ${idx}`;
 
@@ -598,7 +641,8 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
     layer: 9,
     label,
     jurisdiction: jur.label,
-    summary: "Governance stack (service providers) required to operate the structure. Choose providers aligned to strategy, liquidity, and any digital overlay.",
+    summary:
+      "Governance stack (service providers) required to operate the structure. Choose providers aligned to strategy, liquidity, and any digital overlay.",
     advantages: [
       "Clear accountability and operational resilience.",
       "Supports investor due diligence and reporting expectations.",
@@ -645,12 +689,14 @@ export class MockDataManager {
     // simulate network + chunk lookups
     await sleep(280 + Math.floor(Math.random() * 240));
 
-    const parent = this.cache.get(parentId) ?? (() => {
-      // If a node is requested before caching, build it (still deterministic)
-      const built = buildNode(parentId);
-      this.cache.set(parentId, built);
-      return built;
-    })();
+    const parent =
+      this.cache.get(parentId) ??
+      (() => {
+        // If a node is requested before caching, build it (still deterministic)
+        const built = buildNode(parentId);
+        this.cache.set(parentId, built);
+        return built;
+      })();
 
     if (!parent.children || parent.children.length === 0) return [];
 
