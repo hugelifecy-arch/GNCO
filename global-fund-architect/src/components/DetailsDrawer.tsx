@@ -29,7 +29,7 @@ export function DetailsDrawer() {
   const sources = node.data.sources.length ? node.data.sources : [SOURCE_FALLBACK];
 
   return (
-    <aside className="h-full w-[420px] shrink-0 border-l border-slate-800 bg-slate-950/70 backdrop-blur">
+    <aside className="max-h-[70vh] w-full shrink-0 border-t border-slate-800 bg-slate-950/70 backdrop-blur lg:h-full lg:max-h-none lg:w-[420px] lg:border-l lg:border-t-0">
       <div className="flex items-start justify-between p-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -64,7 +64,7 @@ export function DetailsDrawer() {
 
         <button
           onClick={clearSelection}
-          className="ml-3 rounded-xl border border-slate-800 p-2 hover:bg-slate-900"
+          className="ml-3 rounded-xl border border-slate-800 p-2 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
           aria-label="Close"
         >
           <X size={18} />
@@ -75,26 +75,26 @@ export function DetailsDrawer() {
         <div className="grid grid-cols-3 rounded-2xl border border-slate-800 bg-slate-900/40 p-1">
           <button
             onClick={() => setTab("overview")}
-            className={cn("rounded-xl px-3 py-2 text-sm", tab === "overview" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
+            className={cn("min-h-[44px] rounded-xl px-3 py-2 text-sm", tab === "overview" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
           >
             Overview
           </button>
           <button
             onClick={() => setTab("proscons")}
-            className={cn("rounded-xl px-3 py-2 text-sm", tab === "proscons" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
+            className={cn("min-h-[44px] rounded-xl px-3 py-2 text-sm", tab === "proscons" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
           >
             Pros/Cons
           </button>
           <button
             onClick={() => setTab("sources")}
-            className={cn("rounded-xl px-3 py-2 text-sm", tab === "sources" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
+            className={cn("min-h-[44px] rounded-xl px-3 py-2 text-sm", tab === "sources" ? "bg-slate-950 border border-slate-800" : "text-slate-300 hover:bg-slate-900")}
           >
             Sources
           </button>
         </div>
       </div>
 
-      <div className="p-4 overflow-auto h-[calc(100%-140px)]">
+      <div className="h-[calc(100%-140px)] overflow-auto p-4">
         {tab === "overview" ? (
           <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4">
             <div className="flex items-center gap-2 text-sm font-semibold">

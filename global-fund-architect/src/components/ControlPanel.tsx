@@ -44,7 +44,7 @@ export function ControlPanel() {
   };
 
   return (
-    <aside className="h-full w-[340px] shrink-0 border-r border-slate-800 bg-slate-950/60 backdrop-blur">
+    <aside className="w-full shrink-0 border-b border-slate-800 bg-slate-950/60 backdrop-blur lg:h-full lg:w-[340px] lg:border-b-0 lg:border-r">
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export function ControlPanel() {
           </div>
           <button
             onClick={() => { reset(); setPreset("custom"); }}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-900"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
             title="Reset weights and filters"
           >
             <RotateCcw size={16} />
@@ -65,7 +65,7 @@ export function ControlPanel() {
           <select
             value={preset}
             onChange={(e) => applyPreset(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-100"
+            className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-100"
           >
             <option value="custom">Custom</option>
             <option value="balanced">Balanced</option>
@@ -88,11 +88,11 @@ export function ControlPanel() {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter") onSearch(); }}
               placeholder="e.g., Cyprus, RAIF, Tokenization"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500"
+              className="min-h-[44px] w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500"
             />
             <button
               onClick={onSearch}
-              className="shrink-0 rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm hover:bg-slate-900"
+              className="shrink-0 rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
               title="Select first match"
             >
               Go
@@ -138,7 +138,7 @@ export function ControlPanel() {
             {(Object.keys(constraints) as ConstraintKey[]).map((k) => (
               <label
                 key={k}
-                className="flex cursor-pointer items-center justify-between rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2 hover:bg-slate-900/60"
+                className="flex min-h-[44px] cursor-pointer items-center justify-between rounded-xl border border-slate-800 bg-slate-950/40 px-3 py-2 hover:bg-slate-900/60"
               >
                 <span className="text-sm text-slate-100">{constraintLabels[k]}</span>
                 <input
