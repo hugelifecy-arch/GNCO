@@ -140,6 +140,7 @@ export default function App() {
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <a href="#product" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
             <a href="#trust" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
+            <a href="#roadmap" className="text-slate-300 hover:text-white">Roadmap</a>
             <a href="#final-cta" className="btn btn-primary">Build Your Structure</a>
           </nav>
           <button
@@ -156,6 +157,7 @@ export default function App() {
             <div className="grid gap-2 rounded-xl border border-slate-800 bg-slate-900/70 p-3">
               <a href="#product" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Product</a>
               <a href="#trust" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Trust</a>
+              <a href="#roadmap" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Roadmap</a>
               <a href="#final-cta" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Build Your Structure</a>
             </div>
           </div>
@@ -181,8 +183,8 @@ export default function App() {
       <section id="trust" className="pb-12">
         <div className="site-container">
           <div className="grid gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:grid-cols-3">
-            <p className="trust-item">No credit card required</p>
-            <p className="trust-item">Export-ready structuring plan</p>
+            <p className="trust-item">0% Fees for VIP Tier Only</p>
+            <p className="trust-item">Projected APY up to 18%</p>
             <p className="trust-item">Built for fund professionals</p>
           </div>
         </div>
@@ -249,6 +251,26 @@ export default function App() {
 
               <DetailsDrawer />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" className="section-pad border-y border-slate-800/80 bg-slate-950/60">
+        <div className="site-container">
+          <h2 className="h2-title">Roadmap (2026)</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <article className="roadmap-card">
+              <h3>Q1 2026</h3>
+              <p>Portfolio input templates and onboarding automation.</p>
+            </article>
+            <article className="roadmap-card">
+              <h3>Q2 2026</h3>
+              <p>Jurisdiction comparison exports and compliance checklists.</p>
+            </article>
+            <article className="roadmap-card">
+              <h3>Q3 2026</h3>
+              <p>Team collaboration workflows with role-based access.</p>
+            </article>
           </div>
         </div>
       </section>
