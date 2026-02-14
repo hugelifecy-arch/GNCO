@@ -58,8 +58,9 @@ export function computeTopPaths(params: {
   nodesById: Record<string, FundNode>;
   weights: Weights;
   constraints: Constraints;
+  limit?: number | null;
 }): PathScore[] {
-  const { leafIds, parentByChild, nodesById, weights, constraints } = params;
+  const { leafIds, parentByChild, nodesById, weights, constraints, limit = 3 } = params;
 
   const results: PathScore[] = [];
   for (const leafId of leafIds) {
@@ -82,5 +83,6 @@ export function computeTopPaths(params: {
     results.push({ leafId, score, pathNodeIds: path });
   }
 
-  return results.sort((a, b) => b.score - a.score).slice(0, 3);
+  const sorted = results.sort((a, b) => b.score - a.score);
+  return limit == null ? sorted : sorted.slice(0, limit);
 }

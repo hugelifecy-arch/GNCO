@@ -1,18 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
-import ReactFlow, { Background, Controls, MiniMap, type Node, type Edge } from "reactflow";
-import { Loader2, Menu, X } from "lucide-react";
+import { type Node, type Edge } from "reactflow";
+import { Menu, X } from "lucide-react";
 import { useGraphStore } from "./store/graphStore";
 import { useInvestorStore } from "./store/investorStore";
-import { ControlPanel } from "./components/ControlPanel";
-import { DetailsDrawer } from "./components/DetailsDrawer";
+
 import { FundNodeComponent } from "./components/FundNode";
 import { CardComponent } from "./components/CardComponent";
 import { layoutDagre } from "./utils/layout";
 import { computeTopPaths } from "./utils/scoring";
-
-function cn(...xs: Array<string | false | undefined | null>) {
-  return xs.filter(Boolean).join(" ");
-}
+import { WorkspaceDemoSection } from "./components/demo/WorkspaceDemoSection";
 
 const nodeTypes = { fundNode: FundNodeComponent };
 
@@ -22,7 +18,7 @@ export default function App() {
   // 2) Accessibility: several interactive elements relied on color-only cues or lacked robust labels/landmarks.
   // 3) Touch ergonomics: menu/path actions were visually compact and could fall below the recommended 44px target.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { init, isLoading, nodes, edges, selectedNodeId, parentByChild, nodesById, selectNode } = useGraphStore((s) => ({
+  const { init, isLoading, nodes, edges, selectedNodeId, parentByChild, nodesById } = useGraphStore((s) => ({
     init: s.init,
     isLoading: s.isLoading,
     nodes: s.nodes,
@@ -30,7 +26,6 @@ export default function App() {
     selectedNodeId: s.selectedNodeId,
     parentByChild: s.parentByChild,
     nodesById: s.nodesById,
-    selectNode: s.selectNode
   }));
 
   const { weights, constraints } = useInvestorStore((s) => ({ weights: s.weights, constraints: s.constraints }));
@@ -50,9 +45,7 @@ export default function App() {
     return laidOut.nodes.map((n) => n.id).filter((id) => !outgoing.has(id));
   }, [laidOut.edges, laidOut.nodes]);
 
-  const topPaths = useMemo(() => {
-    return computeTopPaths({ leafIds, parentByChild, nodesById, weights, constraints });
-  }, [leafIds, parentByChild, nodesById, weights, constraints]);
+  const topPaths = useMemo(() => computeTopPaths({ leafIds, parentByChild, nodesById, weights, constraints }), [leafIds, parentByChild, nodesById, weights, constraints]);
 
   const topEdgeIds = useMemo(() => {
     const ids = new Set<string>();
@@ -197,74 +190,15 @@ export default function App() {
         </div>
       </section>
 
-      <section id="example" className="section-pad border-y border-slate-800/80 bg-slate-950/70">
-        <div className="site-container">
-          <h2 className="h2-title">See the structuring map in action</h2>
-          <p className="mt-2 max-w-2xl text-slate-300">
-            Adjust constraints, compare jurisdictions, and open node-level guidance without leaving the workspace.
-          </p>
-
-          <div id="product" className="mt-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/60 shadow-soft">
-            <div className="flex min-h-[70vh] flex-col lg:flex-row">
-              <ControlPanel />
-
-              <main className="relative min-h-[420px] min-w-0 flex-1">
-                <div className="absolute inset-0">
-                  <ReactFlow nodes={styledNodes} edges={styledEdges} nodeTypes={nodeTypes} fitView proOptions={{ hideAttribution: true }}>
-                    <Background gap={18} size={1} />
-                    <Controls />
-                    <MiniMap pannable zoomable />
-                  </ReactFlow>
-                </div>
-
-                {isLoading ? (
-                  <div className="pointer-events-none absolute left-1/2 top-5 -translate-x-1/2">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-800 bg-slate-950/70 px-4 py-2 text-sm shadow-soft">
-                      <Loader2 size={16} className="animate-spin" />
-                      Loading nodes…
-                    </div>
-                  </div>
-                ) : null}
-
-                {/* On mobile this panel becomes static to avoid covering graph controls/content. */}
-                <section aria-label="Top scoring fund paths" className="top-path-panel absolute bottom-4 left-4 right-4 max-w-[520px] rounded-2xl border border-slate-800 bg-slate-950/70 p-3 shadow-soft backdrop-blur">
-                  <div className="text-xs font-semibold text-slate-200">Top 3 Paths (current view)</div>
-                  <ol className="mt-2 space-y-1 text-xs text-slate-300">
-                    {topPaths.length ? (
-                      topPaths.map((p, i) => (
-                        <li key={p.leafId} className="flex items-center justify-between gap-3">
-                          <button
-                            onClick={() => selectNode(p.leafId)}
-                            aria-label={`Open details for path ${i + 1}: ${nodesById[p.leafId]?.label ?? p.leafId}`}
-                            className="min-h-[44px] truncate text-left hover:text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
-                            title="Open details"
-                          >
-                            {i + 1}. {nodesById[p.leafId]?.label ?? p.leafId}
-                          </button>
-                          <span
-                            className={cn(
-                              "shrink-0 rounded-full border border-slate-800 bg-slate-900/60 px-2 py-0.5",
-                              p.score >= 75 ? "text-emerald-300" : p.score >= 55 ? "text-amber-300" : "text-rose-300"
-                            )}
-                          >
-                            {/* Added text prefix so score meaning is not color-only. */}
-                            Score:
-                            {Math.round(p.score)}
-                          </span>
-                        </li>
-                      ))
-                    ) : (
-                      <li className="text-slate-400">Expand a few nodes to compute paths.</li>
-                    )}
-                  </ol>
-                </section>
-              </main>
-
-              <DetailsDrawer />
-            </div>
-          </div>
-        </div>
-      </section>
+      <WorkspaceDemoSection
+        isLoading={isLoading}
+        styledNodes={styledNodes}
+        styledEdges={styledEdges}
+        nodeTypes={nodeTypes}
+        leafIds={leafIds}
+        parentByChild={parentByChild}
+        nodesById={nodesById}
+      />
 
       <section id="roadmap" className="section-pad border-y border-slate-800/80 bg-slate-950/60">
         <div className="site-container">
