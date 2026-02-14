@@ -9,6 +9,7 @@ const appRoot = path.resolve(__dirname, '..');
 
 const truthPath = path.join(repoRoot, 'truth', 'gnco.truth.json');
 const distDir = path.join(appRoot, 'dist');
+const docsDir = path.join(appRoot, 'docs');
 const requiredKeys = [
   'projectName',
   'status',
@@ -37,6 +38,36 @@ const fail = (message) => {
   process.exitCode = 1;
 };
 
+const listDir = (dirPath) => {
+  if (!fs.existsSync(dirPath)) {
+    return '(missing)';
+  }
+
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  if (entries.length === 0) {
+    return '(empty)';
+  }
+
+  return entries.map((entry) => `${entry.isDirectory() ? 'd' : '-'} ${entry.name}`).join('\n');
+};
+
+const resolveDeployDir = () => {
+  if (fs.existsSync(distDir)) {
+    return { dir: distDir, label: 'dist' };
+  }
+
+  if (fs.existsSync(docsDir)) {
+    return { dir: docsDir, label: 'docs' };
+  }
+
+  fail([
+    'Missing deploy output directory. Expected dist/ or docs/ after build.',
+    `- dist/:\n${listDir(distDir)}`,
+    `- docs/:\n${listDir(docsDir)}`
+  ].join('\n'));
+  return null;
+};
+
 if (!fs.existsSync(truthPath)) {
   fail('Missing truth/gnco.truth.json.');
 } else {
@@ -61,10 +92,18 @@ if (!fs.existsSync(truthPath)) {
   }
 }
 
+const deploy = resolveDeployDir();
+
+if (!deploy) {
+  process.exit(process.exitCode ?? 1);
+}
+
+console.log(`ℹ️ Scanning deploy output in ${deploy.label}/`);
+
 for (const fileName of ['investor.html', 'disclosures.html']) {
-  const pagePath = path.join(distDir, fileName);
+  const pagePath = path.join(deploy.dir, fileName);
   if (!fs.existsSync(pagePath)) {
-    fail(`Missing required output page: dist/${fileName}`);
+    fail(`Missing required output page: ${deploy.label}/${fileName}`);
     continue;
   }
 
@@ -81,7 +120,7 @@ for (const fileName of ['investor.html', 'disclosures.html']) {
       const isNegated = /\b(no|not|without)\b/.test(context);
 
       if (!isNegated) {
-        fail(`Forbidden investor-claim term "${term}" found in dist/${fileName} without explicit negation.`);
+        fail(`Forbidden investor-claim term "${term}" found in ${deploy.label}/${fileName} without explicit negation.`);
         break;
       }
 
