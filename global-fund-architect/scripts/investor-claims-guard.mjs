@@ -98,7 +98,7 @@ if (!deploy) {
   process.exit(process.exitCode ?? 1);
 }
 
-console.log(`ℹ️ Scanning deploy output in ${deploy.label}/`);
+process.stdout.write(`ℹ️ Scanning deploy output in ${deploy.label}/\n`);
 
 for (const fileName of ['investor.html', 'disclosures.html']) {
   const pagePath = path.join(deploy.dir, fileName);
@@ -133,4 +133,4 @@ if (process.exitCode) {
   process.exit(process.exitCode);
 }
 
-console.log('✅ Investor claims guard checks passed.');
+process.stdout.write('✅ Investor claims guard checks passed.\n');

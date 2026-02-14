@@ -34,6 +34,14 @@ body {
   overflow-x: hidden;
 }
 
+
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
@@ -168,6 +176,10 @@ body {
 @media (max-width: 640px) {
   .section-pad {
     padding-block: var(--space-8);
+  }
+
+  .site-container {
+    width: min(100% - 1rem, 72rem);
   }
 
   /* Move overlay card into normal flow so graph controls remain reachable at 320px widths. */
