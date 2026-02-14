@@ -17,6 +17,10 @@ function cn(...xs: Array<string | false | undefined | null>) {
 const nodeTypes = { fundNode: FundNodeComponent };
 
 export default function App() {
+  // UX audit (top 3 issues found and fixed below):
+  // 1) Mobile usability: the fixed "Top 3 Paths" panel can overlap critical graph controls on narrow screens.
+  // 2) Accessibility: several interactive elements relied on color-only cues or lacked robust labels/landmarks.
+  // 3) Touch ergonomics: menu/path actions were visually compact and could fall below the recommended 44px target.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { init, isLoading, nodes, edges, selectedNodeId, parentByChild, nodesById, selectNode } = useGraphStore((s) => ({
     init: s.init,
@@ -141,24 +145,26 @@ export default function App() {
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <a href="#product" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
             <a href="#trust" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
-            <a href="#roadmap" className="text-slate-300 hover:text-white">Roadmap</a>
+            <a href="#roadmap" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
             <a href="#final-cta" className="btn btn-primary">Build Your Structure</a>
           </nav>
           <button
             className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-slate-700 p-2 md:hidden"
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav"
             onClick={() => setIsMenuOpen((v) => !v)}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
         {isMenuOpen ? (
-          <div className="site-container pb-4 md:hidden">
+          <div id="mobile-nav" className="site-container pb-4 md:hidden" role="navigation" aria-label="Mobile">
             <div className="grid gap-2 rounded-xl border border-slate-800 bg-slate-900/70 p-3">
-              <a href="#product" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Product</a>
-              <a href="#trust" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Trust</a>
-              <a href="#roadmap" onClick={() => setIsMenuOpen(false)} className="rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800">Roadmap</a>
+              {/* Added 44px minimum height and focus ring for touch + keyboard accessibility. */}
+              <a href="#product" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
+              <a href="#trust" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
+              <a href="#roadmap" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
               <a href="#final-cta" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Build Your Structure</a>
             </div>
           </div>
@@ -220,7 +226,8 @@ export default function App() {
                   </div>
                 ) : null}
 
-                <div className="absolute bottom-4 left-4 right-4 max-w-[520px] rounded-2xl border border-slate-800 bg-slate-950/70 p-3 shadow-soft backdrop-blur">
+                {/* On mobile this panel becomes static to avoid covering graph controls/content. */}
+                <section aria-label="Top scoring fund paths" className="top-path-panel absolute bottom-4 left-4 right-4 max-w-[520px] rounded-2xl border border-slate-800 bg-slate-950/70 p-3 shadow-soft backdrop-blur">
                   <div className="text-xs font-semibold text-slate-200">Top 3 Paths (current view)</div>
                   <ol className="mt-2 space-y-1 text-xs text-slate-300">
                     {topPaths.length ? (
@@ -228,7 +235,8 @@ export default function App() {
                         <li key={p.leafId} className="flex items-center justify-between gap-3">
                           <button
                             onClick={() => selectNode(p.leafId)}
-                            className="truncate text-left hover:text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
+                            aria-label={`Open details for path ${i + 1}: ${nodesById[p.leafId]?.label ?? p.leafId}`}
+                            className="min-h-[44px] truncate text-left hover:text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
                             title="Open details"
                           >
                             {i + 1}. {nodesById[p.leafId]?.label ?? p.leafId}
@@ -239,6 +247,8 @@ export default function App() {
                               p.score >= 75 ? "text-emerald-300" : p.score >= 55 ? "text-amber-300" : "text-rose-300"
                             )}
                           >
+                            {/* Added text prefix so score meaning is not color-only. */}
+                            Score:
                             {Math.round(p.score)}
                           </span>
                         </li>
@@ -247,7 +257,7 @@ export default function App() {
                       <li className="text-slate-400">Expand a few nodes to compute paths.</li>
                     )}
                   </ol>
-                </div>
+                </section>
               </main>
 
               <DetailsDrawer />

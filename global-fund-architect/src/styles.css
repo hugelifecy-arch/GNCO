@@ -127,8 +127,12 @@ body {
   border-radius: 0.75rem;
   padding: var(--space-3) var(--space-4);
   font-size: 0.95rem;
-  color: rgb(203 213 225);
+  color: rgb(226 232 240);
   margin: 0;
+}
+
+.top-path-panel button {
+  width: 100%;
 }
 
 .card-component {
@@ -159,4 +163,18 @@ body {
 }
 .react-flow__attribution {
   display: none;
+}
+
+@media (max-width: 640px) {
+  .section-pad {
+    padding-block: var(--space-8);
+  }
+
+  /* Move overlay card into normal flow so graph controls remain reachable at 320px widths. */
+  .top-path-panel {
+    position: static;
+    margin: 0.75rem;
+    max-width: none;
+    backdrop-filter: none;
+  }
 }
