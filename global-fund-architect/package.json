@@ -9,23 +9,27 @@
     "build": "npm run generate:investor-pages && tsc -b && vite build",
     "guard:investor-claims": "node ./scripts/investor-claims-guard.mjs",
     "build:compliance": "npm run build && npm run guard:investor-claims",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
+    "dagre": "^0.8.5",
+    "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reactflow": "^11.11.4",
-    "zustand": "^4.5.5",
-    "dagre": "^0.8.5",
-    "lucide-react": "^0.454.0"
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "jest": "^29.7.0",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.5.4",
     "vite": "^5.4.2"
   }
