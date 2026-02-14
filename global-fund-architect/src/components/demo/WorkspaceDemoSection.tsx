@@ -435,9 +435,9 @@ function ControlsContent({ activeTab, onTabChange, weights, constraints, setWeig
       {activeTab === "constraints" ? (
         <div className="mt-4 space-y-2">
           {(Object.keys(constraints) as ConstraintKey[]).map((key) => (
-            <label key={key} className="flex min-h-[44px] items-center justify-between rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100">
-              {constraintLabels[key]}
-              <input type="checkbox" checked={constraints[key]} onChange={() => toggleConstraint(key)} aria-label={constraintLabels[key]} className="h-4 w-4 accent-sky-400" />
+            <label key={key} className="flex min-h-[44px] items-center justify-between gap-3 rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-100">
+              <span className="min-w-0 break-words pr-1">{constraintLabels[key]}</span>
+              <input type="checkbox" checked={constraints[key]} onChange={() => toggleConstraint(key)} aria-label={constraintLabels[key]} className="h-4 w-4 shrink-0 accent-sky-400" />
             </label>
           ))}
         </div>

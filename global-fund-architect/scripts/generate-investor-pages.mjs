@@ -155,4 +155,4 @@ fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(path.join(publicDir, 'investor.html'), investorHtml);
 fs.writeFileSync(path.join(publicDir, 'disclosures.html'), disclosuresHtml);
 
-console.log('Generated public/investor.html and public/disclosures.html');
+process.stdout.write('Generated public/investor.html and public/disclosures.html\n');
