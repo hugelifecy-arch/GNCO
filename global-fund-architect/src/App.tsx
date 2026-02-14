@@ -6,6 +6,7 @@ import { useInvestorStore } from "./store/investorStore";
 import { ControlPanel } from "./components/ControlPanel";
 import { DetailsDrawer } from "./components/DetailsDrawer";
 import { FundNodeComponent } from "./components/FundNode";
+import { CardComponent } from "./components/CardComponent";
 import { layoutDagre } from "./utils/layout";
 import { computeTopPaths } from "./utils/scoring";
 
@@ -259,18 +260,15 @@ export default function App() {
         <div className="site-container">
           <h2 className="h2-title">Roadmap (2026)</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <article className="roadmap-card">
-              <h3>Q1 2026</h3>
+            <CardComponent title="Q1 2026" className="roadmap-card">
               <p>Portfolio input templates and onboarding automation.</p>
-            </article>
-            <article className="roadmap-card">
-              <h3>Q2 2026</h3>
+            </CardComponent>
+            <CardComponent title="Q2 2026" className="roadmap-card">
               <p>Jurisdiction comparison exports and compliance checklists.</p>
-            </article>
-            <article className="roadmap-card">
-              <h3>Q3 2026</h3>
+            </CardComponent>
+            <CardComponent title="Q3 2026" className="roadmap-card">
               <p>Team collaboration workflows with role-based access.</p>
-            </article>
+            </CardComponent>
           </div>
         </div>
       </section>
