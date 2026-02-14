@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { SlidersHorizontal, Filter, RotateCcw, Search } from "lucide-react";
 import { useGraphStore } from "../store/graphStore";
 import { useInvestorStore } from "../store/investorStore";
@@ -17,31 +17,49 @@ const constraintLabels: Record<ConstraintKey, string> = {
   CRYPTO_FINANCING: "Must allow Crypto Financing"
 };
 
+const presets: Record<string, Record<FactorKey, number>> = {
+  balanced: { speed: 70, cost: 55, governance: 80, digital: 60 },
+  fast_launch: { speed: 90, cost: 60, governance: 55, digital: 45 },
+  low_cost: { speed: 55, cost: 95, governance: 55, digital: 45 },
+  institutional: { speed: 55, cost: 45, governance: 95, digital: 45 },
+  digital_first: { speed: 60, cost: 45, governance: 65, digital: 95 }
+};
+
+const presetOptions: ReadonlyArray<{ value: string; label: string }> = [
+  { value: "custom", label: "Custom" },
+  { value: "balanced", label: "Balanced" },
+  { value: "fast_launch", label: "Fast Launch" },
+  { value: "low_cost", label: "Low Cost" },
+  { value: "institutional", label: "Institutional Governance" },
+  { value: "digital_first", label: "Digital First" }
+];
+
 export function ControlPanel() {
   const { weights, constraints, setWeight, setWeights, toggleConstraint, reset } = useInvestorStore();
   const [preset, setPreset] = useState<string>("custom");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { nodesById, selectNode } = useGraphStore((s) => ({ nodesById: s.nodesById, selectNode: s.selectNode }));
+  const nodesById = useGraphStore((s) => s.nodesById);
+  const selectNode = useGraphStore((s) => s.selectNode);
 
-  const onSearch = () => {
+  const searchableNodes = useMemo(() => Object.values(nodesById), [nodesById]);
+
+  const onSearch = useCallback((): void => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return;
-    const hit = Object.values(nodesById).find((n) => n.label.toLowerCase().includes(q));
+    const hit = searchableNodes.find((n) => n.label.toLowerCase().includes(q));
     if (hit) selectNode(hit.id);
-  };
+  }, [searchQuery, searchableNodes, selectNode]);
 
-  const applyPreset = (key: string) => {
+  const applyPreset = useCallback((key: string): void => {
     setPreset(key);
     if (key === "custom") return;
-    const presets: Record<string, Record<FactorKey, number>> = {
-      balanced: { speed: 70, cost: 55, governance: 80, digital: 60 },
-      fast_launch: { speed: 90, cost: 60, governance: 55, digital: 45 },
-      low_cost: { speed: 55, cost: 95, governance: 55, digital: 45 },
-      institutional: { speed: 55, cost: 45, governance: 95, digital: 45 },
-      digital_first: { speed: 60, cost: 45, governance: 65, digital: 95 }
-    };
     setWeights(presets[key] ?? presets.balanced);
-  };
+  }, [setWeights]);
+
+  const onReset = useCallback((): void => {
+    reset();
+    setPreset("custom");
+  }, [reset]);
 
   return (
     <aside className="w-full shrink-0 border-b border-slate-800 bg-slate-950/60 backdrop-blur lg:h-full lg:w-[340px] lg:border-b-0 lg:border-r">
@@ -52,7 +70,7 @@ export function ControlPanel() {
             <div className="font-semibold">Control Panel</div>
           </div>
           <button
-            onClick={() => { reset(); setPreset("custom"); }}
+            onClick={onReset}
             className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-800 px-3 py-1.5 text-sm hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400"
             title="Reset weights and filters"
           >
@@ -67,12 +85,9 @@ export function ControlPanel() {
             onChange={(e) => applyPreset(e.target.value)}
             className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2 text-sm text-slate-100"
           >
-            <option value="custom">Custom</option>
-            <option value="balanced">Balanced</option>
-            <option value="fast_launch">Fast Launch</option>
-            <option value="low_cost">Low Cost</option>
-            <option value="institutional">Institutional Governance</option>
-            <option value="digital_first">Digital First</option>
+            {presetOptions.map((option) => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
           </select>
           <div className="mt-1 text-[11px] text-slate-400">Presets update sliders instantly. You can fine-tune after.</div>
         </div>
