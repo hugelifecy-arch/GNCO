@@ -2,11 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Subtle scrollbars */
-* { scrollbar-width: thin; scrollbar-color: rgba(148,163,184,.35) transparent; }
-*::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-thumb { background: rgba(148,163,184,.25); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
+:root {
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --text-body: clamp(1rem, 0.98rem + 0.2vw, 1.125rem);
+  --text-h2: clamp(1.5rem, 1.35rem + 1vw, 2rem);
+  --text-h1: clamp(2rem, 1.65rem + 2vw, 3rem);
+}
 
-/* React Flow tweaks */
-.react-flow__background { background-color: #020617; }
-.react-flow__attribution { display: none; }
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.site-container {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.section-pad {
+  padding-block: var(--space-10);
+}
+
+.eyebrow {
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(125 211 252);
+  font-weight: 600;
+}
+
+.h1-display {
+  font-size: var(--text-h1);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-top: var(--space-3);
+}
+
+.h2-title {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  font-weight: 650;
+}
+
+.body-lg {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.btn {
+  min-height: 44px;
+  border-radius: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(2 6 23), 0 0 0 4px rgb(56 189 248);
+}
+
+.btn-primary {
+  background: rgb(14 165 233);
+  color: rgb(2 6 23);
+  border-color: rgb(56 189 248);
+}
+
+.btn-primary:hover {
+  background: rgb(56 189 248);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: rgb(226 232 240);
+  border-color: rgb(71 85 105);
+}
+
+.btn-secondary:hover {
+  background: rgb(15 23 42);
+}
+
+.trust-item {
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.75rem;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.95rem;
+  color: rgb(203 213 225);
+  margin: 0;
+}
+
+.react-flow__background {
+  background-color: #020617;
+}
+.react-flow__attribution {
+  display: none;
+}
