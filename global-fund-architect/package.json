@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate:investor-pages": "node ./scripts/generate-investor-pages.mjs",
+    "build": "npm run generate:investor-pages && tsc -b && vite build",
+    "guard:investor-claims": "node ./scripts/investor-claims-guard.mjs",
+    "build:compliance": "npm run build && npm run guard:investor-claims",
     "preview": "vite preview"
   },
   "dependencies": {

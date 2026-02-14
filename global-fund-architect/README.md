@@ -29,3 +29,19 @@ npm run dev
 ## Notes
 - Sources are intentionally limited to the URLs mandated in the spec.
 - Nodes without a source show: "General market practice; verify with counsel."
+
+## Investor Due Diligence: Single Source of Truth
+- Canonical claims file: `truth/gnco.truth.json`.
+- Static investor pages are generated from this source via:
+  ```bash
+  npm run generate:investor-pages
+  ```
+- Compliance build (generation + app build + guardrails):
+  ```bash
+  npm run build:compliance
+  ```
+- Guardrails enforce:
+  - required truth schema keys,
+  - static output presence (`dist/investor.html`, `dist/disclosures.html`),
+  - investor-claim language checks,
+  - prohibition on `status: Live` without `PRODUCTION=true` and a release tag.

@@ -1,0 +1,29 @@
+{
+  "projectName": "GNCO (Global Fund Architect)",
+  "status": "Prototype",
+  "whatItIs": "Decision-tree / fund-structuring architecture tool (software)",
+  "whatItIsNot": [
+    "Not an investment product",
+    "No guaranteed returns",
+    "Not financial advice"
+  ],
+  "featuresNow": [
+    "Interactive decision-tree prototype for fund-structuring workflows",
+    "Node-level detail drawer for contextual information",
+    "Branch highlighting and sibling de-emphasis for scenario review",
+    "Simulated lazy-loading of decision branches"
+  ],
+  "featuresPlanned": [
+    "Production-grade data integrations (under research)",
+    "Expanded compliance documentation workflows (planned)",
+    "Additional validation and audit export capabilities (planned)"
+  ],
+  "riskDisclosureBullets": [
+    "Prototype software may contain errors, omissions, or outdated assumptions.",
+    "Output is informational and must be independently verified by qualified professionals.",
+    "Regulatory requirements vary by jurisdiction and may change over time.",
+    "No representation is made that this tool is complete, production-ready, or suitable for investment decisions."
+  ],
+  "lastUpdated": "2026-02-14",
+  "version": "build-time-git-sha"
+}
