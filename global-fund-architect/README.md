@@ -45,3 +45,6 @@ npm run dev
   - static output presence (`dist/investor.html`, `dist/disclosures.html`),
   - investor-claim language checks,
   - prohibition on `status: Live` without `PRODUCTION=true` and a release tag.
+
+## Backend security review example
+- See `backend/secure_endpoint.py` for a hardened FastAPI endpoint example that uses parameterized SQL, pagination (`page`, `page_size`), and explicit 404 handling when no records are found.
