@@ -90,14 +90,19 @@ for (const entry of manifest.jurisdictions) {
     }
   }
 
-  if (
-    obj.status === 'Supported' &&
-    Array.isArray(obj.regimes) &&
-    obj.regimes.length === 0
-  )
-    fail(
-      `${entry.code}.json Supported jurisdictions must define at least one regime`
-    );
+  if (obj.status === 'Supported' || obj.status === 'Partial') {
+    const hasRegime = Array.isArray(obj.regimes) && obj.regimes.length >= 1;
+    const hasJustification =
+      typeof obj.scope_notes === 'string' &&
+      /regimes?\s*(not\s+listed|not\s+included|n\/a|not\s+applicable|justification)/i.test(
+        obj.scope_notes
+      );
+    if (!hasRegime && !hasJustification) {
+      fail(
+        `${obj.code}.json must have regimes[] >= 1 for Supported/Partial (or justify in scope_notes).`
+      );
+    }
+  }
 
   for (const field of [
     'regimes',

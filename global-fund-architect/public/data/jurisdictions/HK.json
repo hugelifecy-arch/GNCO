@@ -3,28 +3,15 @@
   "name": "Hong Kong",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always validate with SFC guidance and Hong Kong counsel before marketing or structuring decisions.",
   "primary_sources": [
-    {
-      "label": "SFC fund managers code",
-      "url": "https://www.sfc.hk/en/Rules-and-standards/Fund-management"
-    },
-    {
-      "label": "Hong Kong e-Legislation",
-      "url": "https://www.elegislation.gov.hk/"
-    }
+    { "label": "SFC", "url": "https://www.sfc.hk/en/" },
+    { "label": "Hong Kong e-Legislation", "url": "https://www.elegislation.gov.hk/" }
   ],
-  "regimes": [
-    "SFC Type 9",
-    "OFC"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["Hong Kong securities/funds framework (high-level)"],
+  "marketing_notes": ["Marketing/perimeter depends on investor type and distribution channel.", "Treat any public materials as counsel-gated."],
+  "licensing_notes": ["Licensing depends on regulated activity type and business model."],
+  "tokenization_notes": ["Tokenization requires securities analysis and offering constraints review."],
+  "crypto_financing_notes": ["Crypto-related features may increase regulatory scrutiny and risk controls."],
+  "risk_flags": ["Public solicitation", "Retail access", "Distribution channel risk"]
 }

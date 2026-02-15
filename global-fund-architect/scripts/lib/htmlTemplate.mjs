@@ -6,10 +6,9 @@ export const escapeHtml = (value) =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
 
-const buildNav = (active) => {
+export const buildNav = (active) => {
   const link = (href, label, key) =>
     `<a href="${href}" class="${active === key ? 'active' : ''}">${label}</a>`;
-
   return `
   <div class="nav">
     <div class="inner">
@@ -29,12 +28,12 @@ const buildNav = (active) => {
   </div>`;
 };
 
-const buildFooter = ({ buildMeta }) => `
+export const buildFooter = ({ buildMeta }) => `
   <div class="footer">
     <div>
-      <b>Important:</b> GNCO is prototype software for <b>informational purposes only</b>.
-      It is <b>not an offer</b> or solicitation and does <b>not</b> provide investment, legal, tax, or accounting advice.
-      <b>Always verify</b> with qualified professionals.
+      <b>Important:</b> GNCO is prototype software. <b>Informational only</b>.
+      <b>Not an offer</b> or solicitation. <b>Not investment/legal/tax advice</b>.
+      <b>Verify with qualified professionals</b>.
       See <a href="./disclosures.html">Disclosures</a>.
     </div>
     ${
@@ -64,7 +63,6 @@ export const buildPage = ({
   const d = escapeHtml(description || '');
   const c = escapeHtml(canonical || ogUrl || '');
   const ou = escapeHtml(ogUrl || canonical || '');
-
   return `<!doctype html>
 <html lang="en">
 <head>

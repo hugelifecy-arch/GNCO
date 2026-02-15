@@ -3,27 +3,15 @@
   "name": "Switzerland",
   "status": "Partial",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Entry is partial; always verify with Swiss counsel and FINMA guidance for offering/marketing and licensing perimeter.",
   "primary_sources": [
-    {
-      "label": "FINMA collective investment schemes",
-      "url": "https://www.finma.ch/en/authorisation/asset-management/"
-    },
-    {
-      "label": "Swiss federal law portal",
-      "url": "https://www.fedlex.admin.ch/"
-    }
+    { "label": "FINMA", "url": "https://www.finma.ch/en/" },
+    { "label": "Fedlex (Swiss federal law portal)", "url": "https://www.fedlex.admin.ch/" }
   ],
-  "regimes": [
-    "CISA/FinIA"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["Swiss collective investment / financial services framework (high-level)"],
+  "marketing_notes": ["Marketing/perimeter is fact-specific; counsel review required.", "Investor type and channel materially change requirements."],
+  "licensing_notes": ["Authorization may be required depending on activity and client base."],
+  "tokenization_notes": ["Tokenization requires separate securities characterization and offering analysis."],
+  "crypto_financing_notes": ["Crypto-related activities may increase licensing and AML risk."],
+  "risk_flags": ["Public marketing", "Retail access", "Cross-border solicitation assumptions"]
 }

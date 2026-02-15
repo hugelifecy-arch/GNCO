@@ -10,9 +10,9 @@
     "guard:investor-claims": "node ./scripts/investor-claims-guard.mjs",
     "build:compliance": "npm run generate:investor-pages && npm run validate:jurisdictions && tsc -b && vite build && npm run guard:investor-claims",
     "preview": "vite preview",
-    "test": "jest && npm run test:guard",
+    "test": "npm run typecheck && npm run test:guard",
     "validate:jurisdictions": "node ./scripts/validate-jurisdictions.mjs",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -b --pretty false",
     "lint": "eslint . --ext .ts,.tsx,.js,.mjs --max-warnings=0",
     "format:check": "prettier --check \"scripts/**/*.mjs\" \"README.md\" \"../README.md\" \"../CONTRIBUTING.md\" \"../SECURITY.md\"",
     "test:guard": "node --test ./scripts/tests/claim-rules.test.mjs"

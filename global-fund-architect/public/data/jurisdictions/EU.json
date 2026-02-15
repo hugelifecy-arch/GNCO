@@ -5,35 +5,13 @@
   "last_verified": "2026-02-15",
   "scope_notes": "Prototype compliance mapping only. High-level EU framework references; jurisdiction- and fact-specific analysis required. Always verify with qualified counsel.",
   "primary_sources": [
-    {
-      "label": "EUR-Lex — AIFMD (2011/61/EU)",
-      "url": "https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng"
-    },
-    {
-      "label": "EUR-Lex — UCITS (2009/65/EC)",
-      "url": "https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng"
-    }
+    { "label": "EUR-Lex — AIFMD (2011/61/EU)", "url": "https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng" },
+    { "label": "EUR-Lex — UCITS (2009/65/EC)", "url": "https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng" }
   ],
-  "regimes": [
-    "AIFMD",
-    "UCITS"
-  ],
-  "marketing_notes": [
-    "Cross-border marketing rules vary by investor type and member state implementation.",
-    "Treat any public/retail communication as counsel-gated."
-  ],
-  "licensing_notes": [
-    "Manager authorization/registration and delegation rules are fact-specific and must be confirmed."
-  ],
-  "tokenization_notes": [
-    "Any tokenized fund interest requires a separate securities/market infrastructure analysis."
-  ],
-  "crypto_financing_notes": [
-    "Crypto-related financing and custody may trigger additional EU and national regimes."
-  ],
-  "risk_flags": [
-    "Retail distribution or mass marketing",
-    "Cross-border NPPR/passporting assumptions",
-    "Delegation/outsourcing across borders"
-  ]
+  "regimes": ["AIFMD", "UCITS"],
+  "marketing_notes": ["Cross-border marketing rules vary by investor type and member state implementation.", "Treat any public/retail communication as counsel-gated."],
+  "licensing_notes": ["Manager authorization/registration and delegation rules are fact-specific and must be confirmed."],
+  "tokenization_notes": ["Any tokenized fund interest requires a separate securities/market infrastructure analysis."],
+  "crypto_financing_notes": ["Crypto-related financing and custody may trigger additional EU and national regimes."],
+  "risk_flags": ["Retail distribution or mass marketing", "Cross-border NPPR/passporting assumptions", "Delegation/outsourcing across borders"]
 }

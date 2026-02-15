@@ -3,28 +3,15 @@
   "name": "Luxembourg",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always validate structure and distribution with Luxembourg counsel and CSSF guidance.",
   "primary_sources": [
-    {
-      "label": "CSSF investment funds",
-      "url": "https://www.cssf.lu/en/investment-funds/"
-    },
-    {
-      "label": "RAIF law reference",
-      "url": "https://legilux.public.lu/eli/etat/leg/loi/2016/07/23/n14/jo"
-    }
+    { "label": "CSSF (Luxembourg regulator)", "url": "https://www.cssf.lu/en/" },
+    { "label": "Legilux (Luxembourg law portal)", "url": "https://legilux.public.lu/" }
   ],
-  "regimes": [
-    "RAIF",
-    "SIF"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["AIFMD (Lux implementation)", "UCITS (Lux implementation)"],
+  "marketing_notes": ["Distribution requirements depend on vehicle type and target investors.", "Do not treat summaries as approvals; confirm with counsel."],
+  "licensing_notes": ["AIFM/ManCo and delegation substance requirements are fact-dependent."],
+  "tokenization_notes": ["Tokenized interests require separate analysis for securities/transfer restrictions."],
+  "crypto_financing_notes": ["Crypto exposure/custody may trigger additional controls and disclosures."],
+  "risk_flags": ["Cross-border marketing assumptions", "Delegation/sub-advisory structures", "Retail access or semi-professional investor nuances"]
 }

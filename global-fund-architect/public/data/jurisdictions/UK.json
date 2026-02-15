@@ -3,28 +3,15 @@
   "name": "United Kingdom",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always validate with FCA rules and UK counsel, especially for financial promotions and investor classification.",
   "primary_sources": [
-    {
-      "label": "FCA AIFMD in the UK",
-      "url": "https://www.fca.org.uk/firms/aifmd-uk"
-    },
-    {
-      "label": "FCA financial promotions",
-      "url": "https://www.fca.org.uk/firms/financial-promotions"
-    }
+    { "label": "FCA", "url": "https://www.fca.org.uk/" },
+    { "label": "UK legislation portal", "url": "https://www.legislation.gov.uk/" }
   ],
-  "regimes": [
-    "UK AIFMD",
-    "Financial Promotions Regime"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["UK financial promotions", "AIFMD-derived rules (UK regime)"],
+  "marketing_notes": ["Financial promotion rules apply; treat any public marketing as counsel-gated.", "Confirm exemptions and investor type restrictions."],
+  "licensing_notes": ["Regulatory perimeter depends on activities (advice/management/arranging)."],
+  "tokenization_notes": ["Tokenization may trigger securities promotion and custody considerations."],
+  "crypto_financing_notes": ["Crypto promotions and custody carry elevated regulatory and conduct risk."],
+  "risk_flags": ["Financial promotions breach risk", "Retail exposure", "Cross-border activity and exemptions"]
 }

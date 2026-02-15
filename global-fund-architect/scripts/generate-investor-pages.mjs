@@ -61,7 +61,7 @@ const list = (items) =>
 const investorContent = `
   <div class="hero">
     <h1>${escapeHtml(truth.projectName)} — Investor Overview</h1>
-    <p>Generated from <span class="code">truth/gnco.truth.json</span>.</p>
+    <p class="small">Generated from <span class="code">truth/gnco.truth.json</span>.</p>
   </div>
 
   <div class="card">
@@ -74,7 +74,8 @@ const investorContent = `
     <h2 style="margin-top:0">What this software is not</h2>
     <ul>${list(truth.whatItIsNot)}</ul>
     <p class="small">
-      This page is informational only. It is not an offer. It does not provide investment/legal/tax advice. Always verify with qualified professionals.
+      Prototype software. <b>Informational only</b>. <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+      <b>Verify with qualified professionals</b>.
     </p>
   </div>
 
@@ -98,16 +99,16 @@ const investorContent = `
 const disclosuresContent = `
   <div class="hero">
     <h1>${escapeHtml(truth.projectName)} — Disclosures</h1>
-    <p>Applies to all pages and outputs.</p>
+    <p class="small">Applies to all pages and outputs.</p>
   </div>
 
   <div class="card">
-    <h2 style="margin-top:0">Informational only; not an offer; not advice</h2>
+    <h2 style="margin-top:0">Four-part disclosure</h2>
     <ul>
       <li><b>Informational only:</b> prototype documentation and scenario design.</li>
-      <li><b>Not an offer:</b> no solicitation, invitation, or recommendation to buy/sell any security or product.</li>
+      <li><b>Not an offer:</b> no solicitation, invitation, or recommendation.</li>
       <li><b>Not investment/legal/tax advice:</b> GNCO does not provide advice.</li>
-      <li><b>Verify:</b> always verify outputs with qualified professionals before reliance.</li>
+      <li><b>Verify with qualified professionals:</b> always verify outputs before reliance.</li>
     </ul>
   </div>
 
@@ -126,7 +127,7 @@ const disclosuresContent = `
 const investorHtml = buildPage({
   title: 'GNCO — Investor Overview (Prototype)',
   description:
-    'Investor overview for GNCO prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
+    'GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
   canonical: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
   ogUrl: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
   navActive: 'investor',
@@ -137,7 +138,7 @@ const investorHtml = buildPage({
 const disclosuresHtml = buildPage({
   title: 'GNCO — Disclosures (Prototype)',
   description:
-    'Disclosures for GNCO prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
+    'GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
   canonical: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
   ogUrl: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
   navActive: 'disclosures',
