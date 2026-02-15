@@ -3,28 +3,15 @@
   "name": "Cyprus",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always verify with qualified counsel and the regulator before relying on any output.",
   "primary_sources": [
-    {
-      "label": "CySEC funds supervision",
-      "url": "https://www.cysec.gov.cy/en-GB/entities/investment-funds/"
-    },
-    {
-      "label": "Cyprus AIF Law portal",
-      "url": "https://www.cylaw.org/nomoi/enop/non-ind/2018_2_124/full.html"
-    }
+    { "label": "CySEC — Funds / AIFM / UCITS information", "url": "https://www.cysec.gov.cy/en-GB/entities/funds/" },
+    { "label": "Cyprus Law (official portal)", "url": "https://www.cylaw.org/" }
   ],
-  "regimes": [
-    "AIF Law",
-    "CIF/MiFID"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["AIFMD (national implementation)", "UCITS (national implementation)"],
+  "marketing_notes": ["Any marketing into/within Cyprus must be reviewed against local implementation and investor classification.", "Use counsel review for any public website claims."],
+  "licensing_notes": ["Check authorization/registration for manager/adviser activities and cross-border delegation."],
+  "tokenization_notes": ["Tokenization requires separate securities characterization and offering analysis."],
+  "crypto_financing_notes": ["Crypto financing/custody may trigger additional obligations and risk controls."],
+  "risk_flags": ["Retail-facing promotion", "Cross-border distribution", "Complex leverage/derivatives/liquidity features"]
 }

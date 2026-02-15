@@ -3,28 +3,15 @@
   "name": "Ireland",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always verify with Irish counsel and CBI guidance for the specific structure and distribution plan.",
   "primary_sources": [
-    {
-      "label": "Central Bank of Ireland — AIFs",
-      "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs"
-    },
-    {
-      "label": "Central Bank of Ireland — UCITS",
-      "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits"
-    }
+    { "label": "Central Bank of Ireland (funds)", "url": "https://www.centralbank.ie/regulation/industry-sectors/funds" },
+    { "label": "Irish Statute Book", "url": "https://www.irishstatutebook.ie/" }
   ],
-  "regimes": [
-    "AIFM",
-    "UCITS"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["AIFMD (IE implementation)", "UCITS (IE implementation)"],
+  "marketing_notes": ["Marketing and disclosure requirements depend on investor type and product classification.", "Counsel review required for any public claims."],
+  "licensing_notes": ["ManCo/AIFM and delegation rules vary by structure and service provider roles."],
+  "tokenization_notes": ["Tokenization requires separate offering/transfer and custody analysis."],
+  "crypto_financing_notes": ["Crypto-linked features may require enhanced risk and operational controls."],
+  "risk_flags": ["Retail distribution", "Cross-border marketing", "Delegation and substance expectations"]
 }

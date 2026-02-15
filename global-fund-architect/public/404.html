@@ -15,11 +15,11 @@
     </style>
     <script>
       (function () {
-        // GitHub Pages SPA fallback: preserve path + query + hash
         var base = "/GNCO/";
         var path = location.pathname || "";
         if (path.startsWith(base)) path = path.slice(base.length);
-        var target = base + (path ? ("?p=" + encodeURIComponent(path + location.search + location.hash)) : "");
+        var payload = path + (location.search || "") + (location.hash || "");
+        var target = base + (payload ? ("?p=" + encodeURIComponent(payload)) : "");
         location.replace(target);
       })();
     </script>
@@ -28,13 +28,14 @@
     <div class="wrap">
       <div class="card">
         <h1 style="margin:0 0 8px;">Page not found</h1>
-        <p class="small" style="margin:0 0 10px;">
-          Redirecting you to GNCO…
-        </p>
+        <p class="small" style="margin:0 0 10px;">Redirecting you to GNCO…</p>
+
         <p style="margin:0 0 10px;">
-          <b>Important:</b> GNCO is prototype software for <b>informational purposes only</b>. It is <b>not an offer</b>.
-          It does <b>not</b> provide investment/legal/tax advice. <b>Always verify</b> with qualified professionals.
+          <b>Important:</b> GNCO is prototype software. <b>Informational only</b>.
+          <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+          <b>Verify with qualified professionals</b>.
         </p>
+
         <ul style="margin:0; padding-left:18px;">
           <li><a href="/GNCO/">Product</a></li>
           <li><a href="/GNCO/coverage.html">Coverage</a></li>

@@ -3,27 +3,15 @@
   "name": "United States",
   "status": "Partial",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Entry is partial; US federal/state securities and adviser rules are complex. Always verify with qualified US counsel before any offering, marketing, or adviser activity.",
   "primary_sources": [
-    {
-      "label": "SEC investment company regulation",
-      "url": "https://www.sec.gov/divisions/investment"
-    },
-    {
-      "label": "SEC marketing rule overview",
-      "url": "https://www.sec.gov/rules/final/2020/ia-5653.pdf"
-    }
+    { "label": "SEC — Investment Management", "url": "https://www.sec.gov/divisions/investment" },
+    { "label": "SEC — EDGAR", "url": "https://www.sec.gov/edgar" }
   ],
-  "regimes": [
-    "Investment Advisers Act"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["Investment Advisers / Securities offering framework (high-level)"],
+  "marketing_notes": ["Treat any marketing to US persons as counsel-gated.", "Offering exemptions, investor qualification, and materials review are critical."],
+  "licensing_notes": ["Adviser registration and broker/dealer perimeter issues are fact-specific."],
+  "tokenization_notes": ["Tokenization frequently triggers securities analysis; do not assume utility classification."],
+  "crypto_financing_notes": ["Crypto-related financing can materially increase enforcement and compliance risk."],
+  "risk_flags": ["Offering to US persons", "General solicitation", "Misclassification of token/securities status"]
 }

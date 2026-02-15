@@ -3,27 +3,15 @@
   "name": "UAE — ADGM",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always verify with ADGM/FSRA guidance and qualified ADGM counsel before any marketing or structuring decisions.",
   "primary_sources": [
-    {
-      "label": "FSRA fund framework",
-      "url": "https://www.adgm.com/operating-in-adgm/financial-services-regulatory-authority"
-    },
-    {
-      "label": "ADGM legal framework",
-      "url": "https://www.adgm.com/legal-framework"
-    }
+    { "label": "ADGM", "url": "https://www.adgm.com/" },
+    { "label": "FSRA (ADGM regulator)", "url": "https://www.adgm.com/operating-in-adgm/financial-services-regulation" }
   ],
-  "regimes": [
-    "FSRA Funds Rules"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["ADGM financial services framework (high-level)"],
+  "marketing_notes": ["Confirm promotion rules and investor restrictions.", "Treat cross-border marketing as counsel-gated."],
+  "licensing_notes": ["Licensing depends on activity type and client/investor base."],
+  "tokenization_notes": ["Tokenization requires separate securities and market infrastructure analysis."],
+  "crypto_financing_notes": ["Crypto-related activity can materially increase compliance controls needed."],
+  "risk_flags": ["Public marketing", "Retail exposure", "Perimeter and licensing classification risk"]
 }

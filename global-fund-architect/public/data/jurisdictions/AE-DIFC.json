@@ -3,27 +3,15 @@
   "name": "UAE — DIFC",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always verify with DFSA guidance and qualified DIFC counsel before any marketing or structuring decisions.",
   "primary_sources": [
-    {
-      "label": "DFSA collective investment rules",
-      "url": "https://www.dfsa.ae/rulebook/collective-investment-rules"
-    },
-    {
-      "label": "DIFC laws and regulations",
-      "url": "https://www.difc.ae/business/laws-regulations/"
-    }
+    { "label": "DFSA", "url": "https://www.dfsa.ae/" },
+    { "label": "DIFC", "url": "https://www.difc.ae/" }
   ],
-  "regimes": [
-    "DFSA Collective Investment Rules"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["DIFC/DFSA financial services framework (high-level)"],
+  "marketing_notes": ["Confirm financial promotion rules and investor classification.", "Treat cross-border marketing as counsel-gated."],
+  "licensing_notes": ["Licensing depends on regulated activity type and onshore/offshore interactions."],
+  "tokenization_notes": ["Tokenization requires separate analysis under DFSA and related rules."],
+  "crypto_financing_notes": ["Crypto financing/custody increases operational and regulatory risk."],
+  "risk_flags": ["Public marketing", "Onshore UAE interactions", "Misclassification of activity/perimeter"]
 }

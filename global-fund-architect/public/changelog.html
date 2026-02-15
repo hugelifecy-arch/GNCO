@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GNCO — Change Log</title>
-  <meta name="description" content="Public change log and update policy for GNCO coverage and compliance pages." />
+  <title>GNCO — Change Log (Prototype)</title>
+  <meta name="description" content="GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals. Change log and update policy." />
   <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/changelog.html" />
+  <meta property="og:title" content="GNCO — Change Log (Prototype)" />
+  <meta property="og:description" content="Prototype software. Informational only. Not an offer. Not advice. Verify with qualified professionals." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hugelifecy-arch.github.io/GNCO/changelog.html" />
   <link rel="stylesheet" href="./assets_gnco.css" />
   <script type="application/ld+json">
 {
@@ -15,11 +19,7 @@
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
   "url": "https://hugelifecy-arch.github.io/GNCO/changelog.html",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
+  "isAccessibleForFree": true,
   "publisher": {
     "@type": "Organization",
     "name": "GNCO",
@@ -29,63 +29,64 @@
   </script>
 </head>
 <body>
-<div class="nav">
-  <div class="inner">
-    <div class="brand">
-      <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
-      <b>GNCO</b>
-      <span class="badge">Prototype</span>
-      <span class="badge code">build 4ad1b8c • 2026-02-14</span>
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
+        <b>GNCO</b>
+        <span class="badge">Prototype</span>
+      </div>
+      <div class="navlinks">
+        <a href="./">Product</a>
+        <a href="./coverage.html">Coverage</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="./investor.html">Investor</a>
+        <a href="./disclosures.html">Disclosures</a>
+      </div>
     </div>
-    <div class="navlinks">
-      <a href="./" data-nav="home">Product</a>
-      <a href="./coverage.html" data-nav="coverage">Coverage</a>
-      <a href="./methodology.html" data-nav="methodology">Methodology</a>
-      <a href="./investor.html" data-nav="investor">Investor</a>
-      <a href="./disclosures.html" data-nav="disclosures">Disclosures</a>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Change log & update policy</h1>
+      <p class="small">
+        GNCO is prototype software. <b>Informational only</b>. <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+        <b>Verify with qualified professionals</b>.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">Latest</h2>
+      <table class="table" aria-label="GNCO change log">
+        <thead><tr><th>Date</th><th>Change</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="code">2026-02-15</td>
+            <td>Compliance pages standardized; coverage loads from manifest + 14 jurisdiction JSON files; guards strengthened.</td>
+            <td>Reduce offer-like language risk, ensure 14/14 coverage render, and enforce correctness gates.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small">Add new rows when a jurisdiction entry is updated, sources change, or coverage status changes.</p>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2 style="margin-top:0">Operational policy</h2>
+      <ul>
+        <li><b>Source rule:</b> do not publish jurisdiction claims without primary sources.</li>
+        <li><b>Status rule:</b> if not verified, mark as <span class="pill planned">Planned</span>.</li>
+        <li><b>Versioning:</b> builds should be traceable via git sha and build date where applicable.</li>
+        <li><b>Escalation:</b> include “requires counsel” triggers where there is real risk.</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <div>
+        <b>Important:</b> GNCO is prototype software. <b>Informational only</b>.
+        <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+        <b>Verify with qualified professionals</b>. See <a href="./disclosures.html">Disclosures</a>.
+      </div>
     </div>
   </div>
-</div>
-<div class="container">
-  <div class="hero">
-    <h1>Change log & update policy</h1>
-    <p>Public record of meaningful changes to coverage, methodology, and compliance pages.</p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-top:0">Latest</h2>
-    <table class="table" aria-label="GNCO change log">
-      <thead><tr><th>Date</th><th>Change</th><th>Reason</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="code">2026-02-14</td>
-          <td>Introduced Coverage Library + Methodology pages; added explicit status and primary sources per jurisdiction.</td>
-          <td>Increase investor-grade verifiability and reduce jurisdictional ambiguity.</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="small">Add new rows when a jurisdiction entry is updated, sources change, or coverage status changes.</p>
-  </div>
-
-  <div class="card" style="margin-top:18px">
-    <h2 style="margin-top:0">Operational policy</h2>
-    <ul>
-      <li><b>Source rule:</b> do not publish jurisdiction claims without primary sources.</li>
-      <li><b>Status rule:</b> if not verified, mark as <span class="pill planned">Planned</span>.</li>
-      <li><b>Versioning:</b> every build injects a version hash and build date.</li>
-      <li><b>Escalation:</b> always include “requires counsel” triggers where there is real risk.</li>
-    </ul>
-  </div>
-
-<div class="footer">
-  <div><b>Important:</b> GNCO is prototype software for informational purposes only. It is not an investment product and does not provide legal/tax/investment advice. Always verify outputs with qualified professionals. See <a href="./disclosures.html">Disclosures</a>.</div>
-  <div style="margin-top:8px">Build: <span class="code">4ad1b8c</span> • Source last updated: <span class="code">2026-02-14</span></div>
-</div>
-</div>
-<script>
-  (function(){
-    const a = document.querySelector('[data-nav="home"]'); if(a) a.classList.remove('active');
-  })();
-</script>
 </body>
 </html>

@@ -1,108 +1,124 @@
 (function () {
-  const qs = (sel, root) => (root || document).querySelector(sel);
-  const norm = (value) => String(value || '').toLowerCase().trim();
+  function qs(sel, root) { return (root || document).querySelector(sel); }
+  function qsa(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+  function norm(s) { return (s || "").toLowerCase().trim(); }
 
-  const state = {
-    rows: [],
-    visible: []
-  };
+  function filter() {
+    const q = norm(qs("#q")?.value);
+    const status = qs("#status")?.value || "all";
+    const rows = qsa("[data-jrow]");
+    let visible = 0;
 
-  const escapeHtml = (value) =>
-    String(value)
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#39;');
-
-  const render = () => {
-    const q = norm(qs('#q')?.value);
-    const status = qs('#status')?.value || 'all';
-    state.visible = state.rows.filter((item) => {
-      const hay = norm(JSON.stringify(item));
-      return (!q || hay.includes(q)) && (status === 'all' || item.status === status);
+    rows.forEach((row) => {
+      const hay = norm(row.getAttribute("data-hay"));
+      const st = row.getAttribute("data-status");
+      const okQ = !q || hay.includes(q);
+      const okS = status === "all" || st === status;
+      const show = okQ && okS;
+      row.style.display = show ? "" : "none";
+      if (show) visible++;
     });
 
-    const tableBody = qs('#table-body');
-    const cards = qs('#cards');
-    const count = qs('#count');
-    if (count) count.textContent = `${state.visible.length}/${state.rows.length}`;
+    const out = qs("#count");
+    if (out) out.textContent = `${visible}/${rows.length}`;
+  }
 
-    if (tableBody) {
-      tableBody.innerHTML = state.visible
-        .map((item) => {
-          const sources = (item.primary_sources || [])
-            .map(
-              (s) =>
-                `<li><a href="${escapeHtml(s.url)}" rel="noopener noreferrer" target="_blank">${escapeHtml(s.label || s.title || s.url)}</a></li>`
-            )
-            .join('');
+  function exportVisibleJSON() {
+    const rows = qsa("[data-jrow]").filter((r) => r.style.display !== "none");
+    const payload = rows
+      .map((r) => {
+        try { return JSON.parse(r.getAttribute("data-json") || "null"); }
+        catch { return null; }
+      })
+      .filter(Boolean);
 
-          return `<tr>
-            <td>${escapeHtml(item.code)}</td>
-            <td><b>${escapeHtml(item.name)}</b><div class="small">Last verified: ${escapeHtml(item.last_verified)}</div></td>
-            <td>${escapeHtml(item.status)}</td>
-            <td><ul>${sources}</ul></td>
-          </tr>`;
-        })
-        .join('');
-    }
-
-    if (cards) {
-      cards.innerHTML = state.visible
-        .map((item) => {
-          const notes = (item.marketing_notes || []).map((n) => `<li>${escapeHtml(n)}</li>`).join('');
-          const regimes = (item.regimes || []).map((r) => `<li>${escapeHtml(r)}</li>`).join('');
-
-          return `<div class="card" style="margin-top:14px">
-            <h2>${escapeHtml(item.code)} — ${escapeHtml(item.name)}</h2>
-            <p>Status: <b>${escapeHtml(item.status)}</b> • Last verified: ${escapeHtml(item.last_verified)}</p>
-            <h3>Regimes</h3>
-            <ul>${regimes || '<li>None mapped yet.</li>'}</ul>
-            <h3>Marketing notes</h3>
-            <ul>${notes || '<li>No notes available.</li>'}</ul>
-          </div>`;
-        })
-        .join('');
-    }
-  };
-
-  const exportJSON = () => {
-    const payload = {
-      exported_at: new Date().toISOString(),
-      count: state.visible.length,
-      jurisdictions: state.visible
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], {
-      type: 'application/json'
-    });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'gnco-coverage-export.json';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      URL.revokeObjectURL(a.href);
-      a.remove();
-    }, 250);
-  };
-
-  const boot = async () => {
-    const manifest = await fetch('./data/jurisdictions/manifest.json').then((r) => r.json());
-    const ordered = manifest.jurisdictions || [];
-    state.rows = await Promise.all(
-      ordered.map((item) => fetch(`./data/jurisdictions/${item.code}.json`).then((r) => r.json()))
+    const blob = new Blob(
+      [JSON.stringify({ exported_at: new Date().toISOString(), count: payload.length, jurisdictions: payload }, null, 2)],
+      { type: "application/json" }
     );
 
-    qs('#q')?.addEventListener('input', render);
-    qs('#status')?.addEventListener('change', render);
-    qs('#export')?.addEventListener('click', exportJSON);
-    render();
-  };
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "gnco-visible-jurisdictions.json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 250);
+  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    boot().catch((error) => {
-      console.error('Failed to load coverage data', error);
+  async function loadCoverage() {
+    const tbody = qs("#rows");
+    if (!tbody) return;
+
+    const base = "/GNCO";
+    const manifestUrl = `${base}/data/jurisdictions/manifest.json`;
+
+    const manifest = await fetch(manifestUrl, { cache: "no-store" }).then((r) => r.json());
+    const list = manifest.jurisdictions || [];
+
+    const entries = [];
+    for (const item of list) {
+      const code = item.code;
+      const url = `${base}/data/jurisdictions/${encodeURIComponent(code)}.json`;
+      const data = await fetch(url, { cache: "no-store" }).then((r) => r.json());
+      entries.push(data);
+    }
+
+    tbody.innerHTML = entries.map((j) => {
+      const sources = (j.primary_sources || [])
+        .map((s) => `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a></li>`)
+        .join("");
+
+      const hay = [
+        j.code, j.name, j.status, j.scope_notes,
+        ...(j.regimes || []),
+        ...(j.marketing_notes || []),
+        ...(j.licensing_notes || []),
+        ...(j.tokenization_notes || []),
+        ...(j.crypto_financing_notes || []),
+        ...(j.risk_flags || []),
+        ...(j.primary_sources || []).map((s) => `${s.label} ${s.url}`)
+      ].join(" • ");
+
+      const pillClass =
+        j.status === "Supported" ? "pill ok" :
+        j.status === "Partial" ? "pill partial" :
+        "pill planned";
+
+      const jsonStr = JSON.stringify(j);
+
+      return `
+        <tr data-jrow
+            data-hay="${String(hay).replace(/"/g, "&quot;")}"
+            data-status="${j.status}"
+            data-json="${String(jsonStr).replace(/"/g, "&quot;")}">
+          <td class="code">${j.code}</td>
+          <td>
+            <b>${j.name}</b>
+            <div class="small">Last verified: <span class="code">${j.last_verified}</span></div>
+          </td>
+          <td><span class="${pillClass}">${j.status}</span></td>
+          <td><ul>${sources}</ul></td>
+        </tr>
+      `;
+    }).join("");
+
+    filter();
+  }
+
+  window.GNCO = window.GNCO || {};
+  window.GNCO.coverage = { filter, exportVisibleJSON, loadCoverage };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const q = qs("#q");
+    const s = qs("#status");
+    const ex = qs("#export");
+    if (q) q.addEventListener("input", filter);
+    if (s) s.addEventListener("change", filter);
+    if (ex) ex.addEventListener("click", exportVisibleJSON);
+
+    loadCoverage().catch((e) => {
+      console.error("Coverage load failed:", e);
+      filter();
     });
   });
 })();

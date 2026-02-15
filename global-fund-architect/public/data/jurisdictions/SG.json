@@ -3,28 +3,15 @@
   "name": "Singapore",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always validate with MAS guidance and Singapore counsel, especially for offers and marketing.",
   "primary_sources": [
-    {
-      "label": "MAS fund management",
-      "url": "https://www.mas.gov.sg/regulation/explainers/fund-management"
-    },
-    {
-      "label": "Singapore statutes online",
-      "url": "https://sso.agc.gov.sg/"
-    }
+    { "label": "MAS", "url": "https://www.mas.gov.sg/" },
+    { "label": "Singapore Statutes Online", "url": "https://sso.agc.gov.sg/" }
   ],
-  "regimes": [
-    "VCC",
-    "SFA fund management"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["Singapore fund/offer framework (high-level)"],
+  "marketing_notes": ["Offering/marketing restrictions depend on investor class and exemption pathways.", "Counsel review required for any public distribution."],
+  "licensing_notes": ["Licensing depends on regulated activity classification and client base."],
+  "tokenization_notes": ["Tokenization requires securities/offer analysis and custody considerations."],
+  "crypto_financing_notes": ["Crypto financing/custody can materially increase compliance obligations."],
+  "risk_flags": ["Public marketing", "Retail exposure", "Misclassification of regulated activity"]
 }

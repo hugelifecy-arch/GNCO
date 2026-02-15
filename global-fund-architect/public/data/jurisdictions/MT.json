@@ -3,27 +3,15 @@
   "name": "Malta",
   "status": "Partial",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Entry is partial and must be validated with Malta counsel; do not rely for marketing/distribution decisions without verification.",
   "primary_sources": [
-    {
-      "label": "MFSA investment services",
-      "url": "https://www.mfsa.mt/our-work/capital-markets/collective-investment-schemes/"
-    },
-    {
-      "label": "Malta legislation portal",
-      "url": "https://legislation.mt/"
-    }
+    { "label": "MFSA — Collective Investment Schemes", "url": "https://www.mfsa.mt/our-work/capital-markets/collective-investment-schemes/" },
+    { "label": "Malta legislation portal", "url": "https://legislation.mt/" }
   ],
-  "regimes": [
-    "PIF framework"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["AIFMD/UCITS (as implemented locally)"],
+  "marketing_notes": ["Treat any solicitation/marketing as counsel-gated.", "Confirm rules for target investor category and channel."],
+  "licensing_notes": ["Authorization/registration depends on activity (management/advice/distribution)."],
+  "tokenization_notes": ["Tokenized interests require separate securities/offering characterization."],
+  "crypto_financing_notes": ["Crypto-related financing/custody may trigger additional licensing/controls."],
+  "risk_flags": ["Public/retail communication", "Cross-border distribution", "Service-provider role ambiguity"]
 }

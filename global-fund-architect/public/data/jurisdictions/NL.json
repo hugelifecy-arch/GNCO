@@ -3,27 +3,15 @@
   "name": "Netherlands",
   "status": "Partial",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Entry is partial; always validate with Dutch counsel and AFM guidance before any marketing or structuring decisions.",
   "primary_sources": [
-    {
-      "label": "AFM asset management",
-      "url": "https://www.afm.nl/en/sector/registers/vergunningenregisters/beleggingsinstellingen"
-    },
-    {
-      "label": "Dutch government legislation",
-      "url": "https://wetten.overheid.nl/"
-    }
+    { "label": "AFM — Investment firms / fund registers", "url": "https://www.afm.nl/en/sector/registers" },
+    { "label": "Dutch government legislation portal", "url": "https://wetten.overheid.nl/" }
   ],
-  "regimes": [
-    "AIFMD (national implementation)"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["AIFMD/UCITS (NL implementation)"],
+  "marketing_notes": ["Marketing rules can be strict; counsel review required for any public website claims.", "Confirm investor classification and distribution channel."],
+  "licensing_notes": ["Authorization/registration depends on manager/adviser/distributor role and structure."],
+  "tokenization_notes": ["Tokenization requires separate securities and offering analysis."],
+  "crypto_financing_notes": ["Crypto-linked features may trigger additional requirements and risk disclosures."],
+  "risk_flags": ["Retail access", "Cross-border marketing", "Misclassification of activity (advice vs marketing vs management)"]
 }

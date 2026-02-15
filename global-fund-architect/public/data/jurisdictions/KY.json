@@ -3,28 +3,15 @@
   "name": "Cayman Islands",
   "status": "Supported",
   "last_verified": "2026-02-15",
-  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
+  "scope_notes": "Prototype compliance mapping only. Always confirm Cayman vehicle requirements and ongoing obligations with Cayman counsel and the regulator.",
   "primary_sources": [
-    {
-      "label": "CIMA mutual funds supervision",
-      "url": "https://www.cima.ky/securities-investment-business/mutual-funds"
-    },
-    {
-      "label": "CIMA private funds supervision",
-      "url": "https://www.cima.ky/securities-investment-business/private-funds"
-    }
+    { "label": "CIMA (Cayman Islands Monetary Authority)", "url": "https://www.cima.ky/" },
+    { "label": "Cayman Islands Government", "url": "https://www.gov.ky/" }
   ],
-  "regimes": [
-    "Private Funds Act",
-    "Mutual Funds Act"
-  ],
-  "marketing_notes": [
-    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
-  ],
-  "licensing_notes": [],
-  "tokenization_notes": [],
-  "crypto_financing_notes": [],
-  "risk_flags": [
-    "Any public distribution, cross-border activity, or retail-facing communication."
-  ]
+  "regimes": ["Cayman fund regulatory framework (high-level)"],
+  "marketing_notes": ["Distribution depends on investor type and jurisdiction of marketing.", "Counsel review required for cross-border offering materials."],
+  "licensing_notes": ["Check requirements for manager/adviser location and activities."],
+  "tokenization_notes": ["Tokenization requires separate securities/offering and transfer analysis."],
+  "crypto_financing_notes": ["Crypto exposure may add AML, custody, and disclosure obligations."],
+  "risk_flags": ["Cross-border marketing", "Retail access via feeder structures", "AML/custody complexity"]
 }

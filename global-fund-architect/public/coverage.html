@@ -1,67 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>GNCO — Jurisdiction Coverage Library</title>
-    <meta
-      name="description"
-      content="Jurisdiction coverage library for GNCO with status, primary sources, and verification dates."
-    />
-    <meta property="og:title" content="GNCO — Jurisdiction Coverage" />
-    <meta
-      property="og:description"
-      content="Data-driven jurisdiction coverage with source links and verification dates."
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://hugelifecy-arch.github.io/GNCO/coverage.html"
-    />
-    <link
-      rel="canonical"
-      href="https://hugelifecy-arch.github.io/GNCO/coverage.html"
-    />
-    <link rel="stylesheet" href="./assets_gnco.css" />
-  </head>
-  <body>
-    <div class="container">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GNCO — Jurisdiction Coverage (Prototype)</title>
+  <meta name="description" content="GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals. Coverage library renders 14 jurisdictions." />
+  <meta property="og:title" content="GNCO — Jurisdiction Coverage (Prototype)" />
+  <meta property="og:description" content="Prototype software. Informational only. Not an offer. Not advice. Verify with qualified professionals." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
+  <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
+  <link rel="stylesheet" href="./assets_gnco.css" />
+</head>
+<body>
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
+        <b>GNCO</b>
+        <span class="badge">Prototype</span>
+      </div>
+      <div class="navlinks">
+        <a href="./">Product</a>
+        <a href="./coverage.html" class="active">Coverage</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="./investor.html">Investor</a>
+        <a href="./disclosures.html">Disclosures</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
       <h1>Jurisdiction Coverage Library</h1>
-      <p>Prototype software — informational only. Not an offer. Not investment advice.</p>
-
-      <div
-        class="filters"
-        style="margin: 14px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center;"
-      >
-        <input id="q" class="input" placeholder="Search jurisdiction, source, notes..." />
-        <select id="status" class="select">
-          <option value="all">All statuses</option>
-          <option value="Supported">Supported</option>
-          <option value="Partial">Partial</option>
-          <option value="Planned">Planned</option>
-        </select>
-        <button id="export" class="btn" type="button">Export visible (JSON)</button>
-        <span class="badge">Visible: <b id="count">0/0</b></span>
-      </div>
-
-      <div class="card">
-        <h2>Coverage table</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Jurisdiction</th>
-              <th>Status</th>
-              <th>Primary sources</th>
-            </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
-        </table>
-      </div>
-
-      <div id="cards"></div>
+      <p class="small">
+        GNCO is prototype software. <b>Informational only</b>. <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+        <b>Verify with qualified professionals</b>.
+      </p>
     </div>
 
-    <script src="./assets_gnco.js" defer></script>
-  </body>
+    <div class="filters">
+      <input id="q" class="input" placeholder="Search jurisdiction, sources, notes…" />
+      <select id="status" class="select">
+        <option value="all">All statuses</option>
+        <option value="Supported">Supported</option>
+        <option value="Partial">Partial</option>
+        <option value="Planned">Planned</option>
+      </select>
+      <button id="export" class="btn" type="button">Export visible (JSON)</button>
+      <span class="badge">Visible: <b id="count">0/0</b></span>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h2 style="margin-top:0">Coverage table</h2>
+      <table class="table" aria-label="Coverage table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Jurisdiction</th>
+            <th>Status</th>
+            <th>Primary sources</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="small" style="margin-top:10px">
+        Source: <span class="code">/public/data/jurisdictions/manifest.json</span> + per-jurisdiction JSON files.
+      </p>
+    </div>
+
+    <div class="footer">
+      <div>
+        <b>Important:</b> GNCO is prototype software. <b>Informational only</b>.
+        <b>Not an offer</b>. <b>Not investment/legal/tax advice</b>.
+        <b>Verify with qualified professionals</b>. See <a href="./disclosures.html">Disclosures</a>.
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets_gnco.js"></script>
+</body>
 </html>
