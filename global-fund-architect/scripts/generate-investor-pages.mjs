@@ -29,7 +29,8 @@ const assertTruthy = (cond, msg) => {
 };
 
 const truth = JSON.parse(fs.readFileSync(truthPath, 'utf8'));
-for (const key of requiredKeys) assertTruthy(key in truth, `Missing truth key: ${key}`);
+for (const key of requiredKeys)
+  assertTruthy(key in truth, `Missing truth key: ${key}`);
 assertTruthy(
   ['Prototype', 'Beta', 'Live'].includes(truth.status),
   'truth.status must be Prototype, Beta, or Live'
@@ -54,7 +55,8 @@ const buildMeta = {
   truthLastUpdated: truth.lastUpdated
 };
 
-const list = (items) => (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('\n');
+const list = (items) =>
+  (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('\n');
 
 const investorContent = `
   <div class="hero">
@@ -147,4 +149,6 @@ fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(path.join(publicDir, 'investor.html'), investorHtml);
 fs.writeFileSync(path.join(publicDir, 'disclosures.html'), disclosuresHtml);
 
-process.stdout.write('Generated public/investor.html and public/disclosures.html\n');
+process.stdout.write(
+  'Generated public/investor.html and public/disclosures.html\n'
+);
