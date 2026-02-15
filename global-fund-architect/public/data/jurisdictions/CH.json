@@ -3,20 +3,25 @@
   "name": "Switzerland",
   "status": "Partial",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "FINMA collective investment schemes",
+      "label": "FINMA collective investment schemes",
       "url": "https://www.finma.ch/en/authorisation/asset-management/"
     },
     {
-      "title": "Swiss federal law portal",
+      "label": "Swiss federal law portal",
       "url": "https://www.fedlex.admin.ch/"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

@@ -3,62 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GNCO prototype compliance documentation and disclosures." />
+    <meta name="robots" content="index,follow" />
     <title>GNCO Investor Overview</title>
+    <style>
+:root { color-scheme: dark; --bg:#020617; --card:#0f172a; --border:#1e293b; --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --warn:#f59e0b; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: linear-gradient(180deg,#020617,#0b1222); color: var(--text); }
+a { color: var(--accent); }
+.wrap { max-width: 980px; margin: 0 auto; padding: 1.25rem; }
+nav { display:flex; flex-wrap: wrap; gap: .8rem; margin: .75rem 0 1rem; }
+nav a { text-decoration: none; border:1px solid var(--border); border-radius:999px; padding:.5rem .8rem; color:var(--text); }
+nav a:hover { border-color: var(--accent); }
+.banner { border:1px solid #854d0e; background: rgba(245,158,11,.15); color: #fde68a; border-radius: .75rem; padding: .75rem 1rem; }
+.card { background: rgba(15,23,42,.82); border:1px solid var(--border); border-radius: 1rem; padding: 1rem; margin-top: 1rem; }
+h1,h2 { line-height:1.2; }
+.meta { color: var(--muted); font-size: .9rem; }
+li + li { margin-top: .45rem; }
+code { background: rgba(15,23,42,.8); border:1px solid var(--border); border-radius:.4rem; padding:.08rem .3rem; }
+</style>
   </head>
   <body>
-    <main>
-      <h1>GNCO (Global Fund Architect) - Investor Overview</h1>
-      <p>This page is a static, crawlable compliance summary generated from <code>truth/gnco.truth.json</code>.</p>
-
+    <div class="wrap">
+      <div class="banner">Prototype software. Informational only. Not an offer. Not advice.</div>
+      <nav aria-label="Compliance navigation">
+        <a href="./investor.html">Investor Overview</a>
+        <a href="./disclosures.html">Disclosures</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="./coverage.html">Coverage</a>
+      </nav>
+      <main>
+    <h1>GNCO (Global Fund Architect) — Investor Overview</h1>
+    <p class="meta">Generated from <code>truth/gnco.truth.json</code>.</p>
+    <section class="card">
       <h2>Project overview</h2>
       <p>Decision-tree / fund-structuring architecture tool (software)</p>
-
-      <h2>Current status</h2>
       <p><strong>Status:</strong> Prototype</p>
-
-      <h2>What this software does not do</h2>
-      <ul>
-      <li>Not an investment product</li>
-      <li>No guaranteed returns</li>
-      <li>Not financial advice</li>
-      </ul>
+    </section>
+    <section class="card">
+      <h2>What this software is not</h2>
+      <ul><li>Not an investment product</li>
+<li>No guaranteed returns</li>
+<li>Not financial advice</li></ul>
       <p><strong>Compliance statement:</strong> No guaranteed returns, no APY, and not investment advice.</p>
-
+    </section>
+    <section class="card">
       <h2>Features available now</h2>
-      <ul>
-      <li>Interactive decision-tree prototype for fund-structuring workflows</li>
-      <li>Node-level detail drawer for contextual information</li>
-      <li>Branch highlighting and sibling de-emphasis for scenario review</li>
-      <li>Simulated lazy-loading of decision branches</li>
-      </ul>
-
-      <h2>Features planned / under research</h2>
-      <ul>
-      <li>Production-grade data integrations (under research)</li>
-      <li>Expanded compliance documentation workflows (planned)</li>
-      <li>Additional validation and audit export capabilities (planned)</li>
-      </ul>
-
+      <ul><li>Interactive decision-tree prototype for fund-structuring workflows</li>
+<li>Node-level detail drawer for contextual information</li>
+<li>Branch highlighting and sibling de-emphasis for scenario review</li>
+<li>Simulated lazy-loading of decision branches</li></ul>
+    </section>
+    <section class="card">
+      <h2>Planned / under research</h2>
+      <ul><li>Production-grade data integrations (under research)</li>
+<li>Expanded compliance documentation workflows (planned)</li>
+<li>Additional validation and audit export capabilities (planned)</li></ul>
+    </section>
+    <section class="card">
       <h2>Risk disclosures</h2>
-      <ul>
-      <li>Prototype software may contain errors, omissions, or outdated assumptions.</li>
-      <li>Output is informational and must be independently verified by qualified professionals.</li>
-      <li>Regulatory requirements vary by jurisdiction and may change over time.</li>
-      <li>No representation is made that this tool is complete, production-ready, or suitable for investment decisions.</li>
-      </ul>
-
-      <h2>Forward-looking statements</h2>
-      <p>Statements about planned capabilities, roadmap items, research, or future outcomes are forward-looking and inherently uncertain. Actual results may differ materially.</p>
-
-      <h2>No offer / no solicitation</h2>
-      <p>This website content is for informational purposes only and does not constitute an offer to sell, a solicitation of an offer to buy, or a recommendation regarding any security, instrument, or investment strategy.</p>
-
-      <h2>Document metadata</h2>
-      <p><strong>Source last updated:</strong> 2026-02-14</p>
-      <p><strong>Build date:</strong> 2026-02-15</p>
-      <p><strong>Version:</strong> 88a1609</p>
-
-      <p><a href="./disclosures.html">Read full disclosures</a></p>
-    </main>
+      <ul><li>Prototype software may contain errors, omissions, or outdated assumptions.</li>
+<li>Output is informational and must be independently verified by qualified professionals.</li>
+<li>Regulatory requirements vary by jurisdiction and may change over time.</li>
+<li>No representation is made that this tool is complete, production-ready, or suitable for investment decisions.</li></ul>
+    </section>
+  </main>
+      <div class="card meta">
+        <div><strong>lastUpdated:</strong> 2026-02-14</div>
+        <div><strong>buildDate:</strong> 2026-02-15</div>
+        <div><strong>gitSha:</strong> ad6bd24</div>
+      </div>
+    </div>
   </body>
 </html>

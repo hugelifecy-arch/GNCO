@@ -20,30 +20,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Debug environment
-        run: |
-          node -v
-          npm -v
-          ls -la
-          ls -la dist || true
-          ls -la docs || true
-
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci --no-audit --no-fund
-          else
-            npm install --no-audit --no-fund
-          fi
+        run: npm ci --no-audit --no-fund
 
-      - name: Build
-        run: npm run build
-
-      - name: Debug build output
-        run: |
-          ls -la
-          ls -la dist || true
-          ls -la docs || true
-
-      - name: Run investor claims guard
-        run: npm run guard:investor-claims
+      - name: Build compliance bundle
+        run: npm run build:compliance

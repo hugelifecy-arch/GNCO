@@ -3,20 +3,25 @@
   "name": "Luxembourg",
   "status": "Supported",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "CSSF investment funds",
+      "label": "CSSF investment funds",
       "url": "https://www.cssf.lu/en/investment-funds/"
     },
     {
-      "title": "RAIF law reference",
+      "label": "RAIF law reference",
       "url": "https://legilux.public.lu/eli/etat/leg/loi/2016/07/23/n14/jo"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

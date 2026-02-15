@@ -27,8 +27,8 @@ const clamp = (n: number, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, n));
 const round = (n: number) => Math.round(n);
 
 // Source anchors (fixed per spec)
-const SRC_ALFI_RAIF = "https://www.alfi.lu/...";
-const SRC_IE_QIAIF = "https://www.pinsentmasons.com/...";
+const SRC_ALFI_RAIF = "https://www.cssf.lu/en/investment-funds/";
+const SRC_IE_QIAIF = "https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs";
 const SRC_WEF_TOKENIZATION =
   "https://reports.weforum.org/docs/WEF_Asset_Tokenization_in_Financial_Markets_2025.pdf";
 const SRC_COINBASE_BORROW = "https://www.coinbase.com/borrow";
@@ -46,7 +46,7 @@ type Jurisdiction = {
   primaryRegime: string;
 };
 
-const JURISDICTIONS: Jurisdiction[] = [
+const DEMO_JURISDICTIONS: Jurisdiction[] = [
   { key: "LUX", label: "Luxembourg", region: "EU", tags: ["EU_PASSPORT", "TOKENIZATION"], primaryRegime: "RAIF" },
   { key: "IRL", label: "Ireland", region: "EU", tags: ["EU_PASSPORT"], primaryRegime: "QIAIF" },
   { key: "UK", label: "United Kingdom", region: "EU", tags: [], primaryRegime: "LTAF" },
@@ -58,6 +58,60 @@ const JURISDICTIONS: Jurisdiction[] = [
   { key: "CYP", label: "Cyprus", region: "EU", tags: ["EU_PASSPORT"], primaryRegime: "PRO_FUND" },
   { key: "CYM", label: "Cayman Islands", region: "Offshore", tags: ["CRYPTO_FINANCING"], primaryRegime: "PRIVATE_FUND" }
 ];
+
+let JURISDICTIONS: Jurisdiction[] = [...DEMO_JURISDICTIONS];
+
+type ManifestEntry = { code: string; name: string; status: 'Supported' | 'Partial' | 'Planned' };
+type JurisdictionManifest = { jurisdictions: ManifestEntry[] };
+type JurisdictionRecord = {
+  code: string;
+  name: string;
+  status: 'Supported' | 'Partial' | 'Planned';
+  regimes: string[];
+  tokenization_notes: string[];
+  crypto_financing_notes: string[];
+};
+
+const inferRegion = (name: string): JurisdictionRegion => {
+  const value = name.toLowerCase();
+  if (/(uae|adgm|difc)/.test(value)) return 'MENA';
+  if (/(singapore|hong kong)/.test(value)) return 'Asia';
+  if (/(cayman)/.test(value)) return 'Offshore';
+  return 'EU';
+};
+
+const loadProductionJurisdictions = async (): Promise<Jurisdiction[]> => {
+  const manifest = await fetch('/GNCO/data/jurisdictions/manifest.json').then((res) => {
+    if (!res.ok) throw new Error('manifest unavailable');
+    return res.json() as Promise<JurisdictionManifest>;
+  });
+
+  const records = await Promise.all(
+    manifest.jurisdictions.map((entry) =>
+      fetch(`/GNCO/data/jurisdictions/${entry.code}.json`).then((res) => {
+        if (!res.ok) throw new Error(`jurisdiction file unavailable: ${entry.code}`);
+        return res.json() as Promise<JurisdictionRecord>;
+      })
+    )
+  );
+
+  return records.map((record) => {
+    const tags: string[] = [];
+    if (record.code === 'EU' || record.code === 'CY' || record.code === 'LU' || record.code === 'IE' || record.code === 'MT' || record.code === 'NL') {
+      tags.push('EU_PASSPORT');
+    }
+    if ((record.tokenization_notes ?? []).length > 0) tags.push('TOKENIZATION');
+    if ((record.crypto_financing_notes ?? []).length > 0) tags.push('CRYPTO_FINANCING');
+
+    return {
+      key: record.code,
+      label: record.name,
+      region: inferRegion(record.name),
+      tags,
+      primaryRegime: record.regimes?.[0] || 'AIFMD_STYLE'
+    };
+  });
+};
 
 // =====================
 // LAYER 2: Regulatory regimes
@@ -232,7 +286,7 @@ function parseLayer(id: NodeId): number {
 }
 
 function getJurKeyFromId(id: NodeId): string | undefined {
-  const m = id.match(/JUR::([A-Z0-9_\-]+)/);
+  const m = id.match(/JUR::([A-Z0-9_-]+)/);
   return m?.[1];
 }
 
@@ -669,9 +723,30 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
 
 export class MockDataManager {
   private cache = new Map<NodeId, FundNode>();
+  private jurisdictionsLoaded = false;
+
+  private async ensureJurisdictionsLoaded() {
+    if (this.jurisdictionsLoaded) return;
+
+    if (import.meta.env.PROD) {
+      JURISDICTIONS = await loadProductionJurisdictions();
+      this.jurisdictionsLoaded = true;
+      return;
+    }
+
+    try {
+      JURISDICTIONS = await loadProductionJurisdictions();
+    } catch {
+      // DEV ONLY fallback for local demos.
+      JURISDICTIONS = [...DEMO_JURISDICTIONS];
+    }
+
+    this.jurisdictionsLoaded = true;
+  }
 
   // NOTE: Simulated chunking: the "server" only returns nodes for the requested parent.
   async getRootNodes(): Promise<FundNode[]> {
+    await this.ensureJurisdictionsLoaded();
     await sleep(250);
     const roots: FundNode[] = [];
     for (const j of JURISDICTIONS) {

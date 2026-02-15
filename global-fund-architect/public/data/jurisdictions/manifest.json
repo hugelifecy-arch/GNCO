@@ -2,60 +2,102 @@
   "last_generated": "2026-02-15",
   "jurisdictions": [
     {
-      "code": "EU",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "CY",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "LU",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "IE",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "MT",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "NL",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "UK",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "CH",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "US",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "KY",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "SG",
-      "last_verified": "2026-02-15"
-    },
-    {
-      "code": "HK",
-      "last_verified": "2026-02-15"
+      "code": "AE-ADGM",
+      "name": "UAE \u2014 ADGM",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/AE-ADGM.json"
     },
     {
       "code": "AE-DIFC",
-      "last_verified": "2026-02-15"
+      "name": "UAE \u2014 DIFC",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/AE-DIFC.json"
     },
     {
-      "code": "AE-ADGM",
-      "last_verified": "2026-02-15"
+      "code": "CH",
+      "name": "Switzerland",
+      "status": "Partial",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/CH.json"
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/CY.json"
+    },
+    {
+      "code": "EU",
+      "name": "European Union (Framework)",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/EU.json"
+    },
+    {
+      "code": "HK",
+      "name": "Hong Kong",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/HK.json"
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/IE.json"
+    },
+    {
+      "code": "KY",
+      "name": "Cayman Islands",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/KY.json"
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/LU.json"
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "status": "Partial",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/MT.json"
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "status": "Partial",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/NL.json"
+    },
+    {
+      "code": "SG",
+      "name": "Singapore",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/SG.json"
+    },
+    {
+      "code": "UK",
+      "name": "United Kingdom",
+      "status": "Supported",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/UK.json"
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "status": "Partial",
+      "last_verified": "2026-02-15",
+      "file": "/data/jurisdictions/US.json"
     }
   ]
 }
