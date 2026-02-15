@@ -6,6 +6,7 @@ import { buildPage, escapeHtml } from './lib/site-template.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const repoRoot = path.resolve(__dirname, '..', '..');
 const appRoot = path.resolve(__dirname, '..');
 const truthPath = path.join(repoRoot, 'truth', 'gnco.truth.json');
@@ -23,17 +24,15 @@ const requiredKeys = [
   'version'
 ];
 
-const assertTruthy = (condition, message) => {
-  if (!condition) throw new Error(message);
+const assertTruthy = (cond, msg) => {
+  if (!cond) throw new Error(msg);
 };
 
 const truth = JSON.parse(fs.readFileSync(truthPath, 'utf8'));
-for (const key of requiredKeys) {
-  assertTruthy(key in truth, `Missing required truth key: ${key}`);
-}
+for (const key of requiredKeys) assertTruthy(key in truth, `Missing truth key: ${key}`);
 assertTruthy(
   ['Prototype', 'Beta', 'Live'].includes(truth.status),
-  'status must be Prototype, Beta, or Live'
+  'truth.status must be Prototype, Beta, or Live'
 );
 
 let gitSha = truth.version;
@@ -45,92 +44,107 @@ try {
     .toString()
     .trim();
 } catch {
-  // keep truth.version fallback
+  // keep fallback
 }
-
 const buildDate = new Date().toISOString().slice(0, 10);
 
-const list = (items) =>
-  items.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n');
+const buildMeta = {
+  gitSha,
+  buildDate,
+  truthLastUpdated: truth.lastUpdated
+};
+
+const list = (items) => (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('\n');
+
+const investorContent = `
+  <div class="hero">
+    <h1>${escapeHtml(truth.projectName)} — Investor Overview</h1>
+    <p>Generated from <span class="code">truth/gnco.truth.json</span>.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Project overview</h2>
+    <p>${escapeHtml(truth.whatItIs)}</p>
+    <p><b>Status:</b> ${escapeHtml(truth.status)}</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2 style="margin-top:0">What this software is not</h2>
+    <ul>${list(truth.whatItIsNot)}</ul>
+    <p class="small">
+      This page is informational only. It is not an offer. It does not provide investment/legal/tax advice. Always verify with qualified professionals.
+    </p>
+  </div>
+
+  <div class="grid" style="margin-top:14px">
+    <div class="card">
+      <h2 style="margin-top:0">Features available now</h2>
+      <ul>${list(truth.featuresNow)}</ul>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">Planned / under research</h2>
+      <ul>${list(truth.featuresPlanned)}</ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2 style="margin-top:0">Risk disclosures</h2>
+    <ul>${list(truth.riskDisclosureBullets)}</ul>
+  </div>
+`;
+
+const disclosuresContent = `
+  <div class="hero">
+    <h1>${escapeHtml(truth.projectName)} — Disclosures</h1>
+    <p>Applies to all pages and outputs.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Informational only; not an offer; not advice</h2>
+    <ul>
+      <li><b>Informational only:</b> prototype documentation and scenario design.</li>
+      <li><b>Not an offer:</b> no solicitation, invitation, or recommendation to buy/sell any security or product.</li>
+      <li><b>Not investment/legal/tax advice:</b> GNCO does not provide advice.</li>
+      <li><b>Verify:</b> always verify outputs with qualified professionals before reliance.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2 style="margin-top:0">Forward-looking statements</h2>
+    <p>Roadmap, timing, adoption, or expected outcomes are forward-looking and subject to material uncertainty.</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2 style="margin-top:0">Technology and methodology limitations</h2>
+    <ul>${list(truth.riskDisclosureBullets)}</ul>
+    <p class="small">Do not rely on outputs without independent verification by qualified professionals.</p>
+  </div>
+`;
 
 const investorHtml = buildPage({
-  title: 'GNCO Investor Overview',
-  description: 'GNCO prototype compliance documentation and disclosures.',
+  title: 'GNCO — Investor Overview (Prototype)',
+  description:
+    'Investor overview for GNCO prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
   canonical: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
   ogUrl: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
   navActive: 'investor',
-  buildMeta: {
-    gitSha,
-    buildDate,
-    truthLastUpdated: truth.lastUpdated
-  },
-  contentHtml: `<main>
-    <h1>${escapeHtml(truth.projectName)} — Investor Overview</h1>
-    <p class="meta">Generated from <code>truth/gnco.truth.json</code>.</p>
-    <section class="card">
-      <h2>Project overview</h2>
-      <p>${escapeHtml(truth.whatItIs)}</p>
-      <p><strong>Status:</strong> ${escapeHtml(truth.status)}</p>
-    </section>
-    <section class="card">
-      <h2>What this software is not</h2>
-      <ul>${list(truth.whatItIsNot)}</ul>
-      <p><strong>Compliance statement:</strong> No guaranteed returns, no APY, and not investment advice.</p>
-    </section>
-    <section class="card">
-      <h2>Features available now</h2>
-      <ul>${list(truth.featuresNow)}</ul>
-    </section>
-    <section class="card">
-      <h2>Planned / under research</h2>
-      <ul>${list(truth.featuresPlanned)}</ul>
-    </section>
-    <section class="card">
-      <h2>Risk disclosures</h2>
-      <ul>${list(truth.riskDisclosureBullets)}</ul>
-    </section>
-  </main>`
+  contentHtml: investorContent,
+  buildMeta
 });
 
 const disclosuresHtml = buildPage({
-  title: 'GNCO Disclosures',
-  description: 'Key prototype disclosures for GNCO investor-facing materials.',
+  title: 'GNCO — Disclosures (Prototype)',
+  description:
+    'Disclosures for GNCO prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
   canonical: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
   ogUrl: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
   navActive: 'disclosures',
-  buildMeta: {
-    gitSha,
-    buildDate,
-    truthLastUpdated: truth.lastUpdated
-  },
-  contentHtml: `<main>
-    <h1>${escapeHtml(truth.projectName)} — Disclosures</h1>
-    <section class="card">
-      <h2>Not an offer; not investment advice</h2>
-      <p>Nothing on this site constitutes an offer, invitation, recommendation, or solicitation to buy or sell securities or any other financial product. Content is informational only and is not legal, tax, accounting, or investment advice.</p>
-    </section>
-    <section class="card">
-      <h2>Forward-looking statements</h2>
-      <p>Any statement regarding roadmap, release timing, market adoption, or expected outcomes is forward-looking and subject to material uncertainty.</p>
-    </section>
-    <section class="card">
-      <h2>Technology and methodology limitations</h2>
-      <ul>${list(truth.riskDisclosureBullets)}</ul>
-      <p>Outputs must be independently verified with qualified professionals before reliance.</p>
-    </section>
-    <section class="card">
-      <h2>Status and scope</h2>
-      <p><strong>Status:</strong> ${escapeHtml(truth.status)}</p>
-      <p><strong>Scope today:</strong> ${escapeHtml(truth.whatItIs)}</p>
-      <p><strong>Out of scope:</strong> This is prototype software and not an investment product.</p>
-    </section>
-  </main>`
+  contentHtml: disclosuresContent,
+  buildMeta
 });
 
 fs.mkdirSync(publicDir, { recursive: true });
 fs.writeFileSync(path.join(publicDir, 'investor.html'), investorHtml);
 fs.writeFileSync(path.join(publicDir, 'disclosures.html'), disclosuresHtml);
 
-process.stdout.write(
-  'Generated public/investor.html and public/disclosures.html from truth/gnco.truth.json\n'
-);
+process.stdout.write('Generated public/investor.html and public/disclosures.html\n');
