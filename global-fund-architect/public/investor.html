@@ -1,38 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GNCO prototype compliance documentation and disclosures." />
-    <meta name="robots" content="index,follow" />
-    <title>GNCO Investor Overview</title>
-    <style>
-:root { color-scheme: dark; --bg:#020617; --card:#0f172a; --border:#1e293b; --text:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --warn:#f59e0b; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: linear-gradient(180deg,#020617,#0b1222); color: var(--text); }
-a { color: var(--accent); }
-.wrap { max-width: 980px; margin: 0 auto; padding: 1.25rem; }
-nav { display:flex; flex-wrap: wrap; gap: .8rem; margin: .75rem 0 1rem; }
-nav a { text-decoration: none; border:1px solid var(--border); border-radius:999px; padding:.5rem .8rem; color:var(--text); }
-nav a:hover { border-color: var(--accent); }
-.banner { border:1px solid #854d0e; background: rgba(245,158,11,.15); color: #fde68a; border-radius: .75rem; padding: .75rem 1rem; }
-.card { background: rgba(15,23,42,.82); border:1px solid var(--border); border-radius: 1rem; padding: 1rem; margin-top: 1rem; }
-h1,h2 { line-height:1.2; }
-.meta { color: var(--muted); font-size: .9rem; }
-li + li { margin-top: .45rem; }
-code { background: rgba(15,23,42,.8); border:1px solid var(--border); border-radius:.4rem; padding:.08rem .3rem; }
-</style>
-  </head>
-  <body>
-    <div class="wrap">
-      <div class="banner">Prototype software. Informational only. Not an offer. Not advice.</div>
-      <nav aria-label="Compliance navigation">
-        <a href="./investor.html">Investor Overview</a>
-        <a href="./disclosures.html">Disclosures</a>
-        <a href="./methodology.html">Methodology</a>
-        <a href="./coverage.html">Coverage</a>
-      </nav>
-      <main>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GNCO Investor Overview</title>
+  <meta name="description" content="GNCO prototype compliance documentation and disclosures." />
+  <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/investor.html" />
+  <meta property="og:title" content="GNCO Investor Overview" />
+  <meta property="og:description" content="GNCO prototype compliance documentation and disclosures." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hugelifecy-arch.github.io/GNCO/investor.html" />
+  <link rel="stylesheet" href="./assets_gnco.css" />
+</head>
+<body>
+
+  <div class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
+        <b>GNCO</b>
+        <span class="badge">Prototype</span>
+      </div>
+      <div class="navlinks" aria-label="Site">
+        <a href="./" class="">Product</a>
+        <a href="./coverage.html" class="">Coverage</a>
+        <a href="./methodology.html" class="">Methodology</a>
+        <a href="./investor.html" class="active">Investor</a>
+        <a href="./disclosures.html" class="">Disclosures</a>
+      </div>
+    </div>
+  </div>
+<div class="container">
+<main>
     <h1>GNCO (Global Fund Architect) — Investor Overview</h1>
     <p class="meta">Generated from <code>truth/gnco.truth.json</code>.</p>
     <section class="card">
@@ -68,11 +67,17 @@ code { background: rgba(15,23,42,.8); border:1px solid var(--border); border-rad
 <li>No representation is made that this tool is complete, production-ready, or suitable for investment decisions.</li></ul>
     </section>
   </main>
-      <div class="card meta">
-        <div><strong>lastUpdated:</strong> 2026-02-14</div>
-        <div><strong>buildDate:</strong> 2026-02-15</div>
-        <div><strong>gitSha:</strong> ad6bd24</div>
-      </div>
+
+  <div class="footer">
+    <div>
+      <b>Important:</b> GNCO is prototype software for <b>informational purposes only</b>.
+      It is <b>not an offer</b> or solicitation and does <b>not</b> provide investment, legal, tax, or accounting advice.
+      <b>Always verify</b> with qualified professionals.
+      See <a href="./disclosures.html">Disclosures</a>.
     </div>
-  </body>
+    <div style="margin-top:8px">Build: <span class="code">1ec058b</span> • Build date: <span class="code">2026-02-15</span> • Truth lastUpdated: <span class="code">2026-02-14</span></div>
+  </div>
+
+</div>
+</body>
 </html>
