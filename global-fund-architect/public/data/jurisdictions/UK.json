@@ -3,20 +3,25 @@
   "name": "United Kingdom",
   "status": "Supported",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "FCA AIFMD in the UK",
+      "label": "FCA AIFMD in the UK",
       "url": "https://www.fca.org.uk/firms/aifmd-uk"
     },
     {
-      "title": "FCA financial promotions",
+      "label": "FCA financial promotions",
       "url": "https://www.fca.org.uk/firms/financial-promotions"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

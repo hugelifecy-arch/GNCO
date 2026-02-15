@@ -3,20 +3,25 @@
   "name": "UAE \u2014 ADGM",
   "status": "Supported",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "FSRA fund framework",
+      "label": "FSRA fund framework",
       "url": "https://www.adgm.com/operating-in-adgm/financial-services-regulatory-authority"
     },
     {
-      "title": "ADGM legal framework",
+      "label": "ADGM legal framework",
       "url": "https://www.adgm.com/legal-framework"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

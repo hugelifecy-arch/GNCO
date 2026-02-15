@@ -3,20 +3,25 @@
   "name": "United States",
   "status": "Partial",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "SEC investment company regulation",
+      "label": "SEC investment company regulation",
       "url": "https://www.sec.gov/divisions/investment"
     },
     {
-      "title": "SEC marketing rule overview",
+      "label": "SEC marketing rule overview",
       "url": "https://www.sec.gov/rules/final/2020/ia-5653.pdf"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

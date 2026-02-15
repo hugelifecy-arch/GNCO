@@ -3,20 +3,25 @@
   "name": "Cayman Islands",
   "status": "Supported",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "CIMA mutual funds supervision",
+      "label": "CIMA mutual funds supervision",
       "url": "https://www.cima.ky/securities-investment-business/mutual-funds"
     },
     {
-      "title": "CIMA private funds supervision",
+      "label": "CIMA private funds supervision",
       "url": "https://www.cima.ky/securities-investment-business/private-funds"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

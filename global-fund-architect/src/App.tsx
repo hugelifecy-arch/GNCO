@@ -136,10 +136,11 @@ export default function App() {
         <div className="site-container flex min-h-[72px] items-center justify-between gap-4">
           <a href="#top" className="text-sm font-semibold tracking-wide text-slate-200">Global Fund Architect</a>
           <nav className="hidden items-center gap-6 text-sm md:flex">
-            <a href="#product" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
-            <a href="#trust" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
-            <a href="#roadmap" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
-            <a href="#final-cta" className="btn btn-primary">Review Structure Map</a>
+            <a href="/GNCO/investor.html" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Investor Overview</a>
+            <a href="/GNCO/disclosures.html" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Disclosures</a>
+            <a href="/GNCO/methodology.html" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Methodology</a>
+            <a href="/GNCO/coverage.html" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Coverage</a>
+            <a href="#product" className="btn btn-primary">Review Structure Map</a>
           </nav>
           <button
             className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-slate-700 p-2 md:hidden"
@@ -155,10 +156,11 @@ export default function App() {
           <div id="mobile-nav" className="site-container pb-4 md:hidden" role="navigation" aria-label="Mobile">
             <div className="grid gap-2 rounded-xl border border-slate-800 bg-slate-900/70 p-3">
               {/* Added 44px minimum height and focus ring for touch + keyboard accessibility. */}
-              <a href="#product" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
-              <a href="#trust" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
-              <a href="#roadmap" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
-              <a href="#final-cta" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Review Structure Map</a>
+              <a href="/GNCO/investor.html" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Investor Overview</a>
+              <a href="/GNCO/disclosures.html" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Disclosures</a>
+              <a href="/GNCO/methodology.html" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Methodology</a>
+              <a href="/GNCO/coverage.html" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Coverage</a>
+              <a href="#product" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Review Structure Map</a>
             </div>
           </div>
         ) : null}
@@ -170,7 +172,7 @@ export default function App() {
             <p className="eyebrow">Prototype Compliance Positioning</p>
             <h1 className="h1-display">Global Fund Architect (GNCO) — Fund structuring decision map (prototype)</h1>
             <p className="body-lg mt-4 text-slate-300">
-              Informational software for scenario design across domicile/manager/investor axes. Verify with qualified counsel.
+              Prototype software for informational scenario design across domicile/manager/investor axes. Not an offer. Not advice. Verify with qualified counsel.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <a href="#product" className="btn btn-primary">Review Structure Map</a>

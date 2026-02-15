@@ -1,50 +1,41 @@
-# Global Fund Architect (Mock)
+# Global Fund Architect (GNCO app)
 
-High-performance decision-tree prototype for investment fund structuring.
+React + TypeScript + Vite application deployed to GitHub Pages under `/GNCO/`.
 
-## Stack
-- React + TypeScript + Vite
-- React Flow (graph engine)
-- dagre (auto-layout)
-- Zustand (state + persisted investor profile)
-- Tailwind CSS
-- lucide-react (icons)
+## Compliance posture
 
-## Non-negotiable UX rules implemented
-- Click **node body** → opens Details Drawer (right sidebar).
-- Click **caret** → expand/collapse only (uses `e.stopPropagation()`).
-- "Ghost branch": selecting a node keeps branch opaque, fades siblings + their subtrees (opacity 0.2).
-- Edges in unselected/faded branches turn **light red**.
+This is prototype software for informational use only.
+It is not an offer or solicitation and does not provide legal/tax/investment advice.
 
-## Lazy loading (simulated)
-- Expanding any node fetches children with simulated latency.
-- Data is generated deterministically per node id (stable IDs, dense tree).
+## Requirements
+
+- Node 20
 
 ## Run locally
+
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-## Notes
-- Sources are intentionally limited to the URLs mandated in the spec.
-- Nodes without a source show: "General market practice; verify with counsel."
+## Build with compliance checks
 
-## Investor Due Diligence: Single Source of Truth
-- Canonical claims file: `truth/gnco.truth.json`.
-- Static investor pages are generated from this source via:
-  ```bash
-  npm run generate:investor-pages
-  ```
-- Compliance build (generation + app build + guardrails):
-  ```bash
-  npm run build:compliance
-  ```
-- Guardrails enforce:
-  - required truth schema keys,
-  - static output presence (`dist/investor.html`, `dist/disclosures.html`),
-  - investor-claim language checks,
-  - prohibition on `status: Live` without `PRODUCTION=true` and a release tag.
+```bash
+npm run build:compliance
+```
 
-## Backend security review example
-- See `backend/secure_endpoint.py` for a hardened FastAPI endpoint example that uses parameterized SQL, pagination (`page`, `page_size`), and explicit 404 handling when no records are found.
+This runs:
+
+1. Static compliance page generation
+2. Jurisdiction data validation
+3. TypeScript build + Vite bundle
+4. Investor claims guard scanning
+
+## Data
+
+Production jurisdiction data is served from:
+
+- `public/data/jurisdictions/manifest.json`
+- `public/data/jurisdictions/*.json`
+
+`src/data/mockDataManager.ts` contains a **DEV-only fallback** dataset when local data fetch is unavailable.

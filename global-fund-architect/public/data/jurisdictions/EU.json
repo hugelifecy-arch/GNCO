@@ -3,20 +3,25 @@
   "name": "European Union (Framework)",
   "status": "Supported",
   "last_verified": "2026-02-15",
+  "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "title": "EUR-Lex \u2014 AIFMD directive",
+      "label": "EUR-Lex \u2014 AIFMD directive",
       "url": "https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng"
     },
     {
-      "title": "EUR-Lex \u2014 UCITS directive",
+      "label": "EUR-Lex \u2014 UCITS directive",
       "url": "https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng"
     }
   ],
+  "regimes": [],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
-  "requires_counsel_triggers": [
+  "licensing_notes": [],
+  "tokenization_notes": [],
+  "crypto_financing_notes": [],
+  "risk_flags": [
     "Any public distribution, cross-border activity, or retail-facing communication."
   ]
 }

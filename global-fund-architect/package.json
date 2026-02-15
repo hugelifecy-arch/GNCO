@@ -10,8 +10,12 @@
     "guard:investor-claims": "node ./scripts/investor-claims-guard.mjs",
     "build:compliance": "npm run generate:investor-pages && npm run validate:jurisdictions && tsc -b && vite build && npm run guard:investor-claims",
     "preview": "vite preview",
-    "test": "jest",
-    "validate:jurisdictions": "node ./scripts/validate-jurisdictions.mjs"
+    "test": "jest && npm run test:guard",
+    "validate:jurisdictions": "node ./scripts/validate-jurisdictions.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx,.js,.mjs --max-warnings=0",
+    "format:check": "prettier --check \"scripts/**/*.mjs\" \"README.md\" \"../README.md\" \"../CONTRIBUTING.md\" \"../SECURITY.md\"",
+    "test:guard": "node --test ./scripts/tests/claim-rules.test.mjs"
   },
   "dependencies": {
     "dagre": "^0.8.5",
@@ -32,6 +36,12 @@
     "tailwindcss": "^3.4.10",
     "ts-jest": "^29.4.6",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "eslint": "^9.20.1",
+    "@eslint/js": "^9.20.0",
+    "typescript-eslint": "^8.24.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "prettier": "^3.5.1",
+    "globals": "^15.15.0"
   }
 }
