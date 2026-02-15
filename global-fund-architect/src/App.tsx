@@ -184,7 +184,7 @@ export default function App() {
         <div className="site-container">
           <div className="grid gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:grid-cols-3">
             <p className="trust-item">0% Fees for VIP Tier Only</p>
-            <p className="trust-item">Projected APY up to 18%</p>
+            <p className="trust-item">Prototype planner — informational only</p>
             <p className="trust-item">Built for fund professionals</p>
           </div>
         </div>
