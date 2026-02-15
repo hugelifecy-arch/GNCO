@@ -1,40 +1,47 @@
-import { execSync } from "node:child_process";
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { buildPage, escapeHtml } from "./lib/htmlTemplate.mjs";
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { buildPage, escapeHtml } from './lib/htmlTemplate.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const repoRoot = path.resolve(__dirname, "..", "..");
-const appRoot = path.resolve(__dirname, "..");
-const truthPath = path.join(repoRoot, "truth", "gnco.truth.json");
-const publicDir = path.join(appRoot, "public");
+const repoRoot = path.resolve(__dirname, '..', '..');
+const appRoot = path.resolve(__dirname, '..');
+const truthPath = path.join(repoRoot, 'truth', 'gnco.truth.json');
+const publicDir = path.join(appRoot, 'public');
 
 const requiredKeys = [
-  "projectName",
-  "status",
-  "whatItIs",
-  "whatItIsNot",
-  "featuresNow",
-  "featuresPlanned",
-  "riskDisclosureBullets",
-  "lastUpdated",
-  "version"
+  'projectName',
+  'status',
+  'whatItIs',
+  'whatItIsNot',
+  'featuresNow',
+  'featuresPlanned',
+  'riskDisclosureBullets',
+  'lastUpdated',
+  'version'
 ];
 
 const assertTruthy = (cond, msg) => {
   if (!cond) throw new Error(msg);
 };
 
-const truth = JSON.parse(fs.readFileSync(truthPath, "utf8"));
-for (const key of requiredKeys) assertTruthy(key in truth, `Missing truth key: ${key}`);
-assertTruthy(["Prototype", "Beta", "Live"].includes(truth.status), "truth.status must be Prototype, Beta, or Live");
+const truth = JSON.parse(fs.readFileSync(truthPath, 'utf8'));
+for (const key of requiredKeys)
+  assertTruthy(key in truth, `Missing truth key: ${key}`);
+assertTruthy(
+  ['Prototype', 'Beta', 'Live'].includes(truth.status),
+  'truth.status must be Prototype, Beta, or Live'
+);
 
 let gitSha = truth.version;
 try {
-  gitSha = execSync("git rev-parse --short HEAD", { cwd: repoRoot, stdio: ["ignore", "pipe", "ignore"] })
+  gitSha = execSync('git rev-parse --short HEAD', {
+    cwd: repoRoot,
+    stdio: ['ignore', 'pipe', 'ignore']
+  })
     .toString()
     .trim();
 } catch {
@@ -49,7 +56,7 @@ const buildMeta = {
 };
 
 const list = (items) =>
-  (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("\n");
+  (items || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('\n');
 
 const investorContent = `
   <div class="hero">
@@ -118,29 +125,31 @@ const disclosuresContent = `
 `;
 
 const investorHtml = buildPage({
-  title: "GNCO — Investor Overview (Prototype)",
+  title: 'GNCO — Investor Overview (Prototype)',
   description:
-    "GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.",
-  canonical: "https://hugelifecy-arch.github.io/GNCO/investor.html",
-  ogUrl: "https://hugelifecy-arch.github.io/GNCO/investor.html",
-  navActive: "investor",
+    'GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
+  canonical: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
+  ogUrl: 'https://hugelifecy-arch.github.io/GNCO/investor.html',
+  navActive: 'investor',
   contentHtml: investorContent,
   buildMeta
 });
 
 const disclosuresHtml = buildPage({
-  title: "GNCO — Disclosures (Prototype)",
+  title: 'GNCO — Disclosures (Prototype)',
   description:
-    "GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.",
-  canonical: "https://hugelifecy-arch.github.io/GNCO/disclosures.html",
-  ogUrl: "https://hugelifecy-arch.github.io/GNCO/disclosures.html",
-  navActive: "disclosures",
+    'GNCO is prototype software. Informational only. Not an offer. Not investment/legal/tax advice. Verify with qualified professionals.',
+  canonical: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
+  ogUrl: 'https://hugelifecy-arch.github.io/GNCO/disclosures.html',
+  navActive: 'disclosures',
   contentHtml: disclosuresContent,
   buildMeta
 });
 
 fs.mkdirSync(publicDir, { recursive: true });
-fs.writeFileSync(path.join(publicDir, "investor.html"), investorHtml);
-fs.writeFileSync(path.join(publicDir, "disclosures.html"), disclosuresHtml);
+fs.writeFileSync(path.join(publicDir, 'investor.html'), investorHtml);
+fs.writeFileSync(path.join(publicDir, 'disclosures.html'), disclosuresHtml);
 
-process.stdout.write("Generated public/investor.html and public/disclosures.html\n");
+process.stdout.write(
+  'Generated public/investor.html and public/disclosures.html\n'
+);

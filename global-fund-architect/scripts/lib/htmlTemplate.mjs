@@ -1,14 +1,14 @@
 export const escapeHtml = (value) =>
   String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 
 export const buildNav = (active) => {
   const link = (href, label, key) =>
-    `<a href="${href}" class="${active === key ? "active" : ""}">${label}</a>`;
+    `<a href="${href}" class="${active === key ? 'active' : ''}">${label}</a>`;
   return `
   <div class="nav">
     <div class="inner">
@@ -18,11 +18,11 @@ export const buildNav = (active) => {
         <span class="badge">Prototype</span>
       </div>
       <div class="navlinks" aria-label="Site">
-        ${link("./", "Product", "product")}
-        ${link("./coverage.html", "Coverage", "coverage")}
-        ${link("./methodology.html", "Methodology", "methodology")}
-        ${link("./investor.html", "Investor", "investor")}
-        ${link("./disclosures.html", "Disclosures", "disclosures")}
+        ${link('./', 'Product', 'product')}
+        ${link('./coverage.html', 'Coverage', 'coverage')}
+        ${link('./methodology.html', 'Methodology', 'methodology')}
+        ${link('./investor.html', 'Investor', 'investor')}
+        ${link('./disclosures.html', 'Disclosures', 'disclosures')}
       </div>
     </div>
   </div>`;
@@ -45,7 +45,7 @@ export const buildFooter = ({ buildMeta }) => `
           )}</span> • Truth lastUpdated: <span class="code">${escapeHtml(
             buildMeta.truthLastUpdated
           )}</span></div>`
-        : ""
+        : ''
     }
   </div>
 `;
@@ -60,9 +60,9 @@ export const buildPage = ({
   buildMeta
 }) => {
   const t = escapeHtml(title);
-  const d = escapeHtml(description || "");
-  const c = escapeHtml(canonical || ogUrl || "");
-  const ou = escapeHtml(ogUrl || canonical || "");
+  const d = escapeHtml(description || '');
+  const c = escapeHtml(canonical || ogUrl || '');
+  const ou = escapeHtml(ogUrl || canonical || '');
   return `<!doctype html>
 <html lang="en">
 <head>
