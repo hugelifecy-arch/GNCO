@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GNCO — Jurisdiction Coverage Library</title>
+  <meta name="description" content="Jurisdiction coverage library for GNCO with status, sources, and last verified dates." />
+  <meta property="og:title" content="GNCO — Jurisdiction Coverage" />
+  <meta property="og:description" content="Supported / Partial / Planned coverage with primary sources and last verified dates." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
+  <link rel="stylesheet" href="./assets_gnco.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GNCO (Global Fund Architect)",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://hugelifecy-arch.github.io/GNCO/coverage.html",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GNCO",
+    "url": "https://hugelifecy-arch.github.io/GNCO/"
+  }
+}
+  </script>
+</head>
+<body>
+<div class="nav">
+  <div class="inner">
+    <div class="brand">
+      <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
+      <b>GNCO</b>
+      <span class="badge">Prototype</span>
+      <span class="badge code">build 4ad1b8c • 2026-02-14</span>
+    </div>
+    <div class="navlinks">
+      <a href="./" data-nav="home">Product</a>
+      <a href="./coverage.html" data-nav="coverage">Coverage</a>
+      <a href="./methodology.html" data-nav="methodology">Methodology</a>
+      <a href="./investor.html" data-nav="investor">Investor</a>
+      <a href="./disclosures.html" data-nav="disclosures">Disclosures</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="hero">
+    <h1>Jurisdiction Coverage Library</h1>
+    <p>Coverage status is explicit and date-stamped. Every entry links to primary sources (regulators / official law portals). Output is informational only.</p>
+    <div class="filters" style="margin-top:14px">
+      <input id="q" class="input" placeholder="Search jurisdiction, regulator, framework…" />
+      <select id="status" class="select">
+        <option value="all">All statuses</option>
+        <option value="supported">Supported</option>
+        <option value="partial">Partial</option>
+        <option value="planned">Planned</option>
+      </select>
+      <a class="btn" href="javascript:void(0)" id="export">Export visible (JSON)</a>
+      <span class="badge">Visible: <b id="count">0/0</b></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Coverage table (quick scan)</h2>
+    <table class="table" role="table" aria-label="GNCO coverage table">
+      <thead>
+        <tr><th>Code</th><th>Jurisdiction</th><th>Status</th><th>Key sources</th></tr>
+      </thead>
+      <tbody>
+        <tr data-jrow data-status="supported" data-hay="EU European Union (Framework) EUR-Lex (Official EU Law Portal) AIFMD (Directive 2011/61/EU) UCITS (Directive 2009/65/EC)" data-json="{&quot;id&quot;: &quot;EU&quot;, &quot;name&quot;: &quot;European Union (Framework)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;EUR-Lex (Official EU Law Portal)&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIFMD (Directive 2011/61/EU)&quot;, &quot;citation&quot;: &quot;2011/61/EU&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng&quot;}, {&quot;name&quot;: &quot;UCITS (Directive 2009/65/EC)&quot;, &quot;citation&quot;: &quot;2009/65/EC&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;EU-facing alternative funds (AIF)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of AIF vs UCITS decision points; informational only.&quot;, &quot;Passporting and marketing depend on AIFM/ManCo structure and investor location.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cross-border marketing in the EU is governed by AIFMD/UCITS frameworks; implementation differs by Member State.&quot;, &quot;Always verify local implementation rules and any pre-marketing/marketing notification requirements.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution considerations.&quot;, &quot;Any cross-border marketing / passporting decisions.&quot;, &quot;Any use of leverage, complex derivatives, or non-standard liquidity gates.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">EU</td>
+  <td><b>European Union (Framework)</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng">AIFMD (Directive 2011/61/EU) (2011/61/EU)</a></li><li><a href="https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng">UCITS (Directive 2009/65/EC) (2009/65/EC)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="CY Cyprus CySEC AIF Law AIFM Law" data-json="{&quot;id&quot;: &quot;CY&quot;, &quot;name&quot;: &quot;Cyprus&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CySEC&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIF Law&quot;, &quot;citation&quot;: &quot;Law 124(I)/2018&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aif/&quot;}, {&quot;name&quot;: &quot;AIFM Law&quot;, &quot;citation&quot;: &quot;Law 56(I)/2013&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aifm/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Cyprus AIF ecosystem (informational)&quot;, &quot;bullets&quot;: [&quot;High-level orientation around AIF / AIFLNP / RAIF concepts (verify current definitions with CySEC).&quot;, &quot;Manager model (AIFM / sub-threshold manager) depends on size/activities and must be verified.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing and offering rules depend on investor type (professional/retail) and fund/manager status.&quot;, &quot;Always confirm licensing/registration thresholds and any local notifications.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any public offering/retail distribution in Cyprus.&quot;, &quot;Any reliance on AIFLNP/RAIF structuring details without current counsel confirmation.&quot;, &quot;Any delegation/sub-advisory cross-border arrangements.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">CY</td>
+  <td><b>Cyprus</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aif/">AIF Law (Law 124(I)/2018)</a></li><li><a href="https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aifm/">AIFM Law (Law 56(I)/2013)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="LU Luxembourg CSSF RAIF Law (Reserved Alternative Investment Fund) AIFM regulatory framework (CSSF)" data-json="{&quot;id&quot;: &quot;LU&quot;, &quot;name&quot;: &quot;Luxembourg&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CSSF&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;RAIF Law (Reserved Alternative Investment Fund)&quot;, &quot;citation&quot;: &quot;Law of 23 July 2016&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/wp-content/uploads/L_230716_RAIF_eng.pdf&quot;}, {&quot;name&quot;: &quot;AIFM regulatory framework (CSSF)&quot;, &quot;citation&quot;: &quot;AIFMD&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/en/industry/aifm/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Luxembourg AIF ecosystem (informational)&quot;, &quot;bullets&quot;: [&quot;Commonly used vehicles include RAIF and other fund forms; selection depends on strategy, investors, and governance.&quot;, &quot;AIFM/ManCo and depositary requirements must be confirmed case-by-case.&quot;]}], &quot;marketing_notes&quot;: [&quot;EU marketing and passporting depend on AIFM setup and the target investor jurisdictions.&quot;, &quot;Check any CSSF guidance and local circulars applicable to the selected structure.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any offering to retail investors.&quot;, &quot;Any complex master-feeder or cross-border marketing plan.&quot;, &quot;Any use of ESMA/CSSF positions affecting the strategy (e.g., liquidity management).&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">LU</td>
+  <td><b>Luxembourg</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.cssf.lu/wp-content/uploads/L_230716_RAIF_eng.pdf">RAIF Law (Reserved Alternative Investment Fund) (Law of 23 July 2016)</a></li><li><a href="https://www.cssf.lu/en/industry/aifm/">AIFM regulatory framework (CSSF) (AIFMD)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="IE Ireland Central Bank of Ireland AIF guidance (CBI) UCITS framework (CBI)" data-json="{&quot;id&quot;: &quot;IE&quot;, &quot;name&quot;: &quot;Ireland&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;Central Bank of Ireland&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIF guidance (CBI)&quot;, &quot;citation&quot;: &quot;AIF&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs&quot;}, {&quot;name&quot;: &quot;UCITS framework (CBI)&quot;, &quot;citation&quot;: &quot;UCITS&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Ireland funds (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of typical Irish fund pathways (e.g., AIF vs UCITS) depends on investor base and strategy.&quot;, &quot;Local rulebooks and authorisation processes must be reviewed with counsel/administrator.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cross-border marketing depends on AIFM/UCITS management company and investor jurisdictions.&quot;, &quot;Confirm local pre-marketing/marketing notification requirements where applicable.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution or public offering.&quot;, &quot;Any complex strategy requiring special approvals/disclosures.&quot;, &quot;Any delegation or outsourcing arrangements with cross-border providers.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">IE</td>
+  <td><b>Ireland</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs">AIF guidance (CBI) (AIF)</a></li><li><a href="https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits">UCITS framework (CBI) (UCITS)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="partial" data-hay="MT Malta MFSA MFSA guide (AIFM in Malta) Investment Services Act / Funds framework (MFSA)" data-json="{&quot;id&quot;: &quot;MT&quot;, &quot;name&quot;: &quot;Malta&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;MFSA&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;MFSA guide (AIFM in Malta)&quot;, &quot;citation&quot;: &quot;Guide&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/wp-content/uploads/2019/01/A_Guide_on_Establishing_an_Alternative_Investment_Fund_Manager_in_Malta.pdf&quot;}, {&quot;name&quot;: &quot;Investment Services Act / Funds framework (MFSA)&quot;, &quot;citation&quot;: &quot;Framework&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/financial-services/funds/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Malta AIF/manager setup (informational)&quot;, &quot;bullets&quot;: [&quot;High-level orientation for setting up an AIFM or using licensed providers.&quot;, &quot;Vehicle choice depends on investor type and strategy; verify current MFSA requirements.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing and offering rules depend on investor type and licensing status.&quot;, &quot;Confirm any MFSA requirements for distribution and disclosures.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution.&quot;, &quot;Any reliance on local exemptions/fast-track assumptions without confirmation.&quot;, &quot;Any cross-border marketing plan.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">MT</td>
+  <td><b>Malta</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill partial">Partial</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.mfsa.mt/wp-content/uploads/2019/01/A_Guide_on_Establishing_an_Alternative_Investment_Fund_Manager_in_Malta.pdf">MFSA guide (AIFM in Malta) (Guide)</a></li><li><a href="https://www.mfsa.mt/financial-services/funds/">Investment Services Act / Funds framework (MFSA) (Framework)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="planned" data-hay="NL Netherlands AFM DNB AIFMD (EU framework) – local implementation varies DNB supervision overview (financial supervision)" data-json="{&quot;id&quot;: &quot;NL&quot;, &quot;name&quot;: &quot;Netherlands&quot;, &quot;status&quot;: &quot;planned&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;AFM&quot;, &quot;url&quot;: &quot;https://www.afm.nl/&quot;}, {&quot;name&quot;: &quot;DNB&quot;, &quot;url&quot;: &quot;https://www.dnb.nl/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIFMD (EU framework) – local implementation varies&quot;, &quot;citation&quot;: &quot;AIFMD&quot;, &quot;url&quot;: &quot;https://www.afm.nl/en/sector/themas/belangrijke-europese-wet--en-regelgeving/aifm&quot;}, {&quot;name&quot;: &quot;DNB supervision overview (financial supervision)&quot;, &quot;citation&quot;: &quot;DNB&quot;, &quot;url&quot;: &quot;https://www.dnb.nl/en/sector-information/supervision/overview/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;NL implementation (stub)&quot;, &quot;bullets&quot;: [&quot;This entry is marked planned until confirmed against current AFM/DNB materials and local counsel input.&quot;, &quot;Use EU framework (AIFMD/UCITS) as a starting point; verify Dutch implementation details.&quot;]}], &quot;marketing_notes&quot;: [&quot;NPPR vs passporting and local notifications depend on fund/manager and investor type.&quot;, &quot;Always verify Dutch marketing rules before relying on any output.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing into the Netherlands.&quot;, &quot;Any licensing threshold questions or exemptions.&quot;, &quot;Any retail targeting.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">NL</td>
+  <td><b>Netherlands</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill planned">Planned</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.afm.nl/en/sector/themas/belangrijke-europese-wet--en-regelgeving/aifm">AIFMD (EU framework) – local implementation varies (AIFMD)</a></li><li><a href="https://www.dnb.nl/en/sector-information/supervision/overview/">DNB supervision overview (financial supervision) (DNB)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="UK United Kingdom FCA UK AIFMD UK marketing restrictions (overview)" data-json="{&quot;id&quot;: &quot;UK&quot;, &quot;name&quot;: &quot;United Kingdom&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;FCA&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;UK AIFMD&quot;, &quot;citation&quot;: &quot;UK AIFMD&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/firms/aifmd-uk&quot;}, {&quot;name&quot;: &quot;UK marketing restrictions (overview)&quot;, &quot;citation&quot;: &quot;UK&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/firms/marketing&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;UK regimes (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of AIFM perimeter and marketing considerations; depends on manager type and investors.&quot;, &quot;NPPR and any approvals/notifications must be confirmed with counsel and FCA guidance.&quot;]}], &quot;marketing_notes&quot;: [&quot;UK financial promotions rules are strict; marketing materials and targeting require review.&quot;, &quot;Distribution to retail investors generally increases requirements materially.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any financial promotions / marketing to UK persons.&quot;, &quot;Any retail distribution or promotions to non-professional investors.&quot;, &quot;Any use of exemptions without FCA-aligned review.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">UK</td>
+  <td><b>United Kingdom</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.fca.org.uk/firms/aifmd-uk">UK AIFMD (UK AIFMD)</a></li><li><a href="https://www.fca.org.uk/firms/marketing">UK marketing restrictions (overview) (UK)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="partial" data-hay="CH Switzerland FINMA Swiss collective investment schemes (overview) Foreign collective investment schemes (overview)" data-json="{&quot;id&quot;: &quot;CH&quot;, &quot;name&quot;: &quot;Switzerland&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;FINMA&quot;, &quot;url&quot;: &quot;https://www.finma.ch/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;Swiss collective investment schemes (overview)&quot;, &quot;citation&quot;: &quot;CISA&quot;, &quot;url&quot;: &quot;https://www.finma.ch/en/authorisation/asset-management/swiss-collective-investment-schemes/&quot;}, {&quot;name&quot;: &quot;Foreign collective investment schemes (overview)&quot;, &quot;citation&quot;: &quot;Foreign schemes&quot;, &quot;url&quot;: &quot;https://www.finma.ch/en/authorisation/asset-management/foreign-collective-investment-schemes/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Swiss distribution perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Switzerland has distinct rules on distribution/offerings; professional vs retail segmentation is critical.&quot;, &quot;Treat Swiss coverage as partial until each distribution scenario is validated.&quot;]}], &quot;marketing_notes&quot;: [&quot;Distribution into Switzerland can trigger additional requirements depending on investor classification and product.&quot;, &quot;Verify any rep/agent requirements and offering restrictions.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution in Switzerland.&quot;, &quot;Any cross-border marketing to Swiss investors.&quot;, &quot;Any ambiguity on investor classification.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">CH</td>
+  <td><b>Switzerland</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill partial">Partial</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.finma.ch/en/authorisation/asset-management/swiss-collective-investment-schemes/">Swiss collective investment schemes (overview) (CISA)</a></li><li><a href="https://www.finma.ch/en/authorisation/asset-management/foreign-collective-investment-schemes/">Foreign collective investment schemes (overview) (Foreign schemes)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="partial" data-hay="US United States U.S. SEC SEC - Investment advisers (overview) SEC - Regulations (rules and proposals)" data-json="{&quot;id&quot;: &quot;US&quot;, &quot;name&quot;: &quot;United States&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;U.S. SEC&quot;, &quot;url&quot;: &quot;https://www.sec.gov/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;SEC - Investment advisers (overview)&quot;, &quot;citation&quot;: &quot;Advisers Act&quot;, &quot;url&quot;: &quot;https://www.sec.gov/investmentadvisers&quot;}, {&quot;name&quot;: &quot;SEC - Regulations (rules and proposals)&quot;, &quot;citation&quot;: &quot;SEC Rules&quot;, &quot;url&quot;: &quot;https://www.sec.gov/rules-regulations&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;US advisory perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;US rules depend on adviser registration status, exemptions, and the investor base.&quot;, &quot;Treat as partial: GNCO must surface regulatory status and require counsel review.&quot;]}], &quot;marketing_notes&quot;: [&quot;US marketing / solicitation rules are complex; avoid any performance claims in materials.&quot;, &quot;Always verify exemptions and offering structures with US counsel.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any US investor solicitation/offering.&quot;, &quot;Any reliance on exemptions (e.g., Regulation D) without counsel.&quot;, &quot;Any private fund adviser rule status questions (must be date-stamped).&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">US</td>
+  <td><b>United States</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill partial">Partial</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.sec.gov/investmentadvisers">SEC - Investment advisers (overview) (Advisers Act)</a></li><li><a href="https://www.sec.gov/rules-regulations">SEC - Regulations (rules and proposals) (SEC Rules)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="KY Cayman Islands CIMA CIMA - Investment Funds (overview) CIMA - Private Funds (overview)" data-json="{&quot;id&quot;: &quot;KY&quot;, &quot;name&quot;: &quot;Cayman Islands&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CIMA&quot;, &quot;url&quot;: &quot;https://www.cima.ky/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;CIMA - Investment Funds (overview)&quot;, &quot;citation&quot;: &quot;CIMA&quot;, &quot;url&quot;: &quot;https://www.cima.ky/investment-funds&quot;}, {&quot;name&quot;: &quot;CIMA - Private Funds (overview)&quot;, &quot;citation&quot;: &quot;Private Funds&quot;, &quot;url&quot;: &quot;https://www.cima.ky/private-funds&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Cayman fund registration orientation (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping for registered funds and private funds; specifics depend on structure and investor base.&quot;, &quot;Confirm registration, audit, and ongoing obligations with Cayman counsel/admin.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cayman structuring often pairs with onshore distribution rules; investor jurisdiction drives marketing constraints.&quot;, &quot;Always validate cross-border offering requirements where investors are located.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any uncertainty on fund classification (mutual vs private fund).&quot;, &quot;Any cross-border offering plan into regulated markets.&quot;, &quot;Any side letters or complex governance features.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">KY</td>
+  <td><b>Cayman Islands</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.cima.ky/investment-funds">CIMA - Investment Funds (overview) (CIMA)</a></li><li><a href="https://www.cima.ky/private-funds">CIMA - Private Funds (overview) (Private Funds)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="SG Singapore MAS MAS - CMS licence (overview) MAS - Fund management (overview)" data-json="{&quot;id&quot;: &quot;SG&quot;, &quot;name&quot;: &quot;Singapore&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;MAS&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;MAS - CMS licence (overview)&quot;, &quot;citation&quot;: &quot;CMS&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence&quot;}, {&quot;name&quot;: &quot;MAS - Fund management (overview)&quot;, &quot;citation&quot;: &quot;Fund management&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/regulation/capital-markets/fund-management&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Singapore manager perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Manager licensing/registration depends on activities and client types (high-level).&quot;, &quot;Confirm licensing pathway with MAS guidance and local counsel.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing into Singapore depends on investor type and licensing status.&quot;, &quot;Verify exemptions and offering regimes before any solicitation.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing to retail investors.&quot;, &quot;Any uncertainty on licensing / exemptions for fund management activities.&quot;, &quot;Any cross-border marketing arrangements.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">SG</td>
+  <td><b>Singapore</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence">MAS - CMS licence (overview) (CMS)</a></li><li><a href="https://www.mas.gov.sg/regulation/capital-markets/fund-management">MAS - Fund management (overview) (Fund management)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="HK Hong Kong SFC SFC - Licensing (overview) SFC - Licensing Handbook" data-json="{&quot;id&quot;: &quot;HK&quot;, &quot;name&quot;: &quot;Hong Kong&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;SFC&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;SFC - Licensing (overview)&quot;, &quot;citation&quot;: &quot;Licensing&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing&quot;}, {&quot;name&quot;: &quot;SFC - Licensing Handbook&quot;, &quot;citation&quot;: &quot;Handbook&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Hong Kong licensing perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Licensing requirements depend on regulated activities and client types (high-level).&quot;, &quot;Confirm fund offering restrictions and selling practices with counsel.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing into Hong Kong depends on the offering regime and investor classification.&quot;, &quot;Always review local offering documentation requirements.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any offering to the public/retail investors.&quot;, &quot;Any uncertainty on regulated activities scope.&quot;, &quot;Any cross-border distribution into HK.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">HK</td>
+  <td><b>Hong Kong</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing">SFC - Licensing (overview) (Licensing)</a></li><li><a href="https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook">SFC - Licensing Handbook (Handbook)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="AE-DIFC UAE (DIFC) DFSA DFSA - Collective Investment Funds (overview) DIFC Laws & Regulations portal (overview)" data-json="{&quot;id&quot;: &quot;AE-DIFC&quot;, &quot;name&quot;: &quot;UAE (DIFC)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;DFSA&quot;, &quot;url&quot;: &quot;https://www.dfsa.ae/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;DFSA - Collective Investment Funds (overview)&quot;, &quot;citation&quot;: &quot;CIF&quot;, &quot;url&quot;: &quot;https://www.dfsa.ae/what-we-do/collective-investment-funds&quot;}, {&quot;name&quot;: &quot;DIFC Laws & Regulations portal (overview)&quot;, &quot;citation&quot;: &quot;DIFC&quot;, &quot;url&quot;: &quot;https://www.difc.ae/business/laws-and-regulations/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;DIFC fund manager orientation (informational)&quot;, &quot;bullets&quot;: [&quot;DIFC has a distinct regulatory perimeter; verify categories of funds and manager permissions with DFSA materials.&quot;, &quot;Distribution and client categorization are critical; treat as high disclaimer.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing is governed by DFSA rules and DIFC perimeter; investor classification matters materially.&quot;, &quot;Confirm any cross-border promotion rules into UAE onshore vs DIFC.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing to UAE onshore persons vs DIFC persons.&quot;, &quot;Any retail-like client targeting.&quot;, &quot;Any reliance on exemptions without DFSA-aligned review.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">AE-DIFC</td>
+  <td><b>UAE (DIFC)</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.dfsa.ae/what-we-do/collective-investment-funds">DFSA - Collective Investment Funds (overview) (CIF)</a></li><li><a href="https://www.difc.ae/business/laws-and-regulations/">DIFC Laws & Regulations portal (overview) (DIFC)</a></li>
+    </ul>
+  </td>
+</tr><tr data-jrow data-status="supported" data-hay="AE-ADGM UAE (ADGM) ADGM FSRA ADGM - Authorisation & Forms (FSRA) ADGM - FSRA Rulebooks" data-json="{&quot;id&quot;: &quot;AE-ADGM&quot;, &quot;name&quot;: &quot;UAE (ADGM)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;ADGM FSRA&quot;, &quot;url&quot;: &quot;https://www.adgm.com/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;ADGM - Authorisation & Forms (FSRA)&quot;, &quot;citation&quot;: &quot;FSRA&quot;, &quot;url&quot;: &quot;https://www.adgm.com/setting-up/authorisation-and-supplementary-forms&quot;}, {&quot;name&quot;: &quot;ADGM - FSRA Rulebooks&quot;, &quot;citation&quot;: &quot;Rulebooks&quot;, &quot;url&quot;: &quot;https://en.adgm.thomsonreuters.com/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;ADGM manager + funds perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;ADGM funds and investment management are regulated; permissions depend on activities and client type.&quot;, &quot;Confirm FSRA rulebooks and any guidance applicable to the selected structure.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing depends on FSRA rules and client categorisation; cross-border promotion needs review.&quot;, &quot;Different rules may apply for onshore UAE vs ADGM.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any public/retail targeting.&quot;, &quot;Any cross-border promotion onshore UAE.&quot;, &quot;Any uncertainty on FSRA permissions.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <td class="code">AE-ADGM</td>
+  <td><b>UAE (ADGM)</b><div class="small">Last verified: <span class="code">2026-02-14</span></div></td>
+  <td><span class="pill ok">Supported</span></td>
+  <td>
+    <div class="small"><b>Primary sources</b></div>
+    <ul>
+      <li><a href="https://www.adgm.com/setting-up/authorisation-and-supplementary-forms">ADGM - Authorisation & Forms (FSRA) (FSRA)</a></li><li><a href="https://en.adgm.thomsonreuters.com/">ADGM - FSRA Rulebooks (Rulebooks)</a></li>
+    </ul>
+  </td>
+</tr>
+      </tbody>
+    </table>
+    <p class="small">Tip: use search + status filter above. Export downloads the currently visible subset as JSON.</p>
+  </div>
+
+  <h2>Details (cards)</h2>
+  <div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="EU European Union (Framework) EUR-Lex (Official EU Law Portal) AIFMD (Directive 2011/61/EU) UCITS (Directive 2009/65/EC)" data-json="{&quot;id&quot;: &quot;EU&quot;, &quot;name&quot;: &quot;European Union (Framework)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;EUR-Lex (Official EU Law Portal)&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIFMD (Directive 2011/61/EU)&quot;, &quot;citation&quot;: &quot;2011/61/EU&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng&quot;}, {&quot;name&quot;: &quot;UCITS (Directive 2009/65/EC)&quot;, &quot;citation&quot;: &quot;2009/65/EC&quot;, &quot;url&quot;: &quot;https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;EU-facing alternative funds (AIF)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of AIF vs UCITS decision points; informational only.&quot;, &quot;Passporting and marketing depend on AIFM/ManCo structure and investor location.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cross-border marketing in the EU is governed by AIFMD/UCITS frameworks; implementation differs by Member State.&quot;, &quot;Always verify local implementation rules and any pre-marketing/marketing notification requirements.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution considerations.&quot;, &quot;Any cross-border marketing / passporting decisions.&quot;, &quot;Any use of leverage, complex derivatives, or non-standard liquidity gates.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">EU</div>
+      <h2 style="margin:10px 0 6px">European Union (Framework)</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>EU-facing alternative funds (AIF):</b> High-level mapping of AIF vs UCITS decision points; informational only. Passporting and marketing depend on AIFM/ManCo structure and investor location.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Cross-border marketing in the EU is governed by AIFMD/UCITS frameworks; implementation differs by Member State.</li><li>Always verify local implementation rules and any pre-marketing/marketing notification requirements.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://eur-lex.europa.eu/">EUR-Lex (Official EU Law Portal)</a></li>
+    <li><a href="https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng">AIFMD (Directive 2011/61/EU) — 2011/61/EU</a></li><li><a href="https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng">UCITS (Directive 2009/65/EC) — 2009/65/EC</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any retail distribution considerations.</li><li>Any cross-border marketing / passporting decisions.</li><li>Any use of leverage, complex derivatives, or non-standard liquidity gates.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="CY Cyprus CySEC AIF Law AIFM Law" data-json="{&quot;id&quot;: &quot;CY&quot;, &quot;name&quot;: &quot;Cyprus&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CySEC&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIF Law&quot;, &quot;citation&quot;: &quot;Law 124(I)/2018&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aif/&quot;}, {&quot;name&quot;: &quot;AIFM Law&quot;, &quot;citation&quot;: &quot;Law 56(I)/2013&quot;, &quot;url&quot;: &quot;https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aifm/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Cyprus AIF ecosystem (informational)&quot;, &quot;bullets&quot;: [&quot;High-level orientation around AIF / AIFLNP / RAIF concepts (verify current definitions with CySEC).&quot;, &quot;Manager model (AIFM / sub-threshold manager) depends on size/activities and must be verified.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing and offering rules depend on investor type (professional/retail) and fund/manager status.&quot;, &quot;Always confirm licensing/registration thresholds and any local notifications.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any public offering/retail distribution in Cyprus.&quot;, &quot;Any reliance on AIFLNP/RAIF structuring details without current counsel confirmation.&quot;, &quot;Any delegation/sub-advisory cross-border arrangements.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">CY</div>
+      <h2 style="margin:10px 0 6px">Cyprus</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Cyprus AIF ecosystem (informational):</b> High-level orientation around AIF / AIFLNP / RAIF concepts (verify current definitions with CySEC). Manager model (AIFM / sub-threshold manager) depends on size/activities and must be verified.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing and offering rules depend on investor type (professional/retail) and fund/manager status.</li><li>Always confirm licensing/registration thresholds and any local notifications.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.cysec.gov.cy/">CySEC</a></li>
+    <li><a href="https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aif/">AIF Law — Law 124(I)/2018</a></li><li><a href="https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aifm/">AIFM Law — Law 56(I)/2013</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any public offering/retail distribution in Cyprus.</li><li>Any reliance on AIFLNP/RAIF structuring details without current counsel confirmation.</li><li>Any delegation/sub-advisory cross-border arrangements.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="LU Luxembourg CSSF RAIF Law (Reserved Alternative Investment Fund) AIFM regulatory framework (CSSF)" data-json="{&quot;id&quot;: &quot;LU&quot;, &quot;name&quot;: &quot;Luxembourg&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CSSF&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;RAIF Law (Reserved Alternative Investment Fund)&quot;, &quot;citation&quot;: &quot;Law of 23 July 2016&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/wp-content/uploads/L_230716_RAIF_eng.pdf&quot;}, {&quot;name&quot;: &quot;AIFM regulatory framework (CSSF)&quot;, &quot;citation&quot;: &quot;AIFMD&quot;, &quot;url&quot;: &quot;https://www.cssf.lu/en/industry/aifm/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Luxembourg AIF ecosystem (informational)&quot;, &quot;bullets&quot;: [&quot;Commonly used vehicles include RAIF and other fund forms; selection depends on strategy, investors, and governance.&quot;, &quot;AIFM/ManCo and depositary requirements must be confirmed case-by-case.&quot;]}], &quot;marketing_notes&quot;: [&quot;EU marketing and passporting depend on AIFM setup and the target investor jurisdictions.&quot;, &quot;Check any CSSF guidance and local circulars applicable to the selected structure.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any offering to retail investors.&quot;, &quot;Any complex master-feeder or cross-border marketing plan.&quot;, &quot;Any use of ESMA/CSSF positions affecting the strategy (e.g., liquidity management).&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">LU</div>
+      <h2 style="margin:10px 0 6px">Luxembourg</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Luxembourg AIF ecosystem (informational):</b> Commonly used vehicles include RAIF and other fund forms; selection depends on strategy, investors, and governance. AIFM/ManCo and depositary requirements must be confirmed case-by-case.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>EU marketing and passporting depend on AIFM setup and the target investor jurisdictions.</li><li>Check any CSSF guidance and local circulars applicable to the selected structure.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.cssf.lu/">CSSF</a></li>
+    <li><a href="https://www.cssf.lu/wp-content/uploads/L_230716_RAIF_eng.pdf">RAIF Law (Reserved Alternative Investment Fund) — Law of 23 July 2016</a></li><li><a href="https://www.cssf.lu/en/industry/aifm/">AIFM regulatory framework (CSSF) — AIFMD</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any offering to retail investors.</li><li>Any complex master-feeder or cross-border marketing plan.</li><li>Any use of ESMA/CSSF positions affecting the strategy (e.g., liquidity management).</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="IE Ireland Central Bank of Ireland AIF guidance (CBI) UCITS framework (CBI)" data-json="{&quot;id&quot;: &quot;IE&quot;, &quot;name&quot;: &quot;Ireland&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;Central Bank of Ireland&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIF guidance (CBI)&quot;, &quot;citation&quot;: &quot;AIF&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs&quot;}, {&quot;name&quot;: &quot;UCITS framework (CBI)&quot;, &quot;citation&quot;: &quot;UCITS&quot;, &quot;url&quot;: &quot;https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Ireland funds (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of typical Irish fund pathways (e.g., AIF vs UCITS) depends on investor base and strategy.&quot;, &quot;Local rulebooks and authorisation processes must be reviewed with counsel/administrator.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cross-border marketing depends on AIFM/UCITS management company and investor jurisdictions.&quot;, &quot;Confirm local pre-marketing/marketing notification requirements where applicable.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution or public offering.&quot;, &quot;Any complex strategy requiring special approvals/disclosures.&quot;, &quot;Any delegation or outsourcing arrangements with cross-border providers.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">IE</div>
+      <h2 style="margin:10px 0 6px">Ireland</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Ireland funds (informational):</b> High-level mapping of typical Irish fund pathways (e.g., AIF vs UCITS) depends on investor base and strategy. Local rulebooks and authorisation processes must be reviewed with counsel/administrator.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Cross-border marketing depends on AIFM/UCITS management company and investor jurisdictions.</li><li>Confirm local pre-marketing/marketing notification requirements where applicable.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.centralbank.ie/">Central Bank of Ireland</a></li>
+    <li><a href="https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs">AIF guidance (CBI) — AIF</a></li><li><a href="https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits">UCITS framework (CBI) — UCITS</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any retail distribution or public offering.</li><li>Any complex strategy requiring special approvals/disclosures.</li><li>Any delegation or outsourcing arrangements with cross-border providers.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="partial" data-hay="MT Malta MFSA MFSA guide (AIFM in Malta) Investment Services Act / Funds framework (MFSA)" data-json="{&quot;id&quot;: &quot;MT&quot;, &quot;name&quot;: &quot;Malta&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;MFSA&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;MFSA guide (AIFM in Malta)&quot;, &quot;citation&quot;: &quot;Guide&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/wp-content/uploads/2019/01/A_Guide_on_Establishing_an_Alternative_Investment_Fund_Manager_in_Malta.pdf&quot;}, {&quot;name&quot;: &quot;Investment Services Act / Funds framework (MFSA)&quot;, &quot;citation&quot;: &quot;Framework&quot;, &quot;url&quot;: &quot;https://www.mfsa.mt/financial-services/funds/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Malta AIF/manager setup (informational)&quot;, &quot;bullets&quot;: [&quot;High-level orientation for setting up an AIFM or using licensed providers.&quot;, &quot;Vehicle choice depends on investor type and strategy; verify current MFSA requirements.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing and offering rules depend on investor type and licensing status.&quot;, &quot;Confirm any MFSA requirements for distribution and disclosures.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution.&quot;, &quot;Any reliance on local exemptions/fast-track assumptions without confirmation.&quot;, &quot;Any cross-border marketing plan.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">MT</div>
+      <h2 style="margin:10px 0 6px">Malta</h2>
+      <div class="small">Status: <span class="pill partial">Partial</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Malta AIF/manager setup (informational):</b> High-level orientation for setting up an AIFM or using licensed providers. Vehicle choice depends on investor type and strategy; verify current MFSA requirements.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing and offering rules depend on investor type and licensing status.</li><li>Confirm any MFSA requirements for distribution and disclosures.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.mfsa.mt/">MFSA</a></li>
+    <li><a href="https://www.mfsa.mt/wp-content/uploads/2019/01/A_Guide_on_Establishing_an_Alternative_Investment_Fund_Manager_in_Malta.pdf">MFSA guide (AIFM in Malta) — Guide</a></li><li><a href="https://www.mfsa.mt/financial-services/funds/">Investment Services Act / Funds framework (MFSA) — Framework</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any retail distribution.</li><li>Any reliance on local exemptions/fast-track assumptions without confirmation.</li><li>Any cross-border marketing plan.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="planned" data-hay="NL Netherlands AFM DNB AIFMD (EU framework) – local implementation varies DNB supervision overview (financial supervision)" data-json="{&quot;id&quot;: &quot;NL&quot;, &quot;name&quot;: &quot;Netherlands&quot;, &quot;status&quot;: &quot;planned&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;AFM&quot;, &quot;url&quot;: &quot;https://www.afm.nl/&quot;}, {&quot;name&quot;: &quot;DNB&quot;, &quot;url&quot;: &quot;https://www.dnb.nl/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;AIFMD (EU framework) – local implementation varies&quot;, &quot;citation&quot;: &quot;AIFMD&quot;, &quot;url&quot;: &quot;https://www.afm.nl/en/sector/themas/belangrijke-europese-wet--en-regelgeving/aifm&quot;}, {&quot;name&quot;: &quot;DNB supervision overview (financial supervision)&quot;, &quot;citation&quot;: &quot;DNB&quot;, &quot;url&quot;: &quot;https://www.dnb.nl/en/sector-information/supervision/overview/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;NL implementation (stub)&quot;, &quot;bullets&quot;: [&quot;This entry is marked planned until confirmed against current AFM/DNB materials and local counsel input.&quot;, &quot;Use EU framework (AIFMD/UCITS) as a starting point; verify Dutch implementation details.&quot;]}], &quot;marketing_notes&quot;: [&quot;NPPR vs passporting and local notifications depend on fund/manager and investor type.&quot;, &quot;Always verify Dutch marketing rules before relying on any output.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing into the Netherlands.&quot;, &quot;Any licensing threshold questions or exemptions.&quot;, &quot;Any retail targeting.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">NL</div>
+      <h2 style="margin:10px 0 6px">Netherlands</h2>
+      <div class="small">Status: <span class="pill planned">Planned</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>NL implementation (stub):</b> This entry is marked planned until confirmed against current AFM/DNB materials and local counsel input. Use EU framework (AIFMD/UCITS) as a starting point; verify Dutch implementation details.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>NPPR vs passporting and local notifications depend on fund/manager and investor type.</li><li>Always verify Dutch marketing rules before relying on any output.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.afm.nl/">AFM</a></li><li><a href="https://www.dnb.nl/">DNB</a></li>
+    <li><a href="https://www.afm.nl/en/sector/themas/belangrijke-europese-wet--en-regelgeving/aifm">AIFMD (EU framework) – local implementation varies — AIFMD</a></li><li><a href="https://www.dnb.nl/en/sector-information/supervision/overview/">DNB supervision overview (financial supervision) — DNB</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any marketing into the Netherlands.</li><li>Any licensing threshold questions or exemptions.</li><li>Any retail targeting.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="UK United Kingdom FCA UK AIFMD UK marketing restrictions (overview)" data-json="{&quot;id&quot;: &quot;UK&quot;, &quot;name&quot;: &quot;United Kingdom&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;FCA&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;UK AIFMD&quot;, &quot;citation&quot;: &quot;UK AIFMD&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/firms/aifmd-uk&quot;}, {&quot;name&quot;: &quot;UK marketing restrictions (overview)&quot;, &quot;citation&quot;: &quot;UK&quot;, &quot;url&quot;: &quot;https://www.fca.org.uk/firms/marketing&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;UK regimes (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping of AIFM perimeter and marketing considerations; depends on manager type and investors.&quot;, &quot;NPPR and any approvals/notifications must be confirmed with counsel and FCA guidance.&quot;]}], &quot;marketing_notes&quot;: [&quot;UK financial promotions rules are strict; marketing materials and targeting require review.&quot;, &quot;Distribution to retail investors generally increases requirements materially.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any financial promotions / marketing to UK persons.&quot;, &quot;Any retail distribution or promotions to non-professional investors.&quot;, &quot;Any use of exemptions without FCA-aligned review.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">UK</div>
+      <h2 style="margin:10px 0 6px">United Kingdom</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>UK regimes (informational):</b> High-level mapping of AIFM perimeter and marketing considerations; depends on manager type and investors. NPPR and any approvals/notifications must be confirmed with counsel and FCA guidance.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>UK financial promotions rules are strict; marketing materials and targeting require review.</li><li>Distribution to retail investors generally increases requirements materially.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.fca.org.uk/">FCA</a></li>
+    <li><a href="https://www.fca.org.uk/firms/aifmd-uk">UK AIFMD — UK AIFMD</a></li><li><a href="https://www.fca.org.uk/firms/marketing">UK marketing restrictions (overview) — UK</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any financial promotions / marketing to UK persons.</li><li>Any retail distribution or promotions to non-professional investors.</li><li>Any use of exemptions without FCA-aligned review.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="partial" data-hay="CH Switzerland FINMA Swiss collective investment schemes (overview) Foreign collective investment schemes (overview)" data-json="{&quot;id&quot;: &quot;CH&quot;, &quot;name&quot;: &quot;Switzerland&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;FINMA&quot;, &quot;url&quot;: &quot;https://www.finma.ch/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;Swiss collective investment schemes (overview)&quot;, &quot;citation&quot;: &quot;CISA&quot;, &quot;url&quot;: &quot;https://www.finma.ch/en/authorisation/asset-management/swiss-collective-investment-schemes/&quot;}, {&quot;name&quot;: &quot;Foreign collective investment schemes (overview)&quot;, &quot;citation&quot;: &quot;Foreign schemes&quot;, &quot;url&quot;: &quot;https://www.finma.ch/en/authorisation/asset-management/foreign-collective-investment-schemes/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Swiss distribution perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Switzerland has distinct rules on distribution/offerings; professional vs retail segmentation is critical.&quot;, &quot;Treat Swiss coverage as partial until each distribution scenario is validated.&quot;]}], &quot;marketing_notes&quot;: [&quot;Distribution into Switzerland can trigger additional requirements depending on investor classification and product.&quot;, &quot;Verify any rep/agent requirements and offering restrictions.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any retail distribution in Switzerland.&quot;, &quot;Any cross-border marketing to Swiss investors.&quot;, &quot;Any ambiguity on investor classification.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">CH</div>
+      <h2 style="margin:10px 0 6px">Switzerland</h2>
+      <div class="small">Status: <span class="pill partial">Partial</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Swiss distribution perimeter (informational):</b> Switzerland has distinct rules on distribution/offerings; professional vs retail segmentation is critical. Treat Swiss coverage as partial until each distribution scenario is validated.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Distribution into Switzerland can trigger additional requirements depending on investor classification and product.</li><li>Verify any rep/agent requirements and offering restrictions.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.finma.ch/">FINMA</a></li>
+    <li><a href="https://www.finma.ch/en/authorisation/asset-management/swiss-collective-investment-schemes/">Swiss collective investment schemes (overview) — CISA</a></li><li><a href="https://www.finma.ch/en/authorisation/asset-management/foreign-collective-investment-schemes/">Foreign collective investment schemes (overview) — Foreign schemes</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any retail distribution in Switzerland.</li><li>Any cross-border marketing to Swiss investors.</li><li>Any ambiguity on investor classification.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="partial" data-hay="US United States U.S. SEC SEC - Investment advisers (overview) SEC - Regulations (rules and proposals)" data-json="{&quot;id&quot;: &quot;US&quot;, &quot;name&quot;: &quot;United States&quot;, &quot;status&quot;: &quot;partial&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;U.S. SEC&quot;, &quot;url&quot;: &quot;https://www.sec.gov/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;SEC - Investment advisers (overview)&quot;, &quot;citation&quot;: &quot;Advisers Act&quot;, &quot;url&quot;: &quot;https://www.sec.gov/investmentadvisers&quot;}, {&quot;name&quot;: &quot;SEC - Regulations (rules and proposals)&quot;, &quot;citation&quot;: &quot;SEC Rules&quot;, &quot;url&quot;: &quot;https://www.sec.gov/rules-regulations&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;US advisory perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;US rules depend on adviser registration status, exemptions, and the investor base.&quot;, &quot;Treat as partial: GNCO must surface regulatory status and require counsel review.&quot;]}], &quot;marketing_notes&quot;: [&quot;US marketing / solicitation rules are complex; avoid any performance claims in materials.&quot;, &quot;Always verify exemptions and offering structures with US counsel.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any US investor solicitation/offering.&quot;, &quot;Any reliance on exemptions (e.g., Regulation D) without counsel.&quot;, &quot;Any private fund adviser rule status questions (must be date-stamped).&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">US</div>
+      <h2 style="margin:10px 0 6px">United States</h2>
+      <div class="small">Status: <span class="pill partial">Partial</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>US advisory perimeter (informational):</b> US rules depend on adviser registration status, exemptions, and the investor base. Treat as partial: GNCO must surface regulatory status and require counsel review.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>US marketing / solicitation rules are complex; avoid any performance claims in materials.</li><li>Always verify exemptions and offering structures with US counsel.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.sec.gov/">U.S. SEC</a></li>
+    <li><a href="https://www.sec.gov/investmentadvisers">SEC - Investment advisers (overview) — Advisers Act</a></li><li><a href="https://www.sec.gov/rules-regulations">SEC - Regulations (rules and proposals) — SEC Rules</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any US investor solicitation/offering.</li><li>Any reliance on exemptions (e.g., Regulation D) without counsel.</li><li>Any private fund adviser rule status questions (must be date-stamped).</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="KY Cayman Islands CIMA CIMA - Investment Funds (overview) CIMA - Private Funds (overview)" data-json="{&quot;id&quot;: &quot;KY&quot;, &quot;name&quot;: &quot;Cayman Islands&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;CIMA&quot;, &quot;url&quot;: &quot;https://www.cima.ky/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;CIMA - Investment Funds (overview)&quot;, &quot;citation&quot;: &quot;CIMA&quot;, &quot;url&quot;: &quot;https://www.cima.ky/investment-funds&quot;}, {&quot;name&quot;: &quot;CIMA - Private Funds (overview)&quot;, &quot;citation&quot;: &quot;Private Funds&quot;, &quot;url&quot;: &quot;https://www.cima.ky/private-funds&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Cayman fund registration orientation (informational)&quot;, &quot;bullets&quot;: [&quot;High-level mapping for registered funds and private funds; specifics depend on structure and investor base.&quot;, &quot;Confirm registration, audit, and ongoing obligations with Cayman counsel/admin.&quot;]}], &quot;marketing_notes&quot;: [&quot;Cayman structuring often pairs with onshore distribution rules; investor jurisdiction drives marketing constraints.&quot;, &quot;Always validate cross-border offering requirements where investors are located.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any uncertainty on fund classification (mutual vs private fund).&quot;, &quot;Any cross-border offering plan into regulated markets.&quot;, &quot;Any side letters or complex governance features.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">KY</div>
+      <h2 style="margin:10px 0 6px">Cayman Islands</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Cayman fund registration orientation (informational):</b> High-level mapping for registered funds and private funds; specifics depend on structure and investor base. Confirm registration, audit, and ongoing obligations with Cayman counsel/admin.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Cayman structuring often pairs with onshore distribution rules; investor jurisdiction drives marketing constraints.</li><li>Always validate cross-border offering requirements where investors are located.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.cima.ky/">CIMA</a></li>
+    <li><a href="https://www.cima.ky/investment-funds">CIMA - Investment Funds (overview) — CIMA</a></li><li><a href="https://www.cima.ky/private-funds">CIMA - Private Funds (overview) — Private Funds</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any uncertainty on fund classification (mutual vs private fund).</li><li>Any cross-border offering plan into regulated markets.</li><li>Any side letters or complex governance features.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="SG Singapore MAS MAS - CMS licence (overview) MAS - Fund management (overview)" data-json="{&quot;id&quot;: &quot;SG&quot;, &quot;name&quot;: &quot;Singapore&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;MAS&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;MAS - CMS licence (overview)&quot;, &quot;citation&quot;: &quot;CMS&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence&quot;}, {&quot;name&quot;: &quot;MAS - Fund management (overview)&quot;, &quot;citation&quot;: &quot;Fund management&quot;, &quot;url&quot;: &quot;https://www.mas.gov.sg/regulation/capital-markets/fund-management&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Singapore manager perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Manager licensing/registration depends on activities and client types (high-level).&quot;, &quot;Confirm licensing pathway with MAS guidance and local counsel.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing into Singapore depends on investor type and licensing status.&quot;, &quot;Verify exemptions and offering regimes before any solicitation.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing to retail investors.&quot;, &quot;Any uncertainty on licensing / exemptions for fund management activities.&quot;, &quot;Any cross-border marketing arrangements.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">SG</div>
+      <h2 style="margin:10px 0 6px">Singapore</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Singapore manager perimeter (informational):</b> Manager licensing/registration depends on activities and client types (high-level). Confirm licensing pathway with MAS guidance and local counsel.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing into Singapore depends on investor type and licensing status.</li><li>Verify exemptions and offering regimes before any solicitation.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.mas.gov.sg/">MAS</a></li>
+    <li><a href="https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence">MAS - CMS licence (overview) — CMS</a></li><li><a href="https://www.mas.gov.sg/regulation/capital-markets/fund-management">MAS - Fund management (overview) — Fund management</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any marketing to retail investors.</li><li>Any uncertainty on licensing / exemptions for fund management activities.</li><li>Any cross-border marketing arrangements.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="HK Hong Kong SFC SFC - Licensing (overview) SFC - Licensing Handbook" data-json="{&quot;id&quot;: &quot;HK&quot;, &quot;name&quot;: &quot;Hong Kong&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;SFC&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;SFC - Licensing (overview)&quot;, &quot;citation&quot;: &quot;Licensing&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing&quot;}, {&quot;name&quot;: &quot;SFC - Licensing Handbook&quot;, &quot;citation&quot;: &quot;Handbook&quot;, &quot;url&quot;: &quot;https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;Hong Kong licensing perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;Licensing requirements depend on regulated activities and client types (high-level).&quot;, &quot;Confirm fund offering restrictions and selling practices with counsel.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing into Hong Kong depends on the offering regime and investor classification.&quot;, &quot;Always review local offering documentation requirements.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any offering to the public/retail investors.&quot;, &quot;Any uncertainty on regulated activities scope.&quot;, &quot;Any cross-border distribution into HK.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">HK</div>
+      <h2 style="margin:10px 0 6px">Hong Kong</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>Hong Kong licensing perimeter (informational):</b> Licensing requirements depend on regulated activities and client types (high-level). Confirm fund offering restrictions and selling practices with counsel.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing into Hong Kong depends on the offering regime and investor classification.</li><li>Always review local offering documentation requirements.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.sfc.hk/">SFC</a></li>
+    <li><a href="https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing">SFC - Licensing (overview) — Licensing</a></li><li><a href="https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook">SFC - Licensing Handbook — Handbook</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any offering to the public/retail investors.</li><li>Any uncertainty on regulated activities scope.</li><li>Any cross-border distribution into HK.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="AE-DIFC UAE (DIFC) DFSA DFSA - Collective Investment Funds (overview) DIFC Laws & Regulations portal (overview)" data-json="{&quot;id&quot;: &quot;AE-DIFC&quot;, &quot;name&quot;: &quot;UAE (DIFC)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;DFSA&quot;, &quot;url&quot;: &quot;https://www.dfsa.ae/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;DFSA - Collective Investment Funds (overview)&quot;, &quot;citation&quot;: &quot;CIF&quot;, &quot;url&quot;: &quot;https://www.dfsa.ae/what-we-do/collective-investment-funds&quot;}, {&quot;name&quot;: &quot;DIFC Laws & Regulations portal (overview)&quot;, &quot;citation&quot;: &quot;DIFC&quot;, &quot;url&quot;: &quot;https://www.difc.ae/business/laws-and-regulations/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;DIFC fund manager orientation (informational)&quot;, &quot;bullets&quot;: [&quot;DIFC has a distinct regulatory perimeter; verify categories of funds and manager permissions with DFSA materials.&quot;, &quot;Distribution and client categorization are critical; treat as high disclaimer.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing is governed by DFSA rules and DIFC perimeter; investor classification matters materially.&quot;, &quot;Confirm any cross-border promotion rules into UAE onshore vs DIFC.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any marketing to UAE onshore persons vs DIFC persons.&quot;, &quot;Any retail-like client targeting.&quot;, &quot;Any reliance on exemptions without DFSA-aligned review.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">AE-DIFC</div>
+      <h2 style="margin:10px 0 6px">UAE (DIFC)</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>DIFC fund manager orientation (informational):</b> DIFC has a distinct regulatory perimeter; verify categories of funds and manager permissions with DFSA materials. Distribution and client categorization are critical; treat as high disclaimer.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing is governed by DFSA rules and DIFC perimeter; investor classification matters materially.</li><li>Confirm any cross-border promotion rules into UAE onshore vs DIFC.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.dfsa.ae/">DFSA</a></li>
+    <li><a href="https://www.dfsa.ae/what-we-do/collective-investment-funds">DFSA - Collective Investment Funds (overview) — CIF</a></li><li><a href="https://www.difc.ae/business/laws-and-regulations/">DIFC Laws & Regulations portal (overview) — DIFC</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any marketing to UAE onshore persons vs DIFC persons.</li><li>Any retail-like client targeting.</li><li>Any reliance on exemptions without DFSA-aligned review.</li></ul>
+</div><div class="card" style="margin-top:14px" data-jrow data-status="supported" data-hay="AE-ADGM UAE (ADGM) ADGM FSRA ADGM - Authorisation & Forms (FSRA) ADGM - FSRA Rulebooks" data-json="{&quot;id&quot;: &quot;AE-ADGM&quot;, &quot;name&quot;: &quot;UAE (ADGM)&quot;, &quot;status&quot;: &quot;supported&quot;, &quot;last_verified&quot;: &quot;2026-02-14&quot;, &quot;regulators&quot;: [{&quot;name&quot;: &quot;ADGM FSRA&quot;, &quot;url&quot;: &quot;https://www.adgm.com/&quot;}], &quot;frameworks&quot;: [{&quot;name&quot;: &quot;ADGM - Authorisation & Forms (FSRA)&quot;, &quot;citation&quot;: &quot;FSRA&quot;, &quot;url&quot;: &quot;https://www.adgm.com/setting-up/authorisation-and-supplementary-forms&quot;}, {&quot;name&quot;: &quot;ADGM - FSRA Rulebooks&quot;, &quot;citation&quot;: &quot;Rulebooks&quot;, &quot;url&quot;: &quot;https://en.adgm.thomsonreuters.com/&quot;}], &quot;typical_paths&quot;: [{&quot;label&quot;: &quot;ADGM manager + funds perimeter (informational)&quot;, &quot;bullets&quot;: [&quot;ADGM funds and investment management are regulated; permissions depend on activities and client type.&quot;, &quot;Confirm FSRA rulebooks and any guidance applicable to the selected structure.&quot;]}], &quot;marketing_notes&quot;: [&quot;Marketing depends on FSRA rules and client categorisation; cross-border promotion needs review.&quot;, &quot;Different rules may apply for onshore UAE vs ADGM.&quot;], &quot;requires_counsel_triggers&quot;: [&quot;Any public/retail targeting.&quot;, &quot;Any cross-border promotion onshore UAE.&quot;, &quot;Any uncertainty on FSRA permissions.&quot;], &quot;disclaimer_level&quot;: &quot;high&quot;}">
+  <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
+    <div>
+      <div class="pill" style="display:inline-block">AE-ADGM</div>
+      <h2 style="margin:10px 0 6px">UAE (ADGM)</h2>
+      <div class="small">Status: <span class="pill ok">Supported</span> • Last verified: <span class="code">2026-02-14</span></div>
+    </div>
+    <div class="small" style="max-width:420px">
+      <div class="pill high" style="display:inline-block">Informational only</div>
+      <div style="margin-top:8px">Always validate against your fund domicile, manager domicile, and investor locations.</div>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <h3>Typical pathways (high-level)</h3>
+  <ul>
+    <li><b>ADGM manager + funds perimeter (informational):</b> ADGM funds and investment management are regulated; permissions depend on activities and client type. Confirm FSRA rulebooks and any guidance applicable to the selected structure.</li>
+  </ul>
+
+  <h3>Marketing notes (high-level)</h3>
+  <ul><li>Marketing depends on FSRA rules and client categorisation; cross-border promotion needs review.</li><li>Different rules may apply for onshore UAE vs ADGM.</li></ul>
+
+  <h3>Primary sources</h3>
+  <ul>
+    <li><a href="https://www.adgm.com/">ADGM FSRA</a></li>
+    <li><a href="https://www.adgm.com/setting-up/authorisation-and-supplementary-forms">ADGM - Authorisation & Forms (FSRA) — FSRA</a></li><li><a href="https://en.adgm.thomsonreuters.com/">ADGM - FSRA Rulebooks — Rulebooks</a></li>
+  </ul>
+
+  <h3>Requires counsel when…</h3>
+  <ul><li>Any public/retail targeting.</li><li>Any cross-border promotion onshore UAE.</li><li>Any uncertainty on FSRA permissions.</li></ul>
+</div>
+
+<div class="footer">
+  <div><b>Important:</b> GNCO is prototype software for informational purposes only. It is not an investment product and does not provide legal/tax/investment advice. Always verify outputs with qualified professionals. See <a href="./disclosures.html">Disclosures</a>.</div>
+  <div style="margin-top:8px">Build: <span class="code">4ad1b8c</span> • Source last updated: <span class="code">2026-02-14</span></div>
+</div>
+</div>
+<script src="./assets_gnco.js"></script>
+<script>
+  (function(){
+    const a = document.querySelector('[data-nav="coverage"]'); if(a) a.classList.add('active');
+  })();
+</script>
+</body>
+</html>

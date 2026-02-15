@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hugelifecy-arch.github.io/GNCO/sitemap.xml

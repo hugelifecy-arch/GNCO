@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GNCO — Methodology & Sources</title>
+  <meta name="description" content="How GNCO structures decision logic, evidence trails, and jurisdiction coverage." />
+  <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/methodology.html" />
+  <link rel="stylesheet" href="./assets_gnco.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GNCO (Global Fund Architect)",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "url": "https://hugelifecy-arch.github.io/GNCO/methodology.html",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "GNCO",
+    "url": "https://hugelifecy-arch.github.io/GNCO/"
+  }
+}
+  </script>
+</head>
+<body>
+<div class="nav">
+  <div class="inner">
+    <div class="brand">
+      <div style="width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(96,165,250,.55)"></div>
+      <b>GNCO</b>
+      <span class="badge">Prototype</span>
+      <span class="badge code">build 4ad1b8c • 2026-02-14</span>
+    </div>
+    <div class="navlinks">
+      <a href="./" data-nav="home">Product</a>
+      <a href="./coverage.html" data-nav="coverage">Coverage</a>
+      <a href="./methodology.html" data-nav="methodology">Methodology</a>
+      <a href="./investor.html" data-nav="investor">Investor</a>
+      <a href="./disclosures.html" data-nav="disclosures">Disclosures</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="hero">
+    <h1>Methodology & Sources</h1>
+    <p>This page explains how GNCO should be used and how coverage is maintained. GNCO remains informational prototype software.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 style="margin-top:0">Three-axis model (why “country = answer” is wrong)</h2>
+      <ul>
+        <li><b>Fund domicile:</b> where the fund/vehicle is established.</li>
+        <li><b>Manager domicile:</b> where the manager/adviser is regulated.</li>
+        <li><b>Investor locations:</b> where marketing / distribution occurs.</li>
+      </ul>
+      <p class="small">GNCO should show outputs within this 3-axis context, not as universal “one-country advice”.</p>
+
+      <div class="hr"></div>
+      <h2>Evidence hierarchy</h2>
+      <ul>
+        <li><b>Primary:</b> regulator websites, official law portals (e.g., EUR-Lex), official gazettes.</li>
+        <li><b>Secondary:</b> regulator guidance/Q&A, official circulars, official handbooks.</li>
+        <li><b>Not acceptable alone:</b> blogs, marketing pages, unverified summaries.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0">Coverage statuses</h2>
+      <ul>
+        <li><span class="pill ok">Supported</span> — curated entry with sources + reviewed triggers.</li>
+        <li><span class="pill partial">Partial</span> — informational but requires counsel for many scenarios.</li>
+        <li><span class="pill planned">Planned</span> — placeholder; do not rely without verification.</li>
+      </ul>
+
+      <div class="hr"></div>
+      <h2>“Requires counsel” triggers</h2>
+      <ul>
+        <li>Retail distribution / public offering</li>
+        <li>Cross-border marketing and any passporting/NPPR decisions</li>
+        <li>Complex derivatives/leverage, unusual liquidity features, side letters</li>
+        <li>Delegation / sub-advisory / outsourcing across borders</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h2 style="margin-top:0">Update policy (recommended)</h2>
+    <ul>
+      <li><b>Cadence:</b> re-verify each supported jurisdiction at least quarterly, and immediately after major regulatory updates.</li>
+      <li><b>Traceability:</b> each entry has <span class="code">last_verified</span> and links to primary sources.</li>
+      <li><b>Change log:</b> record any content changes and why they were made.</li>
+      <li><b>Build metadata:</b> inject build date + version hash into every public page.</li>
+    </ul>
+    <p class="small">See also: <a href="./coverage.html">Coverage</a> and <a href="./changelog.html">Change log</a>.</p>
+  </div>
+
+<div class="footer">
+  <div><b>Important:</b> GNCO is prototype software for informational purposes only. It is not an investment product and does not provide legal/tax/investment advice. Always verify outputs with qualified professionals. See <a href="./disclosures.html">Disclosures</a>.</div>
+  <div style="margin-top:8px">Build: <span class="code">4ad1b8c</span> • Source last updated: <span class="code">2026-02-14</span></div>
+</div>
+</div>
+<script>
+  (function(){
+    const a = document.querySelector('[data-nav="methodology"]'); if(a) a.classList.add('active');
+  })();
+</script>
+</body>
+</html>
