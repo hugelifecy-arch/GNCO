@@ -1,19 +1,48 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GNCO Redirect</title>
-</head>
-<body>
-<script>
-  (function () {
-    const base = '/GNCO/';
-    const path = location.pathname.replace(/^\/GNCO\/?/, '');
-    const target = base + (path ? '?' + encodeURIComponent(path + location.search) : location.search) + location.hash;
-    location.replace(target);
-  })();
-</script>
-<p>Page not found. Go to <a href="/GNCO/">Product</a>, <a href="/GNCO/coverage.html">Coverage</a>, or <a href="/GNCO/investor.html">Investor</a>.</p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GNCO — Page not found</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/" />
+    <style>
+      body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#0b1222; color:#e2e8f0; }
+      .wrap { max-width: 860px; margin: 24px auto; padding: 16px; }
+      a { color: #38bdf8; }
+      .card { background: rgba(15,23,42,.85); border: 1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 14px; }
+      .small { color:#94a3b8; font-size: 13px; }
+    </style>
+    <script>
+      (function () {
+        // GitHub Pages SPA fallback: preserve path + query + hash
+        var base = "/GNCO/";
+        var path = location.pathname || "";
+        if (path.startsWith(base)) path = path.slice(base.length);
+        var target = base + (path ? ("?p=" + encodeURIComponent(path + location.search + location.hash)) : "");
+        location.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1 style="margin:0 0 8px;">Page not found</h1>
+        <p class="small" style="margin:0 0 10px;">
+          Redirecting you to GNCO…
+        </p>
+        <p style="margin:0 0 10px;">
+          <b>Important:</b> GNCO is prototype software for <b>informational purposes only</b>. It is <b>not an offer</b>.
+          It does <b>not</b> provide investment/legal/tax advice. <b>Always verify</b> with qualified professionals.
+        </p>
+        <ul style="margin:0; padding-left:18px;">
+          <li><a href="/GNCO/">Product</a></li>
+          <li><a href="/GNCO/coverage.html">Coverage</a></li>
+          <li><a href="/GNCO/methodology.html">Methodology</a></li>
+          <li><a href="/GNCO/investor.html">Investor</a></li>
+          <li><a href="/GNCO/disclosures.html">Disclosures</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
