@@ -1,16 +1,16 @@
 {
-  "code": "LU",
-  "name": "Luxembourg",
-  "status": "Supported",
+  "code": "MT",
+  "name": "Malta",
+  "status": "Partial",
   "last_verified": "2026-02-15",
   "primary_sources": [
     {
-      "title": "CSSF investment funds",
-      "url": "https://www.cssf.lu/en/investment-funds/"
+      "title": "MFSA investment services",
+      "url": "https://www.mfsa.mt/our-work/capital-markets/collective-investment-schemes/"
     },
     {
-      "title": "RAIF law reference",
-      "url": "https://legilux.public.lu/eli/etat/leg/loi/2016/07/23/n14/jo"
+      "title": "Malta legislation portal",
+      "url": "https://legislation.mt/"
     }
   ],
   "marketing_notes": [

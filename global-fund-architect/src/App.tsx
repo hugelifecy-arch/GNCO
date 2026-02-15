@@ -139,7 +139,7 @@ export default function App() {
             <a href="#product" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
             <a href="#trust" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
             <a href="#roadmap" className="text-slate-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
-            <a href="#final-cta" className="btn btn-primary">Build Your Structure</a>
+            <a href="#final-cta" className="btn btn-primary">Review Structure Map</a>
           </nav>
           <button
             className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-slate-700 p-2 md:hidden"
@@ -158,7 +158,7 @@ export default function App() {
               <a href="#product" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Product</a>
               <a href="#trust" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Trust</a>
               <a href="#roadmap" onClick={() => setIsMenuOpen(false)} className="min-h-[44px] rounded-lg px-3 py-2 text-slate-200 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">Roadmap</a>
-              <a href="#final-cta" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Build Your Structure</a>
+              <a href="#final-cta" onClick={() => setIsMenuOpen(false)} className="btn btn-primary text-center">Review Structure Map</a>
             </div>
           </div>
         ) : null}
@@ -167,13 +167,13 @@ export default function App() {
       <section id="top" className="section-pad">
         <div className="site-container">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow">Guided Fund Setup Platform</p>
-            <h1 className="h1-display">Design your fund structure in minutes — with a guided decision map.</h1>
+            <p className="eyebrow">Prototype Compliance Positioning</p>
+            <h1 className="h1-display">Global Fund Architect (GNCO) — Fund structuring decision map (prototype)</h1>
             <p className="body-lg mt-4 text-slate-300">
-              For fund managers and advisors who need a clear path from idea to compliant setup and launch.
+              Informational software for scenario design across domicile/manager/investor axes. Verify with qualified counsel.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href="#product" className="btn btn-primary">Build Your Structure</a>
+              <a href="#product" className="btn btn-primary">Review Structure Map</a>
               <a href="#example" className="btn btn-secondary">See Example</a>
             </div>
           </div>
@@ -183,9 +183,9 @@ export default function App() {
       <section id="trust" className="pb-12">
         <div className="site-container">
           <div className="grid gap-3 rounded-2xl border border-slate-800 bg-slate-900/50 p-4 sm:grid-cols-3">
-            <p className="trust-item">0% Fees for VIP Tier Only</p>
-            <p className="trust-item">Prototype planner — informational only</p>
-            <p className="trust-item">Built for fund professionals</p>
+            <p className="trust-item">Prototype software</p>
+            <p className="trust-item">Informational only</p>
+            <p className="trust-item">Verify with qualified professionals</p>
           </div>
         </div>
       </section>
@@ -217,12 +217,16 @@ export default function App() {
         </div>
       </section>
 
+      <div className="sticky bottom-0 z-40 border-t border-amber-700/50 bg-amber-950/90 py-2 text-center text-xs text-amber-100">
+        Prototype • Informational only • Not an offer • Not investment advice • Verify with qualified professionals
+      </div>
+
       <section id="final-cta" className="section-pad">
         <div className="site-container">
           <div className="rounded-2xl border border-slate-700 bg-slate-900/70 p-8 text-center">
-            <h2 className="h2-title">Ready to move from idea to launch plan?</h2>
-            <p className="mt-2 text-slate-300">Build your structure in minutes and export a clear path for your team.</p>
-            <a href="#product" className="btn btn-primary mt-6 inline-flex">Build Your Structure</a>
+            <h2 className="h2-title">Need a compliance-oriented scenario map?</h2>
+            <p className="mt-2 text-slate-300">Use GNCO for informational scenario design, then validate every decision with qualified professionals.</p>
+            <a href="#product" className="btn btn-primary mt-6 inline-flex">Review Structure Map</a>
           </div>
         </div>
       </section>

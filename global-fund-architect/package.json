@@ -8,9 +8,10 @@
     "generate:investor-pages": "node ./scripts/generate-investor-pages.mjs",
     "build": "npm run generate:investor-pages && tsc -b && vite build",
     "guard:investor-claims": "node ./scripts/investor-claims-guard.mjs",
-    "build:compliance": "npm run build && npm run guard:investor-claims",
+    "build:compliance": "npm run generate:investor-pages && npm run validate:jurisdictions && tsc -b && vite build && npm run guard:investor-claims",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "validate:jurisdictions": "node ./scripts/validate-jurisdictions.mjs"
   },
   "dependencies": {
     "dagre": "^0.8.5",

@@ -1,16 +1,16 @@
 {
-  "code": "LU",
-  "name": "Luxembourg",
-  "status": "Supported",
+  "code": "US",
+  "name": "United States",
+  "status": "Partial",
   "last_verified": "2026-02-15",
   "primary_sources": [
     {
-      "title": "CSSF investment funds",
-      "url": "https://www.cssf.lu/en/investment-funds/"
+      "title": "SEC investment company regulation",
+      "url": "https://www.sec.gov/divisions/investment"
     },
     {
-      "title": "RAIF law reference",
-      "url": "https://legilux.public.lu/eli/etat/leg/loi/2016/07/23/n14/jo"
+      "title": "SEC marketing rule overview",
+      "url": "https://www.sec.gov/rules/final/2020/ia-5653.pdf"
     }
   ],
   "marketing_notes": [

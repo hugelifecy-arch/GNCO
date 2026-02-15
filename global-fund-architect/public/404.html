@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GNCO Redirect</title>
+</head>
+<body>
+<script>
+  (function () {
+    const base = '/GNCO/';
+    const path = location.pathname.replace(/^\/GNCO\/?/, '');
+    const target = base + (path ? '?' + encodeURIComponent(path + location.search) : location.search) + location.hash;
+    location.replace(target);
+  })();
+</script>
+<p>Page not found. Go to <a href="/GNCO/">Product</a>, <a href="/GNCO/coverage.html">Coverage</a>, or <a href="/GNCO/investor.html">Investor</a>.</p>
+</body>
+</html>

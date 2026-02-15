@@ -1,43 +1,22 @@
 {
-  "id": "KY",
+  "code": "KY",
   "name": "Cayman Islands",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "CIMA",
-      "url": "https://www.cima.ky/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "CIMA - Investment Funds (overview)",
-      "citation": "CIMA",
-      "url": "https://www.cima.ky/investment-funds"
+      "title": "CIMA mutual funds supervision",
+      "url": "https://www.cima.ky/securities-investment-business/mutual-funds"
     },
     {
-      "name": "CIMA - Private Funds (overview)",
-      "citation": "Private Funds",
-      "url": "https://www.cima.ky/private-funds"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "Cayman fund registration orientation (informational)",
-      "bullets": [
-        "High-level mapping for registered funds and private funds; specifics depend on structure and investor base.",
-        "Confirm registration, audit, and ongoing obligations with Cayman counsel/admin."
-      ]
+      "title": "CIMA private funds supervision",
+      "url": "https://www.cima.ky/securities-investment-business/private-funds"
     }
   ],
   "marketing_notes": [
-    "Cayman structuring often pairs with onshore distribution rules; investor jurisdiction drives marketing constraints.",
-    "Always validate cross-border offering requirements where investors are located."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any uncertainty on fund classification (mutual vs private fund).",
-    "Any cross-border offering plan into regulated markets.",
-    "Any side letters or complex governance features."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

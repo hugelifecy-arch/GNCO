@@ -19,7 +19,7 @@ const constraintLabels: Record<ConstraintKey, string> = {
 
 const presets: Record<string, Record<FactorKey, number>> = {
   balanced: { speed: 70, cost: 55, governance: 80, digital: 60 },
-  fast_launch: { speed: 90, cost: 60, governance: 55, digital: 45 },
+  fast_setup: { speed: 90, cost: 60, governance: 55, digital: 45 },
   low_cost: { speed: 55, cost: 95, governance: 55, digital: 45 },
   institutional: { speed: 55, cost: 45, governance: 95, digital: 45 },
   digital_first: { speed: 60, cost: 45, governance: 65, digital: 95 }
@@ -28,7 +28,7 @@ const presets: Record<string, Record<FactorKey, number>> = {
 const presetOptions: ReadonlyArray<{ value: string; label: string }> = [
   { value: "custom", label: "Custom" },
   { value: "balanced", label: "Balanced" },
-  { value: "fast_launch", label: "Fast Launch" },
+  { value: "fast_setup", label: "Fast Setup" },
   { value: "low_cost", label: "Low Cost" },
   { value: "institutional", label: "Institutional Governance" },
   { value: "digital_first", label: "Digital First" }

@@ -1,43 +1,22 @@
 {
-  "id": "UK",
+  "code": "UK",
   "name": "United Kingdom",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "FCA",
-      "url": "https://www.fca.org.uk/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "UK AIFMD",
-      "citation": "UK AIFMD",
+      "title": "FCA AIFMD in the UK",
       "url": "https://www.fca.org.uk/firms/aifmd-uk"
     },
     {
-      "name": "UK marketing restrictions (overview)",
-      "citation": "UK",
-      "url": "https://www.fca.org.uk/firms/marketing"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "UK regimes (informational)",
-      "bullets": [
-        "High-level mapping of AIFM perimeter and marketing considerations; depends on manager type and investors.",
-        "NPPR and any approvals/notifications must be confirmed with counsel and FCA guidance."
-      ]
+      "title": "FCA financial promotions",
+      "url": "https://www.fca.org.uk/firms/financial-promotions"
     }
   ],
   "marketing_notes": [
-    "UK financial promotions rules are strict; marketing materials and targeting require review.",
-    "Distribution to retail investors generally increases requirements materially."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any financial promotions / marketing to UK persons.",
-    "Any retail distribution or promotions to non-professional investors.",
-    "Any use of exemptions without FCA-aligned review."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

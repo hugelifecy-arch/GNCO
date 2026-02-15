@@ -1,0 +1,61 @@
+{
+  "last_generated": "2026-02-15",
+  "jurisdictions": [
+    {
+      "code": "EU",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "CY",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "LU",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "IE",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "MT",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "NL",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "UK",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "CH",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "US",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "KY",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "SG",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "HK",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "AE-DIFC",
+      "last_verified": "2026-02-15"
+    },
+    {
+      "code": "AE-ADGM",
+      "last_verified": "2026-02-15"
+    }
+  ]
+}

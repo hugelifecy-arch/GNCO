@@ -32,7 +32,7 @@ const SRC_IE_QIAIF = "https://www.pinsentmasons.com/...";
 const SRC_WEF_TOKENIZATION =
   "https://reports.weforum.org/docs/WEF_Asset_Tokenization_in_Financial_Markets_2025.pdf";
 const SRC_COINBASE_BORROW = "https://www.coinbase.com/borrow";
-const SRC_AAVE_HORIZON = "https://aave.com/blog/horizon-launch";
+const SRC_AAVE_HORIZON = "https://aave.com/blog/horizon";
 
 // =====================
 // LAYER 1: Jurisdictions
@@ -113,13 +113,13 @@ const layer5Liquidity = [
 
 const layer6Economics = [
   "Multiple Share Classes (Hedged/Unhedged)",
-  "Founders Class + Fee Breakpoints",
+  "Founders Class + Cost Breakpoints",
   "Co-invest SPVs (Deal-by-Deal)",
   "Side Letters (MFN / Capacity)",
-  "Performance Fee (Hurdle + Catch-up)",
+  "Performance Allocation (Hurdle + Catch-up)",
   "Carry Waterfall (European / American)",
-  "Liquidity Fees + Redemption Gates",
-  "Management Fee (Tiered AUM)"
+  "Liquidity Costs + Redemption Gates",
+  "Management Cost (Tiered AUM)"
 ] as const;
 
 const layer7Financing = [

@@ -1,43 +1,22 @@
 {
-  "id": "SG",
+  "code": "SG",
   "name": "Singapore",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "MAS",
-      "url": "https://www.mas.gov.sg/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "MAS - CMS licence (overview)",
-      "citation": "CMS",
-      "url": "https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence"
+      "title": "MAS fund management",
+      "url": "https://www.mas.gov.sg/regulation/explainers/fund-management"
     },
     {
-      "name": "MAS - Fund management (overview)",
-      "citation": "Fund management",
-      "url": "https://www.mas.gov.sg/regulation/capital-markets/fund-management"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "Singapore manager perimeter (informational)",
-      "bullets": [
-        "Manager licensing/registration depends on activities and client types (high-level).",
-        "Confirm licensing pathway with MAS guidance and local counsel."
-      ]
+      "title": "Singapore statutes online",
+      "url": "https://sso.agc.gov.sg/"
     }
   ],
   "marketing_notes": [
-    "Marketing into Singapore depends on investor type and licensing status.",
-    "Verify exemptions and offering regimes before any solicitation."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any marketing to retail investors.",
-    "Any uncertainty on licensing / exemptions for fund management activities.",
-    "Any cross-border marketing arrangements."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

@@ -1,43 +1,22 @@
 {
-  "id": "EU",
+  "code": "EU",
   "name": "European Union (Framework)",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "EUR-Lex (Official EU Law Portal)",
-      "url": "https://eur-lex.europa.eu/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "AIFMD (Directive 2011/61/EU)",
-      "citation": "2011/61/EU",
+      "title": "EUR-Lex \u2014 AIFMD directive",
       "url": "https://eur-lex.europa.eu/eli/dir/2011/61/oj/eng"
     },
     {
-      "name": "UCITS (Directive 2009/65/EC)",
-      "citation": "2009/65/EC",
+      "title": "EUR-Lex \u2014 UCITS directive",
       "url": "https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng"
     }
   ],
-  "typical_paths": [
-    {
-      "label": "EU-facing alternative funds (AIF)",
-      "bullets": [
-        "High-level mapping of AIF vs UCITS decision points; informational only.",
-        "Passporting and marketing depend on AIFM/ManCo structure and investor location."
-      ]
-    }
-  ],
   "marketing_notes": [
-    "Cross-border marketing in the EU is governed by AIFMD/UCITS frameworks; implementation differs by Member State.",
-    "Always verify local implementation rules and any pre-marketing/marketing notification requirements."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any retail distribution considerations.",
-    "Any cross-border marketing / passporting decisions.",
-    "Any use of leverage, complex derivatives, or non-standard liquidity gates."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }
