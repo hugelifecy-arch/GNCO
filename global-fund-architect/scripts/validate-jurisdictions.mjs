@@ -90,6 +90,15 @@ for (const entry of manifest.jurisdictions) {
     }
   }
 
+  if (
+    obj.status === 'Supported' &&
+    Array.isArray(obj.regimes) &&
+    obj.regimes.length === 0
+  )
+    fail(
+      `${entry.code}.json Supported jurisdictions must define at least one regime`
+    );
+
   for (const field of [
     'regimes',
     'marketing_notes',

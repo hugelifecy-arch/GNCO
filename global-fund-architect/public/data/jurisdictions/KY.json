@@ -14,7 +14,10 @@
       "url": "https://www.cima.ky/securities-investment-business/private-funds"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "Private Funds Act",
+    "Mutual Funds Act"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

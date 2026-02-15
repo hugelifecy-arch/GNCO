@@ -14,7 +14,10 @@
       "url": "https://sso.agc.gov.sg/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "VCC",
+    "SFA fund management"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

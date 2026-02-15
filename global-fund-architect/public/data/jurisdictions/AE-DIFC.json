@@ -1,6 +1,6 @@
 {
   "code": "AE-DIFC",
-  "name": "UAE \u2014 DIFC",
+  "name": "UAE — DIFC",
   "status": "Supported",
   "last_verified": "2026-02-15",
   "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
@@ -14,7 +14,9 @@
       "url": "https://www.difc.ae/business/laws-regulations/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "DFSA Collective Investment Rules"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

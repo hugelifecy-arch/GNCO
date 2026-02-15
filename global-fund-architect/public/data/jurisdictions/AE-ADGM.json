@@ -1,6 +1,6 @@
 {
   "code": "AE-ADGM",
-  "name": "UAE \u2014 ADGM",
+  "name": "UAE — ADGM",
   "status": "Supported",
   "last_verified": "2026-02-15",
   "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
@@ -14,7 +14,9 @@
       "url": "https://www.adgm.com/legal-framework"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "FSRA Funds Rules"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

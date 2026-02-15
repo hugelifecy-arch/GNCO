@@ -14,7 +14,9 @@
       "url": "https://wetten.overheid.nl/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "AIFMD (national implementation)"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

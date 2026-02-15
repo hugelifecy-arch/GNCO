@@ -14,7 +14,9 @@
       "url": "https://legislation.mt/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "PIF framework"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

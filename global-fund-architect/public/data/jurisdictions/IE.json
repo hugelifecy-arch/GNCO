@@ -6,15 +6,18 @@
   "scope_notes": "Prototype compliance mapping only. Validate applicability with qualified counsel before use.",
   "primary_sources": [
     {
-      "label": "Central Bank of Ireland \u2014 AIFs",
+      "label": "Central Bank of Ireland — AIFs",
       "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs"
     },
     {
-      "label": "Central Bank of Ireland \u2014 UCITS",
+      "label": "Central Bank of Ireland — UCITS",
       "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "AIFM",
+    "UCITS"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

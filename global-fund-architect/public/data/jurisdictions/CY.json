@@ -14,7 +14,10 @@
       "url": "https://www.cylaw.org/nomoi/enop/non-ind/2018_2_124/full.html"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "AIF Law",
+    "CIF/MiFID"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

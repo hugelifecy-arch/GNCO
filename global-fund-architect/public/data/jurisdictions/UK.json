@@ -14,7 +14,10 @@
       "url": "https://www.fca.org.uk/firms/financial-promotions"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "UK AIFMD",
+    "Financial Promotions Regime"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

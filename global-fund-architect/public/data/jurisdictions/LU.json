@@ -14,7 +14,10 @@
       "url": "https://legilux.public.lu/eli/etat/leg/loi/2016/07/23/n14/jo"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "RAIF",
+    "SIF"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

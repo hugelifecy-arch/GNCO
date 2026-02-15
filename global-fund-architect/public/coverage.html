@@ -1,100 +1,67 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GNCO — Jurisdiction Coverage Library</title>
-  <meta name="description" content="Jurisdiction coverage library for GNCO with status, primary sources, and verification dates." />
-  <meta property="og:title" content="GNCO — Jurisdiction Coverage" />
-  <meta property="og:description" content="Data-driven jurisdiction coverage with source links and verification dates." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
-  <link rel="canonical" href="https://hugelifecy-arch.github.io/GNCO/coverage.html" />
-  <link rel="stylesheet" href="./assets_gnco.css" />
-</head>
-<body>
-<div class="container">
-  <h1>Jurisdiction Coverage Library</h1>
-  <p>Prototype software — informational only. Not an offer. Not investment advice.</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GNCO — Jurisdiction Coverage Library</title>
+    <meta
+      name="description"
+      content="Jurisdiction coverage library for GNCO with status, primary sources, and verification dates."
+    />
+    <meta property="og:title" content="GNCO — Jurisdiction Coverage" />
+    <meta
+      property="og:description"
+      content="Data-driven jurisdiction coverage with source links and verification dates."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://hugelifecy-arch.github.io/GNCO/coverage.html"
+    />
+    <link
+      rel="canonical"
+      href="https://hugelifecy-arch.github.io/GNCO/coverage.html"
+    />
+    <link rel="stylesheet" href="./assets_gnco.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Jurisdiction Coverage Library</h1>
+      <p>Prototype software — informational only. Not an offer. Not investment advice.</p>
 
-  <div class="filters" style="margin: 14px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-    <input id="q" class="input" placeholder="Search jurisdiction, source, notes..." />
-    <select id="status" class="select">
-      <option value="all">All statuses</option>
-      <option value="Supported">Supported</option>
-      <option value="Partial">Partial</option>
-      <option value="Planned">Planned</option>
-    </select>
-    <button id="export" class="btn" type="button">Export visible (JSON)</button>
-    <span class="badge">Visible: <b id="count">0/0</b></span>
-  </div>
+      <div
+        class="filters"
+        style="margin: 14px 0; display:flex; gap:8px; flex-wrap:wrap; align-items:center;"
+      >
+        <input id="q" class="input" placeholder="Search jurisdiction, source, notes..." />
+        <select id="status" class="select">
+          <option value="all">All statuses</option>
+          <option value="Supported">Supported</option>
+          <option value="Partial">Partial</option>
+          <option value="Planned">Planned</option>
+        </select>
+        <button id="export" class="btn" type="button">Export visible (JSON)</button>
+        <span class="badge">Visible: <b id="count">0/0</b></span>
+      </div>
 
-  <div class="card">
-    <h2>Coverage table</h2>
-    <table class="table">
-      <thead><tr><th>Code</th><th>Jurisdiction</th><th>Status</th><th>Primary sources</th></tr></thead>
-      <tbody id="table-body"></tbody>
-    </table>
-  </div>
+      <div class="card">
+        <h2>Coverage table</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Jurisdiction</th>
+              <th>Status</th>
+              <th>Primary sources</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
 
-  <div id="cards"></div>
-</div>
+      <div id="cards"></div>
+    </div>
 
-<script>
-(async () => {
-  const qEl = document.getElementById('q');
-  const statusEl = document.getElementById('status');
-  const countEl = document.getElementById('count');
-  const exportEl = document.getElementById('export');
-  const tableBody = document.getElementById('table-body');
-  const cards = document.getElementById('cards');
-
-  const manifest = await fetch('./data/jurisdictions/manifest.json').then((r) => r.json());
-  const ordered = manifest.jurisdictions || [];
-
-  const data = await Promise.all(ordered.map(async (item) => {
-    const entry = await fetch(`./data/jurisdictions/${item.code}.json`).then((r) => r.json());
-    return entry;
-  }));
-
-  const render = () => {
-    const q = (qEl.value || '').trim().toLowerCase();
-    const status = statusEl.value;
-    const visible = data.filter((item) => {
-      const hay = JSON.stringify(item).toLowerCase();
-      const matchesQuery = !q || hay.includes(q);
-      const matchesStatus = status === 'all' || item.status === status;
-      return matchesQuery && matchesStatus;
-    });
-
-    countEl.textContent = `${visible.length}/${data.length}`;
-    tableBody.innerHTML = visible.map((item) => {
-      const sources = (item.primary_sources || []).map((s) => `<li><a href="${s.url}">${s.title}</a></li>`).join('');
-      return `<tr><td>${item.code}</td><td><b>${item.name}</b><div class="small">Last verified: ${item.last_verified}</div></td><td>${item.status}</td><td><ul>${sources}</ul></td></tr>`;
-    }).join('');
-
-    cards.innerHTML = visible.map((item) => {
-      const sources = (item.primary_sources || []).map((s) => `<li><a href="${s.url}">${s.title}</a></li>`).join('');
-      const notes = (item.marketing_notes || []).map((n) => `<li>${n}</li>`).join('');
-      const counsel = (item.requires_counsel_triggers || []).map((n) => `<li>${n}</li>`).join('');
-      return `<div class="card" style="margin-top:14px"><h2>${item.code} — ${item.name}</h2><p>Status: <b>${item.status}</b> • Last verified: ${item.last_verified}</p><h3>Primary sources</h3><ul>${sources}</ul><h3>Notes</h3><ul>${notes}</ul><h3>Requires counsel when</h3><ul>${counsel}</ul></div>`;
-    }).join('');
-
-    exportEl.onclick = () => {
-      const blob = new Blob([JSON.stringify(visible, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'gnco-visible-jurisdictions.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    };
-  };
-
-  qEl.addEventListener('input', render);
-  statusEl.addEventListener('change', render);
-  render();
-})();
-</script>
-</body>
+    <script src="./assets_gnco.js" defer></script>
+  </body>
 </html>
