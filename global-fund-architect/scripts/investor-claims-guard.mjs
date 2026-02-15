@@ -112,3 +112,11 @@ for (const htmlPath of htmlFiles) {
 
 if (process.exitCode) process.exit(process.exitCode);
 console.log('✅ Investor claims guard checks passed.');
+      let domain = '';
+      try {
+        domain = new URL(source.url).hostname.replace(/^www\./, '');
+      } catch {
+        fail(`${file} contains invalid primary source URL: ${source.url}`);
+        continue;
+      }
+
