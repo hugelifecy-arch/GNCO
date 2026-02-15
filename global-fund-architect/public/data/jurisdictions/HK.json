@@ -14,7 +14,10 @@
       "url": "https://www.elegislation.gov.hk/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "SFC Type 9",
+    "OFC"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

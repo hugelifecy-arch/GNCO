@@ -14,7 +14,9 @@
       "url": "https://www.fedlex.admin.ch/"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "CISA/FinIA"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],

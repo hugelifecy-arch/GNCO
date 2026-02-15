@@ -14,7 +14,10 @@
       "url": "https://eur-lex.europa.eu/eli/dir/2009/65/oj/eng"
     }
   ],
-  "regimes": ["AIFMD", "UCITS"],
+  "regimes": [
+    "AIFMD",
+    "UCITS"
+  ],
   "marketing_notes": [
     "Cross-border marketing rules vary by investor type and member state implementation.",
     "Treat any public/retail communication as counsel-gated."

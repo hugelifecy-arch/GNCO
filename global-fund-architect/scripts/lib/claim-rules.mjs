@@ -42,6 +42,6 @@ export const requiredDisclaimers = [
 ];
 
 const framingPattern =
-  /(prototype|informational\s+only|not\s+an\s+offer|not\s+investment\s+advice|not\s+legal\s+advice|not\s+tax\s+advice|does\s+not\s+provide\s+.*advice|no\s+offer|no\s+guarante(?:ed|e)|no\s+apy|no\s+roi|no\s+returns)/i;
+  /(prototype|informational\s+only|not\s+an\s+offer|not\s+investment\s+advice|not\s+legal\s+advice|not\s+tax\s+advice|does\s+not\s+provide\s+.*advice|no\s+offer|no\s+guarante(?:ed|e)|no\s+apy|no\s+roi|no\s+returns|always\s+verify\s+with\s+qualified\s+professionals)/i;
 
 export const hasNonOfferFraming = (context) => framingPattern.test(context);

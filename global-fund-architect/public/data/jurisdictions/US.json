@@ -14,7 +14,9 @@
       "url": "https://www.sec.gov/rules/final/2020/ia-5653.pdf"
     }
   ],
-  "regimes": [],
+  "regimes": [
+    "Investment Advisers Act"
+  ],
   "marketing_notes": [
     "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
