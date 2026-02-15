@@ -1,0 +1,43 @@
+{
+  "id": "AE-ADGM",
+  "name": "UAE (ADGM)",
+  "status": "supported",
+  "last_verified": "2026-02-14",
+  "regulators": [
+    {
+      "name": "ADGM FSRA",
+      "url": "https://www.adgm.com/"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "ADGM - Authorisation & Forms (FSRA)",
+      "citation": "FSRA",
+      "url": "https://www.adgm.com/setting-up/authorisation-and-supplementary-forms"
+    },
+    {
+      "name": "ADGM - FSRA Rulebooks",
+      "citation": "Rulebooks",
+      "url": "https://en.adgm.thomsonreuters.com/"
+    }
+  ],
+  "typical_paths": [
+    {
+      "label": "ADGM manager + funds perimeter (informational)",
+      "bullets": [
+        "ADGM funds and investment management are regulated; permissions depend on activities and client type.",
+        "Confirm FSRA rulebooks and any guidance applicable to the selected structure."
+      ]
+    }
+  ],
+  "marketing_notes": [
+    "Marketing depends on FSRA rules and client categorisation; cross-border promotion needs review.",
+    "Different rules may apply for onshore UAE vs ADGM."
+  ],
+  "requires_counsel_triggers": [
+    "Any public/retail targeting.",
+    "Any cross-border promotion onshore UAE.",
+    "Any uncertainty on FSRA permissions."
+  ],
+  "disclaimer_level": "high"
+}

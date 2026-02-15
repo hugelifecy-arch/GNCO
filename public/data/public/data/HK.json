@@ -1,0 +1,43 @@
+{
+  "id": "HK",
+  "name": "Hong Kong",
+  "status": "supported",
+  "last_verified": "2026-02-14",
+  "regulators": [
+    {
+      "name": "SFC",
+      "url": "https://www.sfc.hk/"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "SFC - Licensing (overview)",
+      "citation": "Licensing",
+      "url": "https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing"
+    },
+    {
+      "name": "SFC - Licensing Handbook",
+      "citation": "Handbook",
+      "url": "https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook"
+    }
+  ],
+  "typical_paths": [
+    {
+      "label": "Hong Kong licensing perimeter (informational)",
+      "bullets": [
+        "Licensing requirements depend on regulated activities and client types (high-level).",
+        "Confirm fund offering restrictions and selling practices with counsel."
+      ]
+    }
+  ],
+  "marketing_notes": [
+    "Marketing into Hong Kong depends on the offering regime and investor classification.",
+    "Always review local offering documentation requirements."
+  ],
+  "requires_counsel_triggers": [
+    "Any offering to the public/retail investors.",
+    "Any uncertainty on regulated activities scope.",
+    "Any cross-border distribution into HK."
+  ],
+  "disclaimer_level": "high"
+}

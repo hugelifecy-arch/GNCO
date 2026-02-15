@@ -1,0 +1,43 @@
+{
+  "id": "SG",
+  "name": "Singapore",
+  "status": "supported",
+  "last_verified": "2026-02-14",
+  "regulators": [
+    {
+      "name": "MAS",
+      "url": "https://www.mas.gov.sg/"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "MAS - CMS licence (overview)",
+      "citation": "CMS",
+      "url": "https://www.mas.gov.sg/regulation/capital-markets/apply-for-licensing-or-registration-of-capital-market-entities/cms-licence"
+    },
+    {
+      "name": "MAS - Fund management (overview)",
+      "citation": "Fund management",
+      "url": "https://www.mas.gov.sg/regulation/capital-markets/fund-management"
+    }
+  ],
+  "typical_paths": [
+    {
+      "label": "Singapore manager perimeter (informational)",
+      "bullets": [
+        "Manager licensing/registration depends on activities and client types (high-level).",
+        "Confirm licensing pathway with MAS guidance and local counsel."
+      ]
+    }
+  ],
+  "marketing_notes": [
+    "Marketing into Singapore depends on investor type and licensing status.",
+    "Verify exemptions and offering regimes before any solicitation."
+  ],
+  "requires_counsel_triggers": [
+    "Any marketing to retail investors.",
+    "Any uncertainty on licensing / exemptions for fund management activities.",
+    "Any cross-border marketing arrangements."
+  ],
+  "disclaimer_level": "high"
+}

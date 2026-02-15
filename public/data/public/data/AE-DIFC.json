@@ -1,0 +1,43 @@
+{
+  "id": "AE-DIFC",
+  "name": "UAE (DIFC)",
+  "status": "supported",
+  "last_verified": "2026-02-14",
+  "regulators": [
+    {
+      "name": "DFSA",
+      "url": "https://www.dfsa.ae/"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "DFSA - Collective Investment Funds (overview)",
+      "citation": "CIF",
+      "url": "https://www.dfsa.ae/what-we-do/collective-investment-funds"
+    },
+    {
+      "name": "DIFC Laws & Regulations portal (overview)",
+      "citation": "DIFC",
+      "url": "https://www.difc.ae/business/laws-and-regulations/"
+    }
+  ],
+  "typical_paths": [
+    {
+      "label": "DIFC fund manager orientation (informational)",
+      "bullets": [
+        "DIFC has a distinct regulatory perimeter; verify categories of funds and manager permissions with DFSA materials.",
+        "Distribution and client categorization are critical; treat as high disclaimer."
+      ]
+    }
+  ],
+  "marketing_notes": [
+    "Marketing is governed by DFSA rules and DIFC perimeter; investor classification matters materially.",
+    "Confirm any cross-border promotion rules into UAE onshore vs DIFC."
+  ],
+  "requires_counsel_triggers": [
+    "Any marketing to UAE onshore persons vs DIFC persons.",
+    "Any retail-like client targeting.",
+    "Any reliance on exemptions without DFSA-aligned review."
+  ],
+  "disclaimer_level": "high"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "LU",
+  "name": "Luxembourg",
+  "status": "supported",
+  "last_verified": "2026-02-14",
+  "regulators": [
+    {
+      "name": "CSSF",
+      "url": "https://www.cssf.lu/"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "RAIF Law (Reserved Alternative Investment Fund)",
+      "citation": "Law of 23 July 2016",
+      "url": "https://www.cssf.lu/wp-content/uploads/L_230716_RAIF_eng.pdf"
+    },
+    {
+      "name": "AIFM regulatory framework (CSSF)",
+      "citation": "AIFMD",
+      "url": "https://www.cssf.lu/en/industry/aifm/"
+    }
+  ],
+  "typical_paths": [
+    {
+      "label": "Luxembourg AIF ecosystem (informational)",
+      "bullets": [
+        "Commonly used vehicles include RAIF and other fund forms; selection depends on strategy, investors, and governance.",
+        "AIFM/ManCo and depositary requirements must be confirmed case-by-case."
+      ]
+    }
+  ],
+  "marketing_notes": [
+    "EU marketing and passporting depend on AIFM setup and the target investor jurisdictions.",
+    "Check any CSSF guidance and local circulars applicable to the selected structure."
+  ],
+  "requires_counsel_triggers": [
+    "Any offering to retail investors.",
+    "Any complex master-feeder or cross-border marketing plan.",
+    "Any use of ESMA/CSSF positions affecting the strategy (e.g., liquidity management)."
+  ],
+  "disclaimer_level": "high"
+}
