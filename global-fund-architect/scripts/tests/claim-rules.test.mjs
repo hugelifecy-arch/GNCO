@@ -4,7 +4,8 @@ import { hasNonOfferFraming, offerLikeTerms } from '../lib/claim-rules.mjs';
 
 test('offer-like dictionary includes known risky terms', () => {
   assert(offerLikeTerms.includes('0% fees'));
-  assert(offerLikeTerms.includes('vip tier'));
+  assert(offerLikeTerms.includes('VIP'));
+  assert(offerLikeTerms.includes('token sale'));
 });
 
 test('hasNonOfferFraming detects compliant framing language', () => {
