@@ -9,7 +9,7 @@ import { SOURCE_FALLBACK } from "../../data/mockDataManager";
 
 const presets: Record<string, Record<FactorKey, number>> = {
   balanced: { speed: 70, cost: 55, governance: 80, digital: 60 },
-  fast_launch: { speed: 90, cost: 60, governance: 55, digital: 45 },
+  fast_setup: { speed: 90, cost: 60, governance: 55, digital: 45 },
   low_cost: { speed: 55, cost: 95, governance: 55, digital: 45 },
   institutional: { speed: 55, cost: 45, governance: 95, digital: 45 },
   digital_first: { speed: 60, cost: 45, governance: 65, digital: 95 }
@@ -17,7 +17,7 @@ const presets: Record<string, Record<FactorKey, number>> = {
 
 const presetOptions = [
   { value: "balanced", label: "Balanced" },
-  { value: "fast_launch", label: "Fast Launch" },
+  { value: "fast_setup", label: "Fast Setup" },
   { value: "low_cost", label: "Low Cost" },
   { value: "institutional", label: "Institutional Governance" },
   { value: "digital_first", label: "Digital First" }
@@ -81,7 +81,7 @@ export function WorkspaceDemoSection({
   const [showExplainModal, setShowExplainModal] = useState(false);
   const [showAllJurisdictions, setShowAllJurisdictions] = useState(false);
   const [showMobileInspector, setShowMobileInspector] = useState(true);
-  const [preset, setPreset] = useState("fast_launch");
+  const [preset, setPreset] = useState("fast_setup");
   const initializedScenario = useRef(false);
 
   const { selectedNodeId, selectNode, clearSelection } = useGraphStore((s) => ({
@@ -120,8 +120,8 @@ export function WorkspaceDemoSection({
   }, [selectedNode, constraints, weights]);
 
   const loadSampleScenario = useCallback(() => {
-    setPreset("fast_launch");
-    setWeights(presets.fast_launch);
+    setPreset("fast_setup");
+    setWeights(presets.fast_setup);
     const candidate = rankedPaths[0]?.leafId ?? leafIds[0];
     if (candidate) selectNode(candidate);
   }, [leafIds, rankedPaths, selectNode, setWeights]);
@@ -129,7 +129,7 @@ export function WorkspaceDemoSection({
   useEffect(() => {
     if (initializedScenario.current || !leafIds.length) return;
     initializedScenario.current = true;
-    setWeights(presets.fast_launch);
+    setWeights(presets.fast_setup);
   }, [leafIds.length, setWeights]);
 
   return (

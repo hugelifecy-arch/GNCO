@@ -1,43 +1,22 @@
 {
-  "id": "HK",
+  "code": "HK",
   "name": "Hong Kong",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "SFC",
-      "url": "https://www.sfc.hk/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "SFC - Licensing (overview)",
-      "citation": "Licensing",
-      "url": "https://www.sfc.hk/en/Regulatory-functions/Intermediaries/Licensing"
+      "title": "SFC fund managers code",
+      "url": "https://www.sfc.hk/en/Rules-and-standards/Fund-management"
     },
     {
-      "name": "SFC - Licensing Handbook",
-      "citation": "Handbook",
-      "url": "https://www.sfc.hk/en/Rules-and-standards/Codes-and-guidelines/Guidelines/licensing-handbook"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "Hong Kong licensing perimeter (informational)",
-      "bullets": [
-        "Licensing requirements depend on regulated activities and client types (high-level).",
-        "Confirm fund offering restrictions and selling practices with counsel."
-      ]
+      "title": "Hong Kong e-Legislation",
+      "url": "https://www.elegislation.gov.hk/"
     }
   ],
   "marketing_notes": [
-    "Marketing into Hong Kong depends on the offering regime and investor classification.",
-    "Always review local offering documentation requirements."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any offering to the public/retail investors.",
-    "Any uncertainty on regulated activities scope.",
-    "Any cross-border distribution into HK."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

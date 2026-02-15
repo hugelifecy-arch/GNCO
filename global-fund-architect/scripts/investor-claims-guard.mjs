@@ -22,7 +22,7 @@ const requiredKeys = [
   'version'
 ];
 
-const forbiddenTerms = ['APY', 'ROI', 'returns', 'yield', 'guaranteed', 'risk-free', 'profit'];
+const forbiddenTerms = ['APY', 'ROI', 'returns', 'yield', 'guaranteed', 'risk-free', 'profit', 'fees', 'launch'];
 
 const requiredDisclaimers = [
   {

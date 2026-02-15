@@ -1,43 +1,22 @@
 {
-  "id": "IE",
+  "code": "IE",
   "name": "Ireland",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "Central Bank of Ireland",
-      "url": "https://www.centralbank.ie/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "AIF guidance (CBI)",
-      "citation": "AIF",
+      "title": "Central Bank of Ireland \u2014 AIFs",
       "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/aifs"
     },
     {
-      "name": "UCITS framework (CBI)",
-      "citation": "UCITS",
+      "title": "Central Bank of Ireland \u2014 UCITS",
       "url": "https://www.centralbank.ie/regulation/industry-market-sectors/funds/ucits"
     }
   ],
-  "typical_paths": [
-    {
-      "label": "Ireland funds (informational)",
-      "bullets": [
-        "High-level mapping of typical Irish fund pathways (e.g., AIF vs UCITS) depends on investor base and strategy.",
-        "Local rulebooks and authorisation processes must be reviewed with counsel/administrator."
-      ]
-    }
-  ],
   "marketing_notes": [
-    "Cross-border marketing depends on AIFM/UCITS management company and investor jurisdictions.",
-    "Confirm local pre-marketing/marketing notification requirements where applicable."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any retail distribution or public offering.",
-    "Any complex strategy requiring special approvals/disclosures.",
-    "Any delegation or outsourcing arrangements with cross-border providers."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

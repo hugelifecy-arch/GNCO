@@ -1,43 +1,22 @@
 {
-  "id": "CH",
+  "code": "CH",
   "name": "Switzerland",
-  "status": "partial",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Partial",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "FINMA",
-      "url": "https://www.finma.ch/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "Swiss collective investment schemes (overview)",
-      "citation": "CISA",
-      "url": "https://www.finma.ch/en/authorisation/asset-management/swiss-collective-investment-schemes/"
+      "title": "FINMA collective investment schemes",
+      "url": "https://www.finma.ch/en/authorisation/asset-management/"
     },
     {
-      "name": "Foreign collective investment schemes (overview)",
-      "citation": "Foreign schemes",
-      "url": "https://www.finma.ch/en/authorisation/asset-management/foreign-collective-investment-schemes/"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "Swiss distribution perimeter (informational)",
-      "bullets": [
-        "Switzerland has distinct rules on distribution/offerings; professional vs retail segmentation is critical.",
-        "Treat Swiss coverage as partial until each distribution scenario is validated."
-      ]
+      "title": "Swiss federal law portal",
+      "url": "https://www.fedlex.admin.ch/"
     }
   ],
   "marketing_notes": [
-    "Distribution into Switzerland can trigger additional requirements depending on investor classification and product.",
-    "Verify any rep/agent requirements and offering restrictions."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any retail distribution in Switzerland.",
-    "Any cross-border marketing to Swiss investors.",
-    "Any ambiguity on investor classification."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }

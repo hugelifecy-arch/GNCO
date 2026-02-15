@@ -1,43 +1,22 @@
 {
-  "id": "CY",
+  "code": "CY",
   "name": "Cyprus",
-  "status": "supported",
-  "last_verified": "2026-02-14",
-  "regulators": [
+  "status": "Supported",
+  "last_verified": "2026-02-15",
+  "primary_sources": [
     {
-      "name": "CySEC",
-      "url": "https://www.cysec.gov.cy/"
-    }
-  ],
-  "frameworks": [
-    {
-      "name": "AIF Law",
-      "citation": "Law 124(I)/2018",
-      "url": "https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aif/"
+      "title": "CySEC funds supervision",
+      "url": "https://www.cysec.gov.cy/en-GB/entities/investment-funds/"
     },
     {
-      "name": "AIFM Law",
-      "citation": "Law 56(I)/2013",
-      "url": "https://www.cysec.gov.cy/en-GB/legislation/collective-investment/aifm/"
-    }
-  ],
-  "typical_paths": [
-    {
-      "label": "Cyprus AIF ecosystem (informational)",
-      "bullets": [
-        "High-level orientation around AIF / AIFLNP / RAIF concepts (verify current definitions with CySEC).",
-        "Manager model (AIFM / sub-threshold manager) depends on size/activities and must be verified."
-      ]
+      "title": "Cyprus AIF Law portal",
+      "url": "https://www.cylaw.org/nomoi/enop/non-ind/2018_2_124/full.html"
     }
   ],
   "marketing_notes": [
-    "Marketing and offering rules depend on investor type (professional/retail) and fund/manager status.",
-    "Always confirm licensing/registration thresholds and any local notifications."
+    "Informational mapping only; confirm jurisdiction-specific promotion and distribution rules with counsel."
   ],
   "requires_counsel_triggers": [
-    "Any public offering/retail distribution in Cyprus.",
-    "Any reliance on AIFLNP/RAIF structuring details without current counsel confirmation.",
-    "Any delegation/sub-advisory cross-border arrangements."
-  ],
-  "disclaimer_level": "high"
+    "Any public distribution, cross-border activity, or retail-facing communication."
+  ]
 }
