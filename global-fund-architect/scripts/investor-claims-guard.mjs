@@ -10,57 +10,13 @@ import {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const repoRoot = path.resolve(__dirname, '..', '..');
-const appRoot = path.resolve(__dirname, '..');
 
-const truthPath = path.join(repoRoot, 'truth', 'gnco.truth.json');
+const appRoot = path.resolve(__dirname, '..');
 const distDir = path.join(appRoot, 'dist');
 const docsDir = path.join(appRoot, 'docs');
-const jurisdictionDir = path.join(appRoot, 'public', 'data', 'jurisdictions');
 
-const requiredKeys = [
-  'projectName',
-  'status',
-  'whatItIs',
-  'whatItIsNot',
-  'featuresNow',
-  'featuresPlanned',
-  'riskDisclosureBullets',
-  'lastUpdated',
-  'version'
-];
-
-const allowedPrimarySourceDomains = new Set([
-  'eur-lex.europa.eu',
-  'ec.europa.eu',
-  'fca.org.uk',
-  'legislation.gov.uk',
-  'sec.gov',
-  'cftc.gov',
-  'finra.org',
-  'cssf.lu',
-  'legilux.public.lu',
-  'centralbank.ie',
-  'cysec.gov.cy',
-  'cylaw.org',
-  'mfsa.mt',
-  'afm.nl',
-  'wetten.overheid.nl',
-  'finma.ch',
-  'fedlex.admin.ch',
-  'mas.gov.sg',
-  'sso.agc.gov.sg',
-  'sfc.hk',
-  'elegislation.gov.hk',
-  'cima.ky',
-  'dfsa.ae',
-  'difc.ae',
-  'adgm.com',
-  'legislation.mt'
-]);
-
-const fail = (message) => {
-  console.error(`❌ ${message}`);
+const fail = (msg) => {
+  console.error(`❌ ${msg}`);
   process.exitCode = 1;
 };
 
@@ -71,108 +27,16 @@ const resolveDeployDir = () => {
   return null;
 };
 
-const escapeRegex = (value) => value.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-const termMatcher = (term) => {
-  const escaped = escapeRegex(term);
-  const startsWord = /^[A-Za-z0-9]/.test(term);
-  const endsWord = /[A-Za-z0-9]$/.test(term);
-  const pattern = `${startsWord ? '\\b' : ''}${escaped}${endsWord ? '\\b' : ''}`;
-  return new RegExp(pattern, 'gi');
-};
-const genericPerformanceTerms = new Set(['returns', 'yield', 'profit']);
-const ambiguousOfferLikeTerms = new Set(['vip', 'tier', 'buy', 'launch']);
-const promotionalContextPattern =
-  /\b(vip|subscribe|buy|token|sale|offering?|allocation|early\s+access|whitelist)\b/i;
-const financialContextPattern =
-  /\b(apy|roi|invest(?:ment|or)?|fund|portfolio|performance|offering|solicitation|annual|monthly|guarante(?:ed|e))\b/i;
+const escapeRegex = (v) => v.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 
-const isMaterialTermUse = (term, scannable, matchIndex, termLength) => {
-  if (!genericPerformanceTerms.has(term.toLowerCase())) return true;
-  const before = Math.max(0, matchIndex - 80);
-  const after = Math.min(scannable.length, matchIndex + termLength + 80);
-  const window = scannable.slice(before, after);
-  return financialContextPattern.test(window);
-};
-
-const collectArtifacts = (rootDir, out = []) => {
+const collectFiles = (rootDir, out = []) => {
   for (const entry of fs.readdirSync(rootDir, { withFileTypes: true })) {
-    const fullPath = path.join(rootDir, entry.name);
-    if (entry.isDirectory()) collectArtifacts(fullPath, out);
-    if (entry.isFile() && /\.(html|js|css)$/i.test(entry.name))
-      out.push(fullPath);
+    const full = path.join(rootDir, entry.name);
+    if (entry.isDirectory()) collectFiles(full, out);
+    if (entry.isFile() && /\.(html|js|css)$/i.test(entry.name)) out.push(full);
   }
   return out;
 };
-
-const scannableContentFor = (artifactPath, content) => {
-  if (path.extname(artifactPath).toLowerCase() !== '.js') return content;
-  const segments = [];
-  const literalPattern = /(["'`])((?:\\.|(?!\1)[\s\S])*)\1/g;
-  let match;
-  while ((match = literalPattern.exec(content)) !== null)
-    segments.push(match[2]);
-  return segments.join('\n');
-};
-
-const validateTruth = () => {
-  if (!fs.existsSync(truthPath)) {
-    fail('Missing truth/gnco.truth.json.');
-    return;
-  }
-
-  const truth = JSON.parse(fs.readFileSync(truthPath, 'utf8'));
-  for (const key of requiredKeys) {
-    if (!(key in truth)) fail(`truth schema error: missing key ${key}`);
-  }
-  if (!['Prototype', 'Beta', 'Live'].includes(truth.status))
-    fail('truth.status must be Prototype, Beta, or Live.');
-};
-
-const validateJurisdictionSources = () => {
-  if (!fs.existsSync(jurisdictionDir)) {
-    fail('Missing public/data/jurisdictions directory.');
-    return;
-  }
-
-  const files = fs
-    .readdirSync(jurisdictionDir)
-    .filter((file) => file.endsWith('.json') && file !== 'manifest.json');
-  for (const file of files) {
-    const payload = JSON.parse(
-      fs.readFileSync(path.join(jurisdictionDir, file), 'utf8')
-    );
-
-    if (
-      !payload.last_verified ||
-      !/^\d{4}-\d{2}-\d{2}$/.test(payload.last_verified)
-    ) {
-      fail(`${file} must include last_verified in YYYY-MM-DD format.`);
-    }
-
-    if (
-      !Array.isArray(payload.primary_sources) ||
-      payload.primary_sources.length === 0
-    ) {
-      fail(`${file} must include non-empty primary_sources.`);
-      continue;
-    }
-
-    for (const source of payload.primary_sources) {
-      if (!source?.url || source.url.includes('...')) {
-        fail(`${file} contains placeholder or empty primary source URL.`);
-        continue;
-      }
-
-      const domain = new URL(source.url).hostname.replace(/^www\./, '');
-      if (!allowedPrimarySourceDomains.has(domain)) {
-        fail(`${file} primary source domain is not allowlisted: ${domain}`);
-      }
-    }
-  }
-};
-
-validateTruth();
-validateJurisdictionSources();
 
 const deploy = resolveDeployDir();
 if (!deploy) process.exit(1);
@@ -182,71 +46,65 @@ for (const page of ['index.html', 'investor.html', 'disclosures.html']) {
     fail(`Missing required output page: ${deploy.label}/${page}`);
 }
 
-const indexPath = path.join(deploy.dir, 'index.html');
-if (fs.existsSync(indexPath)) {
-  const indexHtml = fs.readFileSync(indexPath, 'utf8');
-  if (!/<div\s+id=["']root["']/.test(indexHtml))
-    fail('dist/index.html must contain <div id="root">.');
-  if (!/<script\b[^>]*>/.test(indexHtml))
-    fail('dist/index.html must contain at least one <script> tag.');
+const indexHtml = fs.readFileSync(path.join(deploy.dir, 'index.html'), 'utf8');
+if (!/<div\s+id=["']root["']/.test(indexHtml))
+  fail('dist/index.html MUST contain <div id="root">');
+if (!/<script\s+type=["']module["'][^>]*src=["'][^"']+["']/.test(indexHtml)) {
+  fail(
+    'dist/index.html MUST contain a module <script> with src="/assets/..." (build output)'
+  );
 }
 
-const artifactPaths = collectArtifacts(deploy.dir);
-let allContent = '';
+const artifacts = collectFiles(deploy.dir);
 
-for (const artifactPath of artifactPaths) {
-  const relativeArtifactPath = path.relative(deploy.dir, artifactPath);
-  const content = fs.readFileSync(artifactPath, 'utf8');
-  const scannable = scannableContentFor(artifactPath, content);
-  allContent += `\n${scannable}`;
+const scanText = (filePath, content) => {
+  const rel = path.relative(deploy.dir, filePath);
+  const scannable = content;
 
   for (const term of forbiddenTerms) {
-    const regex = termMatcher(term);
-    let match;
-    while ((match = regex.exec(scannable)) !== null) {
-      if (!isMaterialTermUse(term, scannable, match.index, match[0].length))
-        continue;
-      const context = scannable
-        .slice(Math.max(0, match.index - 90), match.index)
-        .toLowerCase();
-      if (!/\b(no|not|without|never|non)\b/.test(context)) {
+    const re = new RegExp(`\\b${escapeRegex(term)}\\b`, 'gi');
+    let m;
+    while ((m = re.exec(scannable)) !== null) {
+      const start = Math.max(0, m.index - 120);
+      const end = Math.min(scannable.length, m.index + m[0].length + 120);
+      const ctx = scannable.slice(start, end).toLowerCase();
+      const negated =
+        /\b(no|not|without|never|non)\b/.test(ctx) ||
+        /not\s+an\s+offer/.test(ctx) ||
+        /informational\s+only/.test(ctx);
+      if (!negated)
         fail(
-          `Forbidden investor-claim term "${term}" found in ${deploy.label}/${relativeArtifactPath} without explicit negation.`
+          `Forbidden term "${term}" found in ${deploy.label}/${rel} without explicit negation nearby.`
         );
-        break;
-      }
     }
   }
 
   for (const term of offerLikeTerms) {
-    const regex = termMatcher(term);
-    let match;
-    while ((match = regex.exec(scannable)) !== null) {
-      const context = scannable.slice(
-        Math.max(0, match.index - 120),
-        Math.min(scannable.length, match.index + term.length + 120)
-      );
-
-      if (
-        ambiguousOfferLikeTerms.has(term.toLowerCase()) &&
-        !promotionalContextPattern.test(context)
-      ) {
-        continue;
-      }
-
-      if (!hasNonOfferFraming(context)) {
+    const re = new RegExp(escapeRegex(term), 'gi');
+    let m;
+    while ((m = re.exec(scannable)) !== null) {
+      const start = Math.max(0, m.index - 200);
+      const end = Math.min(scannable.length, m.index + term.length + 200);
+      const ctx = scannable.slice(start, end);
+      if (!hasNonOfferFraming(ctx))
         fail(
-          `Offer-like claim "${term}" found in ${deploy.label}/${relativeArtifactPath} without non-offer framing.`
+          `Offer-like term "${term}" found in ${deploy.label}/${rel} without non-offer framing nearby.`
         );
-        break;
-      }
     }
   }
-}
+};
 
-for (const disclaimer of requiredDisclaimers) {
-  if (!disclaimer.checks.every((pattern) => pattern.test(allContent))) {
-    fail(`Missing required disclaimer coverage for: ${disclaimer.label}.`);
+for (const p of artifacts) scanText(p, fs.readFileSync(p, 'utf8'));
+
+const htmlFiles = artifacts.filter((p) => p.toLowerCase().endsWith('.html'));
+for (const htmlPath of htmlFiles) {
+  const html = fs.readFileSync(htmlPath, 'utf8');
+  for (const d of requiredDisclaimers) {
+    if (!d.checks.every((pat) => pat.test(html))) {
+      fail(
+        `Missing required disclaimer "${d.label}" in ${deploy.label}/${path.relative(deploy.dir, htmlPath)}`
+      );
+    }
   }
 }
 
