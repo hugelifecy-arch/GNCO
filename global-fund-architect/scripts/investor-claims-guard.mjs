@@ -96,11 +96,23 @@ const scanText = (filePath, content) => {
   }
 };
 
-for (const p of artifacts) scanText(p, fs.readFileSync(p, 'utf8'));
+  let truth;
+  try {
+    truth = JSON.parse(fs.readFileSync(truthPath, 'utf8'));
+  } catch {
+    fail('truth/gnco.truth.json is not valid JSON.');
+    return;
+  }
 
-const htmlFiles = artifacts.filter((p) => p.toLowerCase().endsWith('.html'));
-for (const htmlPath of htmlFiles) {
-  const html = fs.readFileSync(htmlPath, 'utf8');
+    let payload;
+    try {
+      payload = JSON.parse(
+        fs.readFileSync(path.join(jurisdictionDir, file), 'utf8')
+      );
+    } catch {
+      fail(`${file} is not valid JSON.`);
+      continue;
+    }
   for (const d of requiredDisclaimers) {
     if (!d.checks.every((pat) => pat.test(html))) {
       fail(
