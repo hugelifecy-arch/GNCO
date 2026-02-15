@@ -523,7 +523,7 @@ function buildNode(id: NodeId, inheritedTags: string[] = []): FundNode {
       summary: `Economics options define share class mechanics, fee/carry terms, and co-invest rights.`,
       advantages: [
         "Supports allocator segmentation via classes and fee tiers.",
-        "Co-invest can improve net returns and LP alignment.",
+        "Co-invest can improve LP alignment and capital flexibility.",
         "Side letters can unlock commitments (MFN/capacity)."
       ],
       disadvantages: [

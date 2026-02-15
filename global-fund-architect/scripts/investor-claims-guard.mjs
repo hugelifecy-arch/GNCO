@@ -22,15 +22,21 @@ const requiredKeys = [
   'version'
 ];
 
-const forbiddenTerms = [
-  'guaranteed',
-  'risk-free',
-  'fixed return',
-  'APY',
-  'ROI',
-  'profit',
-  'assured',
-  'insured returns'
+const forbiddenTerms = ['APY', 'ROI', 'returns', 'yield', 'guaranteed', 'risk-free', 'profit'];
+
+const requiredDisclaimers = [
+  {
+    label: 'not an offer / not investment advice',
+    checks: [/not\s+an\s+offer/i, /not\s+investment\s+advice/i]
+  },
+  {
+    label: 'prototype / informational',
+    checks: [/prototype/i, /informational\s+only/i]
+  },
+  {
+    label: 'verify with qualified professionals',
+    checks: [/(verify|validated?|confirm)\s+with\s+(qualified\s+)?(professionals?|counsel|advisors?)/i]
+  }
 ];
 
 const fail = (message) => {
@@ -68,6 +74,57 @@ const resolveDeployDir = () => {
   return null;
 };
 
+const escapeRegex = (value) => value.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+
+const genericPerformanceTerms = new Set(['returns', 'yield', 'profit']);
+const financialContextPattern = /\b(apy|roi|invest(?:ment|or)?|fund|portfolio|performance|offering|solicitation|annual|monthly|guarante(?:ed|e))\b/i;
+
+const isMaterialTermUse = (term, scannable, matchIndex, termLength) => {
+  if (!genericPerformanceTerms.has(term.toLowerCase())) {
+    return true;
+  }
+
+  const before = Math.max(0, matchIndex - 80);
+  const after = Math.min(scannable.length, matchIndex + termLength + 80);
+  const window = scannable.slice(before, after);
+  return financialContextPattern.test(window);
+};
+
+const collectArtifacts = (rootDir, out = []) => {
+  for (const entry of fs.readdirSync(rootDir, { withFileTypes: true })) {
+    const fullPath = path.join(rootDir, entry.name);
+
+    if (entry.isDirectory()) {
+      collectArtifacts(fullPath, out);
+      continue;
+    }
+
+    if (/\.(html|js|css)$/i.test(entry.name)) {
+      out.push(fullPath);
+    }
+  }
+
+  return out;
+};
+
+const scannableContentFor = (artifactPath, content) => {
+  const ext = path.extname(artifactPath).toLowerCase();
+
+  if (ext !== '.js') {
+    return content;
+  }
+
+  const segments = [];
+  const literalPattern = /(["'`])((?:\\.|(?!\1)[\s\S])*)\1/g;
+  let match;
+
+  while ((match = literalPattern.exec(content)) !== null) {
+    segments.push(match[2]);
+  }
+
+  return segments.join('\n');
+};
+
 if (!fs.existsSync(truthPath)) {
   fail('Missing truth/gnco.truth.json.');
 } else {
@@ -93,39 +150,55 @@ if (!fs.existsSync(truthPath)) {
 }
 
 const deploy = resolveDeployDir();
-
 if (!deploy) {
   process.exit(process.exitCode ?? 1);
 }
 
 process.stdout.write(`ℹ️ Scanning deploy output in ${deploy.label}/\n`);
 
-for (const fileName of ['investor.html', 'disclosures.html']) {
-  const pagePath = path.join(deploy.dir, fileName);
-  if (!fs.existsSync(pagePath)) {
-    fail(`Missing required output page: ${deploy.label}/${fileName}`);
-    continue;
+for (const page of ['investor.html', 'disclosures.html']) {
+  if (!fs.existsSync(path.join(deploy.dir, page))) {
+    fail(`Missing required output page: ${deploy.label}/${page}`);
   }
+}
 
-  const content = fs.readFileSync(pagePath, 'utf8');
-  const lowered = content.toLowerCase();
+const artifactPaths = collectArtifacts(deploy.dir);
+if (artifactPaths.length === 0) {
+  fail(`No .html/.js/.css build artifacts found in ${deploy.label}/.`);
+}
+
+let allContent = '';
+for (const artifactPath of artifactPaths) {
+  const relativeArtifactPath = path.relative(deploy.dir, artifactPath);
+  const content = fs.readFileSync(artifactPath, 'utf8');
+  const scannable = scannableContentFor(artifactPath, content);
+  allContent += `\n${scannable}`;
 
   for (const term of forbiddenTerms) {
-    const termLower = term.toLowerCase();
-    let cursor = lowered.indexOf(termLower);
+    const regex = new RegExp(`\\b${escapeRegex(term)}\\b`, 'gi');
+    let match;
 
-    while (cursor !== -1) {
-      const contextStart = Math.max(0, cursor - 25);
-      const context = lowered.slice(contextStart, cursor);
-      const isNegated = /\b(no|not|without)\b/.test(context);
-
-      if (!isNegated) {
-        fail(`Forbidden investor-claim term "${term}" found in ${deploy.label}/${fileName} without explicit negation.`);
-        break;
+    while ((match = regex.exec(scannable)) !== null) {
+      if (!isMaterialTermUse(term, scannable, match.index, match[0].length)) {
+        continue;
       }
 
-      cursor = lowered.indexOf(termLower, cursor + termLower.length);
+      const contextStart = Math.max(0, match.index - 60);
+      const context = scannable.slice(contextStart, match.index).toLowerCase();
+      const isNegated = /\b(no|not|without|never|non)\b/.test(context);
+
+      if (!isNegated) {
+        fail(`Forbidden investor-claim term "${term}" found in ${deploy.label}/${relativeArtifactPath} without explicit negation.`);
+        break;
+      }
     }
+  }
+}
+
+for (const disclaimer of requiredDisclaimers) {
+  const complete = disclaimer.checks.every((pattern) => pattern.test(allContent));
+  if (!complete) {
+    fail(`Missing required disclaimer coverage for: ${disclaimer.label}.`);
   }
 }
 
