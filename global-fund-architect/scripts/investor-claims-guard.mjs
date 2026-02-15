@@ -80,6 +80,8 @@ const scanText = (filePath, content) => {
   }
 
   for (const term of offerLikeTerms) {
+  // Keep JS scanning focused on string literals to avoid minified-runtime false positives
+  // while still catching user-visible/compliance-relevant copy.
     const re = new RegExp(escapeRegex(term), 'gi');
     let m;
     while ((m = re.exec(scannable)) !== null) {
