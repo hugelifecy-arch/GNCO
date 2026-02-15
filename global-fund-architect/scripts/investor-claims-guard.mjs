@@ -72,7 +72,17 @@ const resolveDeployDir = () => {
 };
 
 const escapeRegex = (value) => value.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+const termMatcher = (term) => {
+  const escaped = escapeRegex(term);
+  const startsWord = /^[A-Za-z0-9]/.test(term);
+  const endsWord = /[A-Za-z0-9]$/.test(term);
+  const pattern = `${startsWord ? '\\b' : ''}${escaped}${endsWord ? '\\b' : ''}`;
+  return new RegExp(pattern, 'gi');
+};
 const genericPerformanceTerms = new Set(['returns', 'yield', 'profit']);
+const ambiguousOfferLikeTerms = new Set(['vip', 'tier', 'buy', 'launch']);
+const promotionalContextPattern =
+  /\b(vip|subscribe|buy|token|sale|offering?|allocation|early\s+access|whitelist)\b/i;
 const financialContextPattern =
   /\b(apy|roi|invest(?:ment|or)?|fund|portfolio|performance|offering|solicitation|annual|monthly|guarante(?:ed|e))\b/i;
 
@@ -191,7 +201,7 @@ for (const artifactPath of artifactPaths) {
   allContent += `\n${scannable}`;
 
   for (const term of forbiddenTerms) {
-    const regex = new RegExp(`\\b${escapeRegex(term)}\\b`, 'gi');
+    const regex = termMatcher(term);
     let match;
     while ((match = regex.exec(scannable)) !== null) {
       if (!isMaterialTermUse(term, scannable, match.index, match[0].length))
@@ -209,13 +219,21 @@ for (const artifactPath of artifactPaths) {
   }
 
   for (const term of offerLikeTerms) {
-    const regex = new RegExp(escapeRegex(term), 'gi');
+    const regex = termMatcher(term);
     let match;
     while ((match = regex.exec(scannable)) !== null) {
       const context = scannable.slice(
         Math.max(0, match.index - 120),
         Math.min(scannable.length, match.index + term.length + 120)
       );
+
+      if (
+        ambiguousOfferLikeTerms.has(term.toLowerCase()) &&
+        !promotionalContextPattern.test(context)
+      ) {
+        continue;
+      }
+
       if (!hasNonOfferFraming(context)) {
         fail(
           `Offer-like claim "${term}" found in ${deploy.label}/${relativeArtifactPath} without non-offer framing.`

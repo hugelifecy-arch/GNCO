@@ -3,27 +3,35 @@ export const forbiddenTerms = [
   'ROI',
   'returns',
   'yield',
+  'guaranteed',
   'risk-free',
-  'profit',
-  'launch'
+  'profit'
 ];
 
 export const offerLikeTerms = [
   '0% fees',
-  'vip tier',
-  'guaranteed',
-  'exclusive allocation',
-  'no lockup'
+  'VIP',
+  'tier',
+  'subscribe now',
+  'buy',
+  'token sale',
+  'launch'
 ];
 
 export const requiredDisclaimers = [
   {
-    label: 'not an offer / not investment advice',
-    checks: [/not\s+an\s+offer/i, /not\s+investment\s+advice/i]
+    label: 'informational only',
+    checks: [/informational\s+only/i]
   },
   {
-    label: 'prototype / informational',
-    checks: [/prototype/i, /informational\s+only/i]
+    label: 'not an offer',
+    checks: [/not\s+an\s+offer/i]
+  },
+  {
+    label: 'not advice',
+    checks: [
+      /(not\s+investment\s+advice|not\s+legal\s+advice|not\s+tax\s+advice|does\s+not\s+provide\s+.*advice)/i
+    ]
   },
   {
     label: 'verify with qualified professionals',
@@ -34,6 +42,6 @@ export const requiredDisclaimers = [
 ];
 
 const framingPattern =
-  /(prototype|not\s+an\s+offer|not\s+investment\s+advice|informational\s+only|no\s+offer|no\s+guaranteed)/i;
+  /(prototype|informational\s+only|not\s+an\s+offer|not\s+investment\s+advice|not\s+legal\s+advice|not\s+tax\s+advice|does\s+not\s+provide\s+.*advice|no\s+offer|no\s+guarante(?:ed|e)|no\s+apy|no\s+roi|no\s+returns)/i;
 
 export const hasNonOfferFraming = (context) => framingPattern.test(context);
